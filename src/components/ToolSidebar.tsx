@@ -3,7 +3,6 @@ import { useState, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Search, Code } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import {
   Sidebar,
   SidebarContent,
@@ -16,6 +15,7 @@ import {
   SidebarGroupContent,
 } from "@/components/ui/sidebar";
 import { tools } from "@/utils/toolsConfig";
+import SponsorSection from "@/components/SponsorSection";
 
 export function ToolSidebar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -68,6 +68,8 @@ export function ToolSidebar() {
       </SidebarHeader>
       
       <SidebarContent className="p-2">
+        <SponsorSection />
+        
         {categories.map((category) => {
           const categoryTools = filteredToolsByCategory[category];
           if (categoryTools.length === 0) return null;

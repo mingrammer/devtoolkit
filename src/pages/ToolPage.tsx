@@ -4,6 +4,9 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ToolSidebar } from "@/components/ToolSidebar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { tools } from "@/utils/toolsConfig";
+import { getToolSEO } from "@/utils/seoConfig";
+import SEOHead from "@/components/SEOHead";
+import AdBanner from "@/components/AdBanner";
 
 // 컴포넌트 임포트
 import UuidGenerator from "@/components/UuidGenerator";
@@ -37,6 +40,9 @@ const ToolPage = () => {
     return <Navigate to="/" replace />;
   }
 
+  const seoData = getToolSEO(toolId!);
+  const canonicalUrl = `${window.location.origin}/tools/${toolId}`;
+
   const renderTool = () => {
     switch (toolId) {
       case "uuid": return <UuidGenerator />;
@@ -65,31 +71,51 @@ const ToolPage = () => {
   };
 
   return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full">
-        <ToolSidebar />
-        <SidebarInset>
-          <div className="flex-1 p-8">
-            <Card className="shadow-lg">
-              <CardHeader>
-                <div className="flex items-center space-x-3">
-                  <div className={`w-12 h-12 ${tool.color} rounded-lg flex items-center justify-center`}>
-                    <tool.icon className="w-6 h-6 text-white" />
+    <>
+      <SEOHead
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        ogTitle={seoData.ogTitle}
+        ogDescription={seoData.ogDescription}
+        canonicalUrl={canonicalUrl}
+      />
+      
+      <SidebarProvider>
+        <div className="min-h-screen flex w-full">
+          <ToolSidebar />
+          <SidebarInset>
+            <div className="flex-1 p-8">
+              <Card className="shadow-lg">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-12 h-12 ${tool.color} rounded-lg flex items-center justify-center`}>
+                      <tool.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-2xl">{tool.title}</CardTitle>
+                      <CardDescription className="text-lg">{tool.description}</CardDescription>
+                    </div>
                   </div>
-                  <div>
-                    <CardTitle className="text-2xl">{tool.title}</CardTitle>
-                    <CardDescription className="text-lg">{tool.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  {renderTool()}
+                  
+                  {/* 도구 사용 결과 하단 광고 배너 */}
+                  <div className="mt-8 pt-8 border-t border-gray-200">
+                    <AdBanner 
+                      slot="1234567890" 
+                      className="max-w-2xl mx-auto"
+                      style={{ minHeight: '250px' }}
+                    />
                   </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-6">
-                {renderTool()}
-              </CardContent>
-            </Card>
-          </div>
-        </SidebarInset>
-      </div>
-    </SidebarProvider>
+                </CardContent>
+              </Card>
+            </div>
+          </SidebarInset>
+        </div>
+      </SidebarProvider>
+    </>
   );
 };
 
