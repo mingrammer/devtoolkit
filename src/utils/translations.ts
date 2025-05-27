@@ -86,6 +86,44 @@ export interface Translations {
   viewPremiumTools: string;
   footerCopyright: string;
   madeWithLove: string;
+
+  // JSON Tool specific
+  jsonInputLabel: string;
+  jsonOutputLabel: string;
+  jsonInputPlaceholder: string;
+  jsonOutputPlaceholder: string;
+  prettifyButton: string;
+  minifyButton: string;
+  validateButton: string;
+  loadSampleButton: string;
+  copyButton: string;
+  featuresTitle: string;
+  prettifyFeature: string;
+  minifyFeature: string;
+  validateFeature: string;
+  sampleFeature: string;
+  jsonFormatted: string;
+  jsonMinified: string;
+  jsonValid: string;
+  jsonInvalid: string;
+  jsonInvalidError: string;
+  jsonRequired: string;
+  copySuccess: string;
+  copyError: string;
+
+  // Common UI
+  generate: string;
+  copy: string;
+  clear: string;
+  refresh: string;
+  settings: string;
+  format: string;
+  validate: string;
+  input: string;
+  output: string;
+  result: string;
+  options: string;
+  features: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -174,6 +212,44 @@ export const translations: Record<Language, Translations> = {
     viewPremiumTools: 'View Premium Tools',
     footerCopyright: 'Essential utility collection for developers',
     madeWithLove: 'Made with ❤️ for developers',
+
+    // JSON Tool specific
+    jsonInputLabel: 'Input JSON',
+    jsonOutputLabel: 'Output JSON',
+    jsonInputPlaceholder: 'Enter or paste JSON data here',
+    jsonOutputPlaceholder: 'Formatted JSON will appear here',
+    prettifyButton: 'Format (Pretty)',
+    minifyButton: 'Compress (Minify)',
+    validateButton: 'Validate',
+    loadSampleButton: 'Load Sample',
+    copyButton: 'Copy',
+    featuresTitle: 'Features',
+    prettifyFeature: 'Format (Pretty): Organize JSON with indentation and line breaks for readability',
+    minifyFeature: 'Compress (Minify): Remove unnecessary whitespace to minimize JSON size',
+    validateFeature: 'Validate: Check if JSON syntax is correct',
+    sampleFeature: 'Load Sample: Load sample JSON data for testing',
+    jsonFormatted: 'JSON has been formatted',
+    jsonMinified: 'JSON has been compressed',
+    jsonValid: 'Valid JSON',
+    jsonInvalid: 'Invalid JSON format',
+    jsonInvalidError: 'Invalid JSON format: ',
+    jsonRequired: 'Please enter JSON data',
+    copySuccess: 'Copied to clipboard',
+    copyError: 'Copy failed',
+
+    // Common UI
+    generate: 'Generate',
+    copy: 'Copy',
+    clear: 'Clear',
+    refresh: 'Refresh',
+    settings: 'Settings',
+    format: 'Format',
+    validate: 'Validate',
+    input: 'Input',
+    output: 'Output',
+    result: 'Result',
+    options: 'Options',
+    features: 'Features',
   },
   ko: {
     // Common
@@ -260,6 +336,44 @@ export const translations: Record<Language, Translations> = {
     viewPremiumTools: '프리미엄 도구 보기',
     footerCopyright: '개발자를 위한 필수 유틸리티 모음',
     madeWithLove: 'Made with ❤️ for developers',
+
+    // JSON Tool specific
+    jsonInputLabel: '입력 JSON',
+    jsonOutputLabel: '출력 JSON',
+    jsonInputPlaceholder: 'JSON 데이터를 입력하거나 붙여넣기하세요',
+    jsonOutputPlaceholder: '정리된 JSON이 여기에 표시됩니다',
+    prettifyButton: '정리 (Pretty)',
+    minifyButton: '압축 (Minify)',
+    validateButton: '검증',
+    loadSampleButton: '샘플 로드',
+    copyButton: '복사',
+    featuresTitle: '기능',
+    prettifyFeature: '정리 (Pretty): JSON을 들여쓰기와 줄바꿈으로 읽기 쉽게 정리',
+    minifyFeature: '압축 (Minify): 불필요한 공백을 제거하여 JSON 크기 최소화',
+    validateFeature: '검증: JSON 문법이 올바른지 확인',
+    sampleFeature: '샘플 로드: 테스트용 샘플 JSON 데이터 로드',
+    jsonFormatted: 'JSON이 정리되었습니다',
+    jsonMinified: 'JSON이 압축되었습니다',
+    jsonValid: '유효한 JSON입니다',
+    jsonInvalid: '올바른 JSON 형식이 아닙니다',
+    jsonInvalidError: '올바른 JSON 형식이 아닙니다: ',
+    jsonRequired: 'JSON 데이터를 입력해주세요',
+    copySuccess: '클립보드에 복사되었습니다',
+    copyError: '복사 중 오류가 발생했습니다',
+
+    // Common UI
+    generate: '생성',
+    copy: '복사',
+    clear: '지우기',
+    refresh: '새로고침',
+    settings: '설정',
+    format: '포맷',
+    validate: '검증',
+    input: '입력',
+    output: '출력',
+    result: '결과',
+    options: '옵션',
+    features: '기능',
   },
 };
 
