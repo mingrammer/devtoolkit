@@ -1,10 +1,12 @@
 
-import { useState } from "react";
-import { Code, Hash, Type, RefreshCw, Clock, Globe, CaseUpper, FileJson, Braces, Binary, QrCode, Search, Calendar, Eye } from "lucide-react";
+import { useState, useMemo } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { Code, Hash, Type, RefreshCw, Clock, Globe, CaseUpper, FileJson, Braces, Binary, QrCode, Search, Calendar, Eye, Key, Timer, Network, Calculator, FileType, GitCompare, Shield, Link2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
 import UuidGenerator from "@/components/UuidGenerator";
 import HashGenerator from "@/components/HashGenerator";
 import LoremGenerator from "@/components/LoremGenerator";
@@ -18,105 +20,227 @@ import QrCodeGenerator from "@/components/QrCodeGenerator";
 import RegexTester from "@/components/RegexTester";
 import CronGenerator from "@/components/CronGenerator";
 import MarkdownViewer from "@/components/MarkdownViewer";
+import PasswordGenerator from "@/components/PasswordGenerator";
+import TimezoneConverter from "@/components/TimezoneConverter";
+import CidrCalculator from "@/components/CidrCalculator";
+import NumberConverter from "@/components/NumberConverter";
+import NumberFormatter from "@/components/NumberFormatter";
+import TextDiff from "@/components/TextDiff";
+import EscapeUnescape from "@/components/EscapeUnescape";
+import TextToSlug from "@/components/TextToSlug";
 
 const Index = () => {
-  const [selectedTool, setSelectedTool] = useState("uuid");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  const selectedTool = searchParams.get("tool") || "uuid";
 
   const tools = [
+    // 텍스트 처리
     {
       id: "uuid",
       title: "UUID 생성기",
       description: "랜덤 UUID (v4) 생성",
       icon: Hash,
-      color: "bg-blue-500"
-    },
-    {
-      id: "hash",
-      title: "해시 생성기",
-      description: "MD5, SHA256 등 해시 생성",
-      icon: Code,
-      color: "bg-green-500"
+      color: "bg-blue-500",
+      category: "텍스트 처리"
     },
     {
       id: "lorem",
       title: "Lorem Ipsum",
       description: "목업용 텍스트 생성",
       icon: Type,
-      color: "bg-purple-500"
-    },
-    {
-      id: "converter",
-      title: "포맷 변환",
-      description: "JSON ↔ CSV ↔ YAML",
-      icon: RefreshCw,
-      color: "bg-orange-500"
-    },
-    {
-      id: "time",
-      title: "시간 변환",
-      description: "Epoch ↔ DateTime",
-      icon: Clock,
-      color: "bg-red-500"
-    },
-    {
-      id: "locale",
-      title: "로케일 변환",
-      description: "en_US ↔ ko_KR 등",
-      icon: Globe,
-      color: "bg-indigo-500"
+      color: "bg-purple-500",
+      category: "텍스트 처리"
     },
     {
       id: "case",
       title: "케이스 변환",
       description: "camelCase ↔ snake_case",
       icon: CaseUpper,
-      color: "bg-pink-500"
+      color: "bg-pink-500",
+      category: "텍스트 처리"
     },
     {
-      id: "json",
-      title: "JSON 정리",
-      description: "JSON 포맷팅/뷰어",
-      icon: Braces,
-      color: "bg-cyan-500"
+      id: "password",
+      title: "비밀번호 생성기",
+      description: "조건에 따른 비밀번호 생성",
+      icon: Key,
+      color: "bg-red-600",
+      category: "텍스트 처리"
+    },
+    {
+      id: "textdiff",
+      title: "텍스트 비교",
+      description: "두 텍스트 간 차이점 비교",
+      icon: GitCompare,
+      color: "bg-orange-600",
+      category: "텍스트 처리"
+    },
+    {
+      id: "escape",
+      title: "이스케이프 도구",
+      description: "HTML, URL, JSON 등 이스케이프",
+      icon: Shield,
+      color: "bg-yellow-600",
+      category: "텍스트 처리"
+    },
+    {
+      id: "slug",
+      title: "텍스트 to 슬러그",
+      description: "URL 친화적 슬러그 생성",
+      icon: Link2,
+      color: "bg-green-600",
+      category: "텍스트 처리"
+    },
+
+    // 인코딩/변환
+    {
+      id: "hash",
+      title: "해시 생성기",
+      description: "MD5, SHA256 등 해시 생성",
+      icon: Code,
+      color: "bg-green-500",
+      category: "인코딩/변환"
     },
     {
       id: "base64",
       title: "Base64 변환",
       description: "인코딩/디코딩",
       icon: Binary,
-      color: "bg-yellow-500"
+      color: "bg-yellow-500",
+      category: "인코딩/변환"
     },
     {
       id: "qr",
       title: "QR 코드",
       description: "QR 코드 생성기",
       icon: QrCode,
-      color: "bg-teal-500"
+      color: "bg-teal-500",
+      category: "인코딩/변환"
     },
     {
-      id: "regex",
-      title: "정규식 테스터",
-      description: "regex 패턴 테스트",
-      icon: Search,
-      color: "bg-lime-500"
+      id: "numberconv",
+      title: "진법 변환기",
+      description: "2진법, 8진법, 10진법, 16진법",
+      icon: Calculator,
+      color: "bg-indigo-600",
+      category: "인코딩/변환"
+    },
+
+    // 시간/날짜
+    {
+      id: "time",
+      title: "시간 변환",
+      description: "Epoch ↔ DateTime",
+      icon: Clock,
+      color: "bg-red-500",
+      category: "시간/날짜"
+    },
+    {
+      id: "timezone",
+      title: "시간대 변환",
+      description: "타임존 간 시간 변환",
+      icon: Timer,
+      color: "bg-blue-600",
+      category: "시간/날짜"
     },
     {
       id: "cron",
       title: "Cron 생성기",
       description: "Cron 표현식 생성/검증",
       icon: Calendar,
-      color: "bg-amber-500"
+      color: "bg-amber-500",
+      category: "시간/날짜"
+    },
+
+    // 데이터 포맷
+    {
+      id: "converter",
+      title: "포맷 변환",
+      description: "JSON ↔ CSV ↔ YAML",
+      icon: RefreshCw,
+      color: "bg-orange-500",
+      category: "데이터 포맷"
+    },
+    {
+      id: "json",
+      title: "JSON 정리",
+      description: "JSON 포맷팅/뷰어",
+      icon: Braces,
+      color: "bg-cyan-500",
+      category: "데이터 포맷"
+    },
+    {
+      id: "locale",
+      title: "로케일 변환",
+      description: "en_US ↔ ko_KR 등",
+      icon: Globe,
+      color: "bg-indigo-500",
+      category: "데이터 포맷"
+    },
+    {
+      id: "numberformat",
+      title: "숫자 포맷터",
+      description: "숫자 포맷팅 (통화, 퍼센트 등)",
+      icon: Hash,
+      color: "bg-purple-600",
+      category: "데이터 포맷"
+    },
+
+    // 개발 도구
+    {
+      id: "regex",
+      title: "정규식 테스터",
+      description: "regex 패턴 테스트",
+      icon: Search,
+      color: "bg-lime-500",
+      category: "개발 도구"
     },
     {
       id: "markdown",
       title: "마크다운 뷰어",
       description: "마크다운 미리보기",
       icon: Eye,
-      color: "bg-emerald-500"
+      color: "bg-emerald-500",
+      category: "개발 도구"
+    },
+    {
+      id: "cidr",
+      title: "IP CIDR 계산기",
+      description: "네트워크 CIDR 계산",
+      icon: Network,
+      color: "bg-slate-600",
+      category: "개발 도구"
     }
   ];
 
+  const categories = ["전체", "텍스트 처리", "인코딩/변환", "시간/날짜", "데이터 포맷", "개발 도구"];
+  const [selectedCategory, setSelectedCategory] = useState("전체");
+
+  const filteredTools = useMemo(() => {
+    let filtered = tools;
+    
+    if (selectedCategory !== "전체") {
+      filtered = filtered.filter(tool => tool.category === selectedCategory);
+    }
+    
+    if (searchQuery) {
+      filtered = filtered.filter(tool => 
+        tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
+    return filtered;
+  }, [searchQuery, selectedCategory]);
+
   const selectedToolData = tools.find(t => t.id === selectedTool);
+
+  const setSelectedTool = (toolId: string) => {
+    setSearchParams({ tool: toolId });
+  };
 
   const renderTool = () => {
     switch (selectedTool) {
@@ -133,6 +257,14 @@ const Index = () => {
       case "regex": return <RegexTester />;
       case "cron": return <CronGenerator />;
       case "markdown": return <MarkdownViewer />;
+      case "password": return <PasswordGenerator />;
+      case "timezone": return <TimezoneConverter />;
+      case "cidr": return <CidrCalculator />;
+      case "numberconv": return <NumberConverter />;
+      case "numberformat": return <NumberFormatter />;
+      case "textdiff": return <TextDiff />;
+      case "escape": return <EscapeUnescape />;
+      case "slug": return <TextToSlug />;
       default: return <UuidGenerator />;
     }
   };
@@ -163,7 +295,7 @@ const Index = () => {
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-12 gap-8">
-          {/* 광고 영역 - 사이드바 */}
+          {/* 사이드바 */}
           <div className="lg:col-span-3 space-y-6">
             <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
               <CardHeader className="pb-3">
@@ -187,11 +319,11 @@ const Index = () => {
               <CardContent className="space-y-3">
                 <div className="flex justify-between text-sm">
                   <span>오늘 사용</span>
-                  <span className="font-semibold">5,892</span>
+                  <span className="font-semibold">8,247</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>전체 도구</span>
-                  <span className="font-semibold">13개</span>
+                  <span className="font-semibold">{tools.length}개</span>
                 </div>
                 <Separator />
                 <p className="text-xs text-slate-500">
@@ -212,9 +344,35 @@ const Index = () => {
               </p>
             </div>
 
+            {/* 검색 및 카테고리 */}
+            <div className="mb-6 space-y-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Input
+                  placeholder="도구 검색..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             {/* 도구 선택 */}
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-              {tools.map((tool) => {
+              {filteredTools.map((tool) => {
                 const Icon = tool.icon;
                 const isSelected = selectedTool === tool.id;
                 
@@ -235,6 +393,9 @@ const Index = () => {
                         </div>
                         <div>
                           <CardTitle className="text-sm">{tool.title}</CardTitle>
+                          <Badge variant="secondary" className="text-xs mt-1">
+                            {tool.category}
+                          </Badge>
                         </div>
                       </div>
                     </CardHeader>
