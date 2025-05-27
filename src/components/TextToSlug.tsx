@@ -109,7 +109,7 @@ const TextToSlug = () => {
             <Checkbox
               id="lowercase"
               checked={lowercase}
-              onCheckedChange={setLowercase}
+              onCheckedChange={(checked) => setLowercase(checked === true)}
             />
             <Label htmlFor="lowercase">소문자 변환</Label>
           </div>
@@ -118,7 +118,7 @@ const TextToSlug = () => {
             <Checkbox
               id="removeSpecial"
               checked={removeSpecial}
-              onCheckedChange={setRemoveSpecial}
+              onCheckedChange={(checked) => setRemoveSpecial(checked === true)}
             />
             <Label htmlFor="removeSpecial">특수문자 제거</Label>
           </div>

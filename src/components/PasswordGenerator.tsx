@@ -72,7 +72,7 @@ const PasswordGenerator = () => {
             <Checkbox
               id="uppercase"
               checked={includeUppercase}
-              onCheckedChange={setIncludeUppercase}
+              onCheckedChange={(checked) => setIncludeUppercase(checked === true)}
             />
             <Label htmlFor="uppercase">대문자 (A-Z)</Label>
           </div>
@@ -80,7 +80,7 @@ const PasswordGenerator = () => {
             <Checkbox
               id="lowercase"
               checked={includeLowercase}
-              onCheckedChange={setIncludeLowercase}
+              onCheckedChange={(checked) => setIncludeLowercase(checked === true)}
             />
             <Label htmlFor="lowercase">소문자 (a-z)</Label>
           </div>
@@ -88,7 +88,7 @@ const PasswordGenerator = () => {
             <Checkbox
               id="numbers"
               checked={includeNumbers}
-              onCheckedChange={setIncludeNumbers}
+              onCheckedChange={(checked) => setIncludeNumbers(checked === true)}
             />
             <Label htmlFor="numbers">숫자 (0-9)</Label>
           </div>
@@ -96,7 +96,7 @@ const PasswordGenerator = () => {
             <Checkbox
               id="symbols"
               checked={includeSymbols}
-              onCheckedChange={setIncludeSymbols}
+              onCheckedChange={(checked) => setIncludeSymbols(checked === true)}
             />
             <Label htmlFor="symbols">특수문자</Label>
           </div>
@@ -106,7 +106,7 @@ const PasswordGenerator = () => {
           <Checkbox
             id="similar"
             checked={excludeSimilar}
-            onCheckedChange={setExcludeSimilar}
+            onCheckedChange={(checked) => setExcludeSimilar(checked === true)}
           />
           <Label htmlFor="similar">유사한 문자 제외 (0, O, 1, l, I)</Label>
         </div>
