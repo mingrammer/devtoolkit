@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Code, Search } from "lucide-react";
@@ -9,6 +8,8 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { useTools, useCategories } from "@/utils/toolsConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
+import SponsorSection from "@/components/SponsorSection";
+import LanguageSelector from "@/components/LanguageSelector";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -59,8 +60,13 @@ const Index = () => {
               </div>
             </div>
             <Badge variant="secondary" className="bg-green-100 text-green-700">
-              무료 사용
+              {t("freeUsage")}
             </Badge>
+          </div>
+          
+          {/* Language Selector */}
+          <div className="mt-4 flex justify-end">
+            <LanguageSelector />
           </div>
         </div>
       </header>
@@ -75,31 +81,49 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  <p className="text-sm text-orange-700">개발 도구 추천</p>
-                  <p className="text-xs text-orange-600">생산성을 높이는 최신 개발도구를 확인해보세요</p>
+                  <p className="text-sm text-orange-700">{t("developmentTools")}</p>
+                  <p className="text-xs text-orange-600">{t("productivityMessage")}</p>
                   <Button size="sm" variant="outline" className="w-full text-orange-700 border-orange-300">
-                    자세히 보기
+                    {t("seeMore")}
                   </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Sponsor Section */}
+            <SponsorSection />
+
+            {/* Search Bar */}
+            <Card>
+              <CardContent className="p-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    placeholder={t("searchTools")}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
                 </div>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-sm">📊 사용 통계</CardTitle>
+                <CardTitle className="text-sm">📊 {t("usageStats")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span>오늘 사용</span>
+                  <span>{t("todayUsage")}</span>
                   <span className="font-semibold">8,247</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>전체 도구</span>
+                  <span>{t("totalTools")}</span>
                   <span className="font-semibold">{tools.length}개</span>
                 </div>
                 <Separator />
                 <p className="text-xs text-slate-500">
-                  매일 수천 명의 개발자가 사용하고 있습니다
+                  {t("dailyUsers")}
                 </p>
               </CardContent>
             </Card>
@@ -109,25 +133,15 @@ const Index = () => {
           <div className="lg:col-span-9">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-slate-800 mb-2">
-                개발자를 위한 필수 도구들
+                {t("developersEssential")}
               </h2>
               <p className="text-slate-600">
-                일상적인 개발 작업을 빠르고 쉽게 처리할 수 있는 유틸리티 도구 모음입니다.
+                {t("essentialDescription")}
               </p>
             </div>
 
-            {/* 검색 및 카테고리 */}
-            <div className="mb-6 space-y-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input
-                  placeholder={t("searchTools")}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-              
+            {/* 카테고리 */}
+            <div className="mb-6">
               <div className="flex flex-wrap gap-2">
                 {allCategories.map((category) => (
                   <Button
@@ -178,8 +192,8 @@ const Index = () => {
 
             {filteredTools.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">검색 결과가 없습니다.</p>
-                <p className="text-gray-400 text-sm mt-2">다른 키워드로 검색해보세요.</p>
+                <p className="text-gray-500 text-lg">{t("noResults")}</p>
+                <p className="text-gray-400 text-sm mt-2">{t("tryDifferentKeyword")}</p>
               </div>
             )}
           </div>
@@ -189,12 +203,12 @@ const Index = () => {
         <Card className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
           <CardContent className="py-8">
             <div className="text-center space-y-4">
-              <h3 className="text-xl font-bold">더 많은 개발 도구가 필요하신가요?</h3>
+              <h3 className="text-xl font-bold">{t("needMoreTools")}</h3>
               <p className="text-blue-100">
-                코드 생성, 디버깅, 성능 최적화까지 - 개발 생산성을 극대화하는 도구들을 만나보세요
+                {t("premiumToolsMessage")}
               </p>
               <Button variant="secondary" size="lg">
-                프리미엄 도구 보기
+                {t("viewPremiumTools")}
               </Button>
             </div>
           </CardContent>
@@ -205,8 +219,8 @@ const Index = () => {
       <footer className="bg-slate-100 border-t border-slate-200 mt-16">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-slate-600">
-            <p className="text-sm">© 2024 {t("devToolkit")}. 개발자를 위한 필수 유틸리티 모음</p>
-            <p className="text-xs mt-2">Made with ❤️ for developers</p>
+            <p className="text-sm">© 2024 {t("devToolkit")}. {t("footerCopyright")}</p>
+            <p className="text-xs mt-2">{t("madeWithLove")}</p>
           </div>
         </div>
       </footer>

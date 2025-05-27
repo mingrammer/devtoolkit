@@ -6,6 +6,7 @@ export interface Translations {
   search: string;
   advertisement: string;
   all: string;
+  free: string;
   
   // Header
   devToolkit: string;
@@ -66,6 +67,25 @@ export interface Translations {
   supportMessage: string;
   buyMeCoffee: string;
   supportDescription: string;
+  
+  // Index page
+  freeUsage: string;
+  developmentTools: string;
+  productivityMessage: string;
+  seeMore: string;
+  usageStats: string;
+  todayUsage: string;
+  totalTools: string;
+  dailyUsers: string;
+  developersEssential: string;
+  essentialDescription: string;
+  noResults: string;
+  tryDifferentKeyword: string;
+  needMoreTools: string;
+  premiumToolsMessage: string;
+  viewPremiumTools: string;
+  footerCopyright: string;
+  madeWithLove: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -74,6 +94,7 @@ export const translations: Record<Language, Translations> = {
     search: 'Search',
     advertisement: 'Advertisement',
     all: 'All',
+    free: 'Free to use',
     
     // Header
     devToolkit: 'DevToolkit',
@@ -134,12 +155,32 @@ export const translations: Record<Language, Translations> = {
     supportMessage: 'If this tool is helpful',
     buyMeCoffee: 'Buy me a coffee',
     supportDescription: 'Helps with development and maintenance',
+    
+    // Index page
+    freeUsage: 'Free to use',
+    developmentTools: 'Development Tools',
+    productivityMessage: 'Check out the latest development tools that boost productivity',
+    seeMore: 'See More',
+    usageStats: 'Usage Statistics',
+    todayUsage: 'Today\'s Usage',
+    totalTools: 'Total Tools',
+    dailyUsers: 'Thousands of developers use this daily',
+    developersEssential: 'Essential Tools for Developers',
+    essentialDescription: 'A collection of utility tools to handle common development tasks quickly and easily.',
+    noResults: 'No search results found.',
+    tryDifferentKeyword: 'Try searching with different keywords.',
+    needMoreTools: 'Need more development tools?',
+    premiumToolsMessage: 'From code generation to debugging and performance optimization - discover tools that maximize development productivity',
+    viewPremiumTools: 'View Premium Tools',
+    footerCopyright: 'Essential utility collection for developers',
+    madeWithLove: 'Made with ❤️ for developers',
   },
   ko: {
     // Common
     search: '검색',
     advertisement: '광고',
     all: '전체',
+    free: '무료 사용',
     
     // Header
     devToolkit: 'DevToolkit',
@@ -200,6 +241,25 @@ export const translations: Record<Language, Translations> = {
     supportMessage: '도구가 유용하다면',
     buyMeCoffee: '커피 한 잔 사주기',
     supportDescription: '개발과 운영에 도움이 됩니다',
+    
+    // Index page
+    freeUsage: '무료 사용',
+    developmentTools: '개발 도구 추천',
+    productivityMessage: '생산성을 높이는 최신 개발도구를 확인해보세요',
+    seeMore: '자세히 보기',
+    usageStats: '사용 통계',
+    todayUsage: '오늘 사용',
+    totalTools: '전체 도구',
+    dailyUsers: '매일 수천 명의 개발자가 사용하고 있습니다',
+    developersEssential: '개발자를 위한 필수 도구들',
+    essentialDescription: '일상적인 개발 작업을 빠르고 쉽게 처리할 수 있는 유틸리티 도구 모음입니다.',
+    noResults: '검색 결과가 없습니다.',
+    tryDifferentKeyword: '다른 키워드로 검색해보세요.',
+    needMoreTools: '더 많은 개발 도구가 필요하신가요?',
+    premiumToolsMessage: '코드 생성, 디버깅, 성능 최적화까지 - 개발 생산성을 극대화하는 도구들을 만나보세요',
+    viewPremiumTools: '프리미엄 도구 보기',
+    footerCopyright: '개발자를 위한 필수 유틸리티 모음',
+    madeWithLove: 'Made with ❤️ for developers',
   },
 };
 
