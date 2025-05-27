@@ -43,15 +43,18 @@ const TextToSlug = () => {
       slug = slug.replace(/[^\w\s가-힣]/g, '');
     }
 
-    // 공백을 구분자로 변환
-    slug = slug.replace(/\s+/g, separator);
+    // 공백을 구분자로 변환 (구분자가 "none"인 경우 공백 제거)
+    const actualSeparator = separator === "none" ? "" : separator;
+    slug = slug.replace(/\s+/g, actualSeparator);
 
-    // 연속된 구분자 제거
-    const separatorRegex = new RegExp(`\\${separator}+`, 'g');
-    slug = slug.replace(separatorRegex, separator);
+    // 연속된 구분자 제거 (구분자가 있는 경우에만)
+    if (actualSeparator) {
+      const separatorRegex = new RegExp(`\\${actualSeparator}+`, 'g');
+      slug = slug.replace(separatorRegex, actualSeparator);
 
-    // 시작과 끝의 구분자 제거
-    slug = slug.replace(new RegExp(`^\\${separator}+|\\${separator}+$`, 'g'), '');
+      // 시작과 끝의 구분자 제거
+      slug = slug.replace(new RegExp(`^\\${actualSeparator}+|\\${actualSeparator}+$`, 'g'), '');
+    }
 
     setResult(slug);
     toast.success("슬러그가 생성되었습니다");
@@ -71,7 +74,7 @@ const TextToSlug = () => {
     { value: "-", label: "하이픈 (-)" },
     { value: "_", label: "언더스코어 (_)" },
     { value: ".", label: "점 (.)" },
-    { value: "", label: "없음" }
+    { value: "none", label: "없음" }
   ];
 
   return (
