@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Code, Hash, Type, RefreshCw, Clock, Globe, CaseUpper, FileJson, Braces } from "lucide-react";
+import { Code, Hash, Type, RefreshCw, Clock, Globe, CaseUpper, FileJson, Braces, Binary, QrCode, Search, Calendar, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,11 @@ import TimeConverter from "@/components/TimeConverter";
 import LocaleConverter from "@/components/LocaleConverter";
 import CaseConverter from "@/components/CaseConverter";
 import JsonPrettifier from "@/components/JsonPrettifier";
+import Base64Converter from "@/components/Base64Converter";
+import QrCodeGenerator from "@/components/QrCodeGenerator";
+import RegexTester from "@/components/RegexTester";
+import CronGenerator from "@/components/CronGenerator";
+import MarkdownViewer from "@/components/MarkdownViewer";
 
 const Index = () => {
   const [selectedTool, setSelectedTool] = useState("uuid");
@@ -73,6 +78,41 @@ const Index = () => {
       description: "JSON 포맷팅/뷰어",
       icon: Braces,
       color: "bg-cyan-500"
+    },
+    {
+      id: "base64",
+      title: "Base64 변환",
+      description: "인코딩/디코딩",
+      icon: Binary,
+      color: "bg-yellow-500"
+    },
+    {
+      id: "qr",
+      title: "QR 코드",
+      description: "QR 코드 생성기",
+      icon: QrCode,
+      color: "bg-teal-500"
+    },
+    {
+      id: "regex",
+      title: "정규식 테스터",
+      description: "regex 패턴 테스트",
+      icon: Search,
+      color: "bg-lime-500"
+    },
+    {
+      id: "cron",
+      title: "Cron 생성기",
+      description: "Cron 표현식 생성/검증",
+      icon: Calendar,
+      color: "bg-amber-500"
+    },
+    {
+      id: "markdown",
+      title: "마크다운 뷰어",
+      description: "마크다운 미리보기",
+      icon: Eye,
+      color: "bg-emerald-500"
     }
   ];
 
@@ -88,6 +128,11 @@ const Index = () => {
       case "locale": return <LocaleConverter />;
       case "case": return <CaseConverter />;
       case "json": return <JsonPrettifier />;
+      case "base64": return <Base64Converter />;
+      case "qr": return <QrCodeGenerator />;
+      case "regex": return <RegexTester />;
+      case "cron": return <CronGenerator />;
+      case "markdown": return <MarkdownViewer />;
       default: return <UuidGenerator />;
     }
   };
@@ -142,11 +187,11 @@ const Index = () => {
               <CardContent className="space-y-3">
                 <div className="flex justify-between text-sm">
                   <span>오늘 사용</span>
-                  <span className="font-semibold">3,247</span>
+                  <span className="font-semibold">5,892</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span>전체 도구</span>
-                  <span className="font-semibold">8개</span>
+                  <span className="font-semibold">13개</span>
                 </div>
                 <Separator />
                 <p className="text-xs text-slate-500">
@@ -168,7 +213,7 @@ const Index = () => {
             </div>
 
             {/* 도구 선택 */}
-            <div className="grid md:grid-cols-4 lg:grid-cols-4 gap-4 mb-8">
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
               {tools.map((tool) => {
                 const Icon = tool.icon;
                 const isSelected = selectedTool === tool.id;
