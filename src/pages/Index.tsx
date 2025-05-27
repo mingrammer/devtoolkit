@@ -17,7 +17,7 @@ const Index = () => {
   const categories = useCategories();
   const { t } = useLanguage();
   
-  const allCategories = [t("textProcessing"), ...categories];
+  const allCategories = [t("all"), ...categories];
   const [selectedCategory, setSelectedCategory] = useState(allCategories[0]);
 
   const filteredTools = useMemo(() => {

@@ -1,6 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { translations, Language, TranslationKey } from '@/utils/translations';
+import { translations, Language, TranslationKey, detectLanguageFromIP } from '@/utils/translations';
 
 interface LanguageContextType {
   currentLanguage: Language;
@@ -11,10 +11,28 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem('preferred-language');
-    return (saved as Language) || 'en';
-  });
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('en');
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  useEffect(() => {
+    const initializeLanguage = async () => {
+      // 먼저 저장된 언어가 있는지 확인
+      const saved = localStorage.getItem('preferred-language') as Language;
+      
+      if (saved && (saved === 'en' || saved === 'ko')) {
+        setCurrentLanguage(saved);
+      } else {
+        // 저장된 언어가 없으면 IP 기반 감지
+        const detectedLanguage = await detectLanguageFromIP();
+        setCurrentLanguage(detectedLanguage);
+        localStorage.setItem('preferred-language', detectedLanguage);
+      }
+      
+      setIsInitialized(true);
+    };
+
+    initializeLanguage();
+  }, []);
 
   const setLanguage = (language: Language) => {
     setCurrentLanguage(language);
@@ -26,8 +44,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   useEffect(() => {
-    document.documentElement.lang = currentLanguage;
-  }, [currentLanguage]);
+    if (isInitialized) {
+      document.documentElement.lang = currentLanguage;
+    }
+  }, [currentLanguage, isInitialized]);
+
+  // 언어 초기화가 완료될 때까지 로딩 표시
+  if (!isInitialized) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <LanguageContext.Provider value={{ currentLanguage, setLanguage, t }}>

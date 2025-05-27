@@ -1,10 +1,11 @@
 
-export type Language = 'en' | 'ko' | 'ja' | 'zh';
+export type Language = 'en' | 'ko';
 
 export interface Translations {
   // Common
   search: string;
   advertisement: string;
+  all: string;
   
   // Header
   devToolkit: string;
@@ -72,6 +73,7 @@ export const translations: Record<Language, Translations> = {
     // Common
     search: 'Search',
     advertisement: 'Advertisement',
+    all: 'All',
     
     // Header
     devToolkit: 'DevToolkit',
@@ -137,6 +139,7 @@ export const translations: Record<Language, Translations> = {
     // Common
     search: '검색',
     advertisement: '광고',
+    all: '전체',
     
     // Header
     devToolkit: 'DevToolkit',
@@ -198,136 +201,24 @@ export const translations: Record<Language, Translations> = {
     buyMeCoffee: '커피 한 잔 사주기',
     supportDescription: '개발과 운영에 도움이 됩니다',
   },
-  ja: {
-    // Common
-    search: '検索',
-    advertisement: '広告',
-    
-    // Header
-    devToolkit: 'DevToolkit',
-    searchTools: 'ツール検索...',
-    
-    // Categories
-    textProcessing: 'テキスト処理',
-    encodingConversion: 'エンコーディング/変換',
-    timeDate: '時間/日付',
-    dataFormat: 'データフォーマット',
-    devTools: '開発ツール',
-    
-    // Tools
-    uuidGenerator: 'UUID生成器',
-    uuidDescription: 'ランダムUUID (v4) 生成',
-    hashGenerator: 'ハッシュ生成器',
-    hashDescription: 'MD5、SHA256等のハッシュ生成',
-    loremIpsum: 'Lorem Ipsum',
-    loremDescription: 'プレースホルダーテキスト生成',
-    formatConverter: 'フォーマット変換',
-    formatDescription: 'JSON ↔ CSV ↔ YAML',
-    timeConverter: '時間変換',
-    timeDescription: 'Epoch ↔ DateTime',
-    localeConverter: 'ロケール変換',
-    localeDescription: 'en_US ↔ ko_KR等',
-    caseConverter: 'ケース変換',
-    caseDescription: 'camelCase ↔ snake_case',
-    jsonPrettifier: 'JSON整理',
-    jsonDescription: 'JSONフォーマット/ビューア',
-    base64Converter: 'Base64変換',
-    base64Description: 'エンコーディング/デコーディング',
-    qrGenerator: 'QRコード生成器',
-    qrDescription: 'QRコード生成',
-    regexTester: '正規表現テスター',
-    regexDescription: '正規表現パターンテスト',
-    cronGenerator: 'Cron生成器',
-    cronDescription: 'Cron式生成/検証',
-    markdownViewer: 'Markdownビューア',
-    markdownDescription: 'Markdownプレビュー',
-    passwordGenerator: 'パスワード生成器',
-    passwordDescription: '安全なパスワード生成',
-    timezoneConverter: 'タイムゾーン変換',
-    timezoneDescription: 'タイムゾーン間の時間変換',
-    cidrCalculator: 'IP CIDR計算機',
-    cidrDescription: 'ネットワークCIDR計算',
-    numberConverter: '基数変換器',
-    numberDescription: '2進法、8進法、10進法、16進法',
-    numberFormatter: '数値フォーマッター',
-    numberFormatterDescription: '数値フォーマット（通貨、パーセント等）',
-    textDiff: 'テキスト比較',
-    textDiffDescription: '2つのテキストの差分比較',
-    escapeUnescape: 'エスケープツール',
-    escapeDescription: 'HTML、URL、JSONエスケープ',
-    textToSlug: 'テキストtoスラッグ',
-    slugDescription: 'URL フレンドリーなスラッグ生成',
-    
-    // Sponsor
-    supportMessage: 'このツールが役に立ったら',
-    buyMeCoffee: 'コーヒーをおごる',
-    supportDescription: '開発と運営に役立ちます',
-  },
-  zh: {
-    // Common
-    search: '搜索',
-    advertisement: '广告',
-    
-    // Header
-    devToolkit: 'DevToolkit',
-    searchTools: '搜索工具...',
-    
-    // Categories
-    textProcessing: '文本处理',
-    encodingConversion: '编码/转换',
-    timeDate: '时间/日期',
-    dataFormat: '数据格式',
-    devTools: '开发工具',
-    
-    // Tools
-    uuidGenerator: 'UUID生成器',
-    uuidDescription: '生成随机UUID (v4)',
-    hashGenerator: '哈希生成器',
-    hashDescription: '生成MD5、SHA256等哈希',
-    loremIpsum: 'Lorem Ipsum',
-    loremDescription: '生成占位符文本',
-    formatConverter: '格式转换器',
-    formatDescription: 'JSON ↔ CSV ↔ YAML',
-    timeConverter: '时间转换器',
-    timeDescription: 'Epoch ↔ DateTime',
-    localeConverter: '区域设置转换器',
-    localeDescription: 'en_US ↔ ko_KR等',
-    caseConverter: '大小写转换器',
-    caseDescription: 'camelCase ↔ snake_case',
-    jsonPrettifier: 'JSON格式化器',
-    jsonDescription: 'JSON格式化/查看器',
-    base64Converter: 'Base64转换器',
-    base64Description: '编码/解码',
-    qrGenerator: '二维码生成器',
-    qrDescription: '生成二维码',
-    regexTester: '正则表达式测试器',
-    regexDescription: '测试正则表达式模式',
-    cronGenerator: 'Cron生成器',
-    cronDescription: '生成/验证Cron表达式',
-    markdownViewer: 'Markdown查看器',
-    markdownDescription: 'Markdown预览',
-    passwordGenerator: '密码生成器',
-    passwordDescription: '生成安全密码',
-    timezoneConverter: '时区转换器',
-    timezoneDescription: '时区间时间转换',
-    cidrCalculator: 'IP CIDR计算器',
-    cidrDescription: '网络CIDR计算',
-    numberConverter: '进制转换器',
-    numberDescription: '二进制、八进制、十进制、十六进制',
-    numberFormatter: '数字格式化器',
-    numberFormatterDescription: '数字格式化（货币、百分比等）',
-    textDiff: '文本比较',
-    textDiffDescription: '比较两个文本的差异',
-    escapeUnescape: '转义工具',
-    escapeDescription: 'HTML、URL、JSON转义',
-    textToSlug: '文本转网址',
-    slugDescription: '生成URL友好的网址',
-    
-    // Sponsor
-    supportMessage: '如果这个工具有用',
-    buyMeCoffee: '请我喝咖啡',
-    supportDescription: '有助于开发和维护',
-  },
 };
 
 export type TranslationKey = keyof Translations;
+
+// IP 기반 언어 감지 함수
+export const detectLanguageFromIP = async (): Promise<Language> => {
+  try {
+    // IP 위치 정보를 가져오는 무료 API 사용
+    const response = await fetch('https://ipapi.co/json/');
+    const data = await response.json();
+    
+    // 한국이면 한국어, 나머지는 영어
+    if (data.country_code === 'KR') {
+      return 'ko';
+    }
+    return 'en';
+  } catch (error) {
+    console.log('Language detection failed, using default:', error);
+    return 'en'; // 기본값은 영어
+  }
+};
