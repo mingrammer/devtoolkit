@@ -2,8 +2,11 @@
 import { Coffee, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SponsorSection = () => {
+  const { t } = useLanguage();
+  
   const handleBuyMeCoffee = () => {
     // Buy Me a Coffee 링크로 이동 (실제 링크로 교체 필요)
     window.open('https://buymeacoffee.com/yourname', '_blank');
@@ -16,7 +19,7 @@ const SponsorSection = () => {
           <div className="flex items-center justify-center space-x-2">
             <Heart className="w-4 h-4 text-red-500" />
             <span className="text-sm font-medium text-gray-700">
-              도구가 유용하다면
+              {t("supportMessage")}
             </span>
             <Heart className="w-4 h-4 text-red-500" />
           </div>
@@ -27,11 +30,11 @@ const SponsorSection = () => {
             size="sm"
           >
             <Coffee className="w-4 h-4 mr-2" />
-            커피 한 잔 사주기
+            {t("buyMeCoffee")}
           </Button>
           
           <p className="text-xs text-gray-500">
-            개발과 운영에 도움이 됩니다
+            {t("supportDescription")}
           </p>
         </div>
       </CardContent>

@@ -3,7 +3,7 @@ import { useParams, Navigate } from "react-router-dom";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ToolSidebar } from "@/components/ToolSidebar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { tools } from "@/utils/toolsConfig";
+import { useTools } from "@/utils/toolsConfig";
 import { getToolSEO } from "@/utils/seoConfig";
 import SEOHead from "@/components/SEOHead";
 import AdBanner from "@/components/AdBanner";
@@ -33,6 +33,7 @@ import TextToSlug from "@/components/TextToSlug";
 
 const ToolPage = () => {
   const { toolId } = useParams<{ toolId: string }>();
+  const tools = useTools();
   
   const tool = tools.find(t => t.id === toolId);
   
@@ -100,17 +101,17 @@ const ToolPage = () => {
                 </CardHeader>
                 <CardContent className="pt-6">
                   {renderTool()}
-                  
-                  {/* 도구 사용 결과 하단 광고 배너 */}
-                  <div className="mt-8 pt-8 border-t border-gray-200">
-                    <AdBanner 
-                      slot="1234567890" 
-                      className="max-w-2xl mx-auto"
-                      style={{ minHeight: '250px' }}
-                    />
-                  </div>
                 </CardContent>
               </Card>
+              
+              {/* 카드 외부로 분리된 광고 배너 */}
+              <div className="mt-8">
+                <AdBanner 
+                  slot="1234567890" 
+                  className="max-w-2xl mx-auto"
+                  style={{ minHeight: '250px' }}
+                />
+              </div>
             </div>
           </SidebarInset>
         </div>

@@ -14,15 +14,18 @@ import {
   SidebarGroupLabel,
   SidebarGroupContent,
 } from "@/components/ui/sidebar";
-import { tools } from "@/utils/toolsConfig";
+import { useTools, useCategories } from "@/utils/toolsConfig";
+import { useLanguage } from "@/contexts/LanguageContext";
 import SponsorSection from "@/components/SponsorSection";
+import LanguageSelector from "@/components/LanguageSelector";
 
 export function ToolSidebar() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-
-  const categories = ["텍스트 처리", "인코딩/변환", "시간/날짜", "데이터 포맷", "개발 도구"];
+  const tools = useTools();
+  const categories = useCategories();
+  const { t } = useLanguage();
 
   const filteredToolsByCategory = useMemo(() => {
     const filtered = tools.filter(tool => 
@@ -35,7 +38,7 @@ export function ToolSidebar() {
       acc[category] = filtered.filter(tool => tool.category === category);
       return acc;
     }, {} as Record<string, typeof tools>);
-  }, [searchQuery]);
+  }, [searchQuery, tools, categories]);
 
   const handleToolSelect = (toolId: string) => {
     navigate(`/tools/${toolId}`);
@@ -46,20 +49,23 @@ export function ToolSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="p-4 border-b">
-        <div className="flex items-center space-x-3 mb-4">
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-            <Code className="w-5 h-5 text-white" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <Code className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                {t("devToolkit")}
+              </h1>
+            </div>
           </div>
-          <div>
-            <h1 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              DevToolkit
-            </h1>
-          </div>
+          <LanguageSelector />
         </div>
         <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
-            placeholder="도구 검색..."
+            placeholder={t("searchTools")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"

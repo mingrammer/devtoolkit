@@ -1,5 +1,6 @@
 
 import { useEffect } from 'react';
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AdBannerProps {
   slot: string;
@@ -8,6 +9,8 @@ interface AdBannerProps {
 }
 
 const AdBanner = ({ slot, className = "", style }: AdBannerProps) => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     try {
       // Google AdSense 광고 로드
@@ -21,7 +24,7 @@ const AdBanner = ({ slot, className = "", style }: AdBannerProps) => {
 
   return (
     <div className={`ad-container ${className}`} style={style}>
-      <div className="text-xs text-gray-400 text-center mb-2">광고</div>
+      <div className="text-xs text-gray-400 text-center mb-2">{t("advertisement")}</div>
       <ins
         className="adsbygoogle"
         style={{

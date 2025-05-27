@@ -1,182 +1,200 @@
 
 import { Hash, Type, RefreshCw, Clock, Globe, CaseUpper, FileJson, Braces, Binary, QrCode, Search, Calendar, Eye, Key, Timer, Network, Calculator, FileType, GitCompare, Shield, Link2, Code } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-export const tools = [
-  // 텍스트 처리
-  {
-    id: "uuid",
-    title: "UUID 생성기",
-    description: "랜덤 UUID (v4) 생성",
-    icon: Hash,
-    color: "bg-blue-500",
-    category: "텍스트 처리"
-  },
-  {
-    id: "lorem",
-    title: "Lorem Ipsum",
-    description: "목업용 텍스트 생성",
-    icon: Type,
-    color: "bg-purple-500",
-    category: "텍스트 처리"
-  },
-  {
-    id: "case",
-    title: "케이스 변환",
-    description: "camelCase ↔ snake_case",
-    icon: CaseUpper,
-    color: "bg-pink-500",
-    category: "텍스트 처리"
-  },
-  {
-    id: "password",
-    title: "비밀번호 생성기",
-    description: "조건에 따른 비밀번호 생성",
-    icon: Key,
-    color: "bg-red-600",
-    category: "텍스트 처리"
-  },
-  {
-    id: "textdiff",
-    title: "텍스트 비교",
-    description: "두 텍스트 간 차이점 비교",
-    icon: GitCompare,
-    color: "bg-orange-600",
-    category: "텍스트 처리"
-  },
-  {
-    id: "escape",
-    title: "이스케이프 도구",
-    description: "HTML, URL, JSON 등 이스케이프",
-    icon: Shield,
-    color: "bg-yellow-600",
-    category: "텍스트 처리"
-  },
-  {
-    id: "slug",
-    title: "텍스트 to 슬러그",
-    description: "URL 친화적 슬러그 생성",
-    icon: Link2,
-    color: "bg-green-600",
-    category: "텍스트 처리"
-  },
+export const useTools = () => {
+  const { t } = useLanguage();
+  
+  return [
+    // 텍스트 처리
+    {
+      id: "uuid",
+      title: t("uuidGenerator"),
+      description: t("uuidDescription"),
+      icon: Hash,
+      color: "bg-blue-500",
+      category: t("textProcessing")
+    },
+    {
+      id: "lorem",
+      title: t("loremIpsum"),
+      description: t("loremDescription"),
+      icon: Type,
+      color: "bg-purple-500",
+      category: t("textProcessing")
+    },
+    {
+      id: "case",
+      title: t("caseConverter"),
+      description: t("caseDescription"),
+      icon: CaseUpper,
+      color: "bg-pink-500",
+      category: t("textProcessing")
+    },
+    {
+      id: "password",
+      title: t("passwordGenerator"),
+      description: t("passwordDescription"),
+      icon: Key,
+      color: "bg-red-600",
+      category: t("textProcessing")
+    },
+    {
+      id: "textdiff",
+      title: t("textDiff"),
+      description: t("textDiffDescription"),
+      icon: GitCompare,
+      color: "bg-orange-600",
+      category: t("textProcessing")
+    },
+    {
+      id: "escape",
+      title: t("escapeUnescape"),
+      description: t("escapeDescription"),
+      icon: Shield,
+      color: "bg-yellow-600",
+      category: t("textProcessing")
+    },
+    {
+      id: "slug",
+      title: t("textToSlug"),
+      description: t("slugDescription"),
+      icon: Link2,
+      color: "bg-green-600",
+      category: t("textProcessing")
+    },
 
-  // 인코딩/변환
-  {
-    id: "hash",
-    title: "해시 생성기",
-    description: "MD5, SHA256 등 해시 생성",
-    icon: Code,
-    color: "bg-green-500",
-    category: "인코딩/변환"
-  },
-  {
-    id: "base64",
-    title: "Base64 변환",
-    description: "인코딩/디코딩",
-    icon: Binary,
-    color: "bg-yellow-500",
-    category: "인코딩/변환"
-  },
-  {
-    id: "qr",
-    title: "QR 코드",
-    description: "QR 코드 생성기",
-    icon: QrCode,
-    color: "bg-teal-500",
-    category: "인코딩/변환"
-  },
-  {
-    id: "numberconv",
-    title: "진법 변환기",
-    description: "2진법, 8진법, 10진법, 16진법",
-    icon: Calculator,
-    color: "bg-indigo-600",
-    category: "인코딩/변환"
-  },
+    // 인코딩/변환
+    {
+      id: "hash",
+      title: t("hashGenerator"),
+      description: t("hashDescription"),
+      icon: Code,
+      color: "bg-green-500",
+      category: t("encodingConversion")
+    },
+    {
+      id: "base64",
+      title: t("base64Converter"),
+      description: t("base64Description"),
+      icon: Binary,
+      color: "bg-yellow-500",
+      category: t("encodingConversion")
+    },
+    {
+      id: "qr",
+      title: t("qrGenerator"),
+      description: t("qrDescription"),
+      icon: QrCode,
+      color: "bg-teal-500",
+      category: t("encodingConversion")
+    },
+    {
+      id: "numberconv",
+      title: t("numberConverter"),
+      description: t("numberDescription"),
+      icon: Calculator,
+      color: "bg-indigo-600",
+      category: t("encodingConversion")
+    },
 
-  // 시간/날짜
-  {
-    id: "time",
-    title: "시간 변환",
-    description: "Epoch ↔ DateTime",
-    icon: Clock,
-    color: "bg-red-500",
-    category: "시간/날짜"
-  },
-  {
-    id: "timezone",
-    title: "시간대 변환",
-    description: "타임존 간 시간 변환",
-    icon: Timer,
-    color: "bg-blue-600",
-    category: "시간/날짜"
-  },
-  {
-    id: "cron",
-    title: "Cron 생성기",
-    description: "Cron 표현식 생성/검증",
-    icon: Calendar,
-    color: "bg-amber-500",
-    category: "시간/날짜"
-  },
+    // 시간/날짜
+    {
+      id: "time",
+      title: t("timeConverter"),
+      description: t("timeDescription"),
+      icon: Clock,
+      color: "bg-red-500",
+      category: t("timeDate")
+    },
+    {
+      id: "timezone",
+      title: t("timezoneConverter"),
+      description: t("timezoneDescription"),
+      icon: Timer,
+      color: "bg-blue-600",
+      category: t("timeDate")
+    },
+    {
+      id: "cron",
+      title: t("cronGenerator"),
+      description: t("cronDescription"),
+      icon: Calendar,
+      color: "bg-amber-500",
+      category: t("timeDate")
+    },
 
-  // 데이터 포맷
-  {
-    id: "converter",
-    title: "포맷 변환",
-    description: "JSON ↔ CSV ↔ YAML",
-    icon: RefreshCw,
-    color: "bg-orange-500",
-    category: "데이터 포맷"
-  },
-  {
-    id: "json",
-    title: "JSON 정리",
-    description: "JSON 포맷팅/뷰어",
-    icon: Braces,
-    color: "bg-cyan-500",
-    category: "데이터 포맷"
-  },
-  {
-    id: "locale",
-    title: "로케일 변환",
-    description: "en_US ↔ ko_KR 등",
-    icon: Globe,
-    color: "bg-indigo-500",
-    category: "데이터 포맷"
-  },
-  {
-    id: "numberformat",
-    title: "숫자 포맷터",
-    description: "숫자 포맷팅 (통화, 퍼센트 등)",
-    icon: Hash,
-    color: "bg-purple-600",
-    category: "데이터 포맷"
-  },
+    // 데이터 포맷
+    {
+      id: "converter",
+      title: t("formatConverter"),
+      description: t("formatDescription"),
+      icon: RefreshCw,
+      color: "bg-orange-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "json",
+      title: t("jsonPrettifier"),
+      description: t("jsonDescription"),
+      icon: Braces,
+      color: "bg-cyan-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "locale",
+      title: t("localeConverter"),
+      description: t("localeDescription"),
+      icon: Globe,
+      color: "bg-indigo-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "numberformat",
+      title: t("numberFormatter"),
+      description: t("numberFormatterDescription"),
+      icon: Hash,
+      color: "bg-purple-600",
+      category: t("dataFormat")
+    },
 
-  // 개발 도구
-  {
-    id: "regex",
-    title: "정규식 테스터",
-    description: "regex 패턴 테스트",
-    icon: Search,
-    color: "bg-lime-500",
-    category: "개발 도구"
-  },
-  {
-    id: "markdown",
-    title: "마크다운 뷰어",
-    description: "마크다운 미리보기",
-    icon: Eye,
-    color: "bg-emerald-500",
-    category: "개발 도구"
-  },
-  {
-    id: "cidr",
-    title: "IP CIDR 계산기",
-    description: "네트워크 CIDR 계산",
-    icon: Network,
-    color: "bg-slate-600",
-    category: "개발 도구"
-  }
-];
+    // 개발 도구
+    {
+      id: "regex",
+      title: t("regexTester"),
+      description: t("regexDescription"),
+      icon: Search,
+      color: "bg-lime-500",
+      category: t("devTools")
+    },
+    {
+      id: "markdown",
+      title: t("markdownViewer"),
+      description: t("markdownDescription"),
+      icon: Eye,
+      color: "bg-emerald-500",
+      category: t("devTools")
+    },
+    {
+      id: "cidr",
+      title: t("cidrCalculator"),
+      description: t("cidrDescription"),
+      icon: Network,
+      color: "bg-slate-600",
+      category: t("devTools")
+    }
+  ];
+};
+
+// 카테고리 목록도 함수로 변경
+export const useCategories = () => {
+  const { t } = useLanguage();
+  
+  return [
+    t("textProcessing"),
+    t("encodingConversion"), 
+    t("timeDate"),
+    t("dataFormat"),
+    t("devTools")
+  ];
+};
