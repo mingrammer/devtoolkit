@@ -7,19 +7,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
-import { tools } from "@/utils/toolsConfig";
+import { useTools, useCategories } from "@/utils/toolsConfig";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const tools = useTools();
+  const categories = useCategories();
+  const { t } = useLanguage();
   
-  const categories = ["전체", "텍스트 처리", "인코딩/변환", "시간/날짜", "데이터 포맷", "개발 도구"];
-  const [selectedCategory, setSelectedCategory] = useState("전체");
+  const allCategories = [t("textProcessing"), ...categories];
+  const [selectedCategory, setSelectedCategory] = useState(allCategories[0]);
 
   const filteredTools = useMemo(() => {
     let filtered = tools;
     
-    if (selectedCategory !== "전체") {
+    if (selectedCategory !== allCategories[0]) {
       filtered = filtered.filter(tool => tool.category === selectedCategory);
     }
     
@@ -31,7 +35,7 @@ const Index = () => {
     }
     
     return filtered;
-  }, [searchQuery, selectedCategory]);
+  }, [searchQuery, selectedCategory, tools, allCategories]);
 
   const handleToolClick = (toolId: string) => {
     navigate(`/tools/${toolId}`);
@@ -49,9 +53,9 @@ const Index = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  DevToolkit
+                  {t("devToolkit")}
                 </h1>
-                <p className="text-xs text-slate-500">개발자를 위한 필수 유틸리티</p>
+                <p className="text-xs text-slate-500">{t("supportDescription")}</p>
               </div>
             </div>
             <Badge variant="secondary" className="bg-green-100 text-green-700">
@@ -67,7 +71,7 @@ const Index = () => {
           <div className="lg:col-span-3 space-y-6">
             <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-orange-800">💡 광고</CardTitle>
+                <CardTitle className="text-sm text-orange-800">💡 {t("advertisement")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -117,7 +121,7 @@ const Index = () => {
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
-                  placeholder="도구 검색..."
+                  placeholder={t("searchTools")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10"
@@ -125,7 +129,7 @@ const Index = () => {
               </div>
               
               <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
+                {allCategories.map((category) => (
                   <Button
                     key={category}
                     variant={selectedCategory === category ? "default" : "outline"}
@@ -201,7 +205,7 @@ const Index = () => {
       <footer className="bg-slate-100 border-t border-slate-200 mt-16">
         <div className="container mx-auto px-4 py-8">
           <div className="text-center text-slate-600">
-            <p className="text-sm">© 2024 DevToolkit. 개발자를 위한 필수 유틸리티 모음</p>
+            <p className="text-sm">© 2024 {t("devToolkit")}. 개발자를 위한 필수 유틸리티 모음</p>
             <p className="text-xs mt-2">Made with ❤️ for developers</p>
           </div>
         </div>
