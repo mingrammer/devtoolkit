@@ -6,11 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const UuidGenerator = () => {
   const [singleUuid, setSingleUuid] = useState("");
   const [multipleUuids, setMultipleUuids] = useState("");
   const [count, setCount] = useState(10);
+  const { t } = useLanguage();
 
   const generateUuid = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -33,9 +35,9 @@ const UuidGenerator = () => {
   const handleCopy = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast.success("클립보드에 복사되었습니다");
+      toast.success(t("copySuccess"));
     } catch (error) {
-      toast.error("복사 중 오류가 발생했습니다");
+      toast.error(t("copyError"));
     }
   };
 
@@ -43,17 +45,17 @@ const UuidGenerator = () => {
     <div className="space-y-6">
       {/* Single UUID */}
       <div className="space-y-3">
-        <Label className="text-lg font-semibold">단일 UUID 생성</Label>
+        <Label className="text-lg font-semibold">{t("uuidSingleGeneration")}</Label>
         <div className="flex space-x-2">
           <Input
             value={singleUuid}
             readOnly
-            placeholder="생성된 UUID가 여기에 표시됩니다"
+            placeholder={t("uuidSinglePlaceholder")}
             className="font-mono"
           />
           <Button onClick={handleGenerateSingle}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            생성
+            {t("uuidGenerate")}
           </Button>
           {singleUuid && (
             <Button variant="outline" onClick={() => handleCopy(singleUuid)}>
@@ -65,9 +67,9 @@ const UuidGenerator = () => {
 
       {/* Multiple UUIDs */}
       <div className="space-y-3">
-        <Label className="text-lg font-semibold">다중 UUID 생성</Label>
+        <Label className="text-lg font-semibold">{t("uuidMultipleGeneration")}</Label>
         <div className="flex items-center space-x-2 mb-3">
-          <Label htmlFor="count">개수:</Label>
+          <Label htmlFor="count">{t("uuidCount")}</Label>
           <Input
             id="count"
             type="number"
@@ -79,19 +81,19 @@ const UuidGenerator = () => {
           />
           <Button onClick={handleGenerateMultiple}>
             <RefreshCw className="w-4 h-4 mr-2" />
-            생성
+            {t("uuidGenerate")}
           </Button>
           {multipleUuids && (
             <Button variant="outline" onClick={() => handleCopy(multipleUuids)}>
               <Copy className="w-4 h-4 mr-2" />
-              복사
+              {t("copy")}
             </Button>
           )}
         </div>
         <Textarea
           value={multipleUuids}
           readOnly
-          placeholder="생성된 UUIDs가 여기에 표시됩니다"
+          placeholder={t("uuidMultiplePlaceholder")}
           className="min-h-[200px] font-mono text-sm"
         />
       </div>
