@@ -156,6 +156,40 @@ export interface Translations {
   uuidSinglePlaceholder: string;
   uuidMultiplePlaceholder: string;
 
+  // CIDR Calculator
+  cidrInputLabel: string;
+  cidrInputPlaceholder: string;
+  cidrCalculateButton: string;
+  cidrCalculated: string;
+  cidrInvalidFormat: string;
+  cidrNetworkInfo: string;
+  cidrHostInfo: string;
+  cidrSubnetMask: string;
+  cidrNetworkAddress: string;
+  cidrBroadcastAddress: string;
+  cidrFirstHost: string;
+  cidrLastHost: string;
+  cidrTotalHosts: string;
+  cidrUsableHosts: string;
+
+  // Lorem Generator
+  loremCountLabel: string;
+  loremTypeLabel: string;
+  loremWordsType: string;
+  loremSentencesType: string;
+  loremParagraphsType: string;
+  loremGenerateButton: string;
+  loremResultLabel: string;
+
+  // Markdown Viewer
+  markdownEditorTitle: string;
+  markdownSampleButton: string;
+  markdownSourceLabel: string;
+  markdownPreviewLabel: string;
+  markdownPlaceholder: string;
+  markdownCopyHtml: string;
+  markdownSyntaxTitle: string;
+
   // Common UI
   generate: string;
   copy: string;
