@@ -7,11 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const HashGenerator = () => {
   const [input, setInput] = useState("");
   const [hashType, setHashType] = useState("md5");
   const [result, setResult] = useState("");
+  const { t } = useLanguage();
 
   // Simple hash functions (for demo purposes)
   const hashFunctions = {
@@ -49,7 +51,7 @@ const HashGenerator = () => {
 
   const handleGenerate = () => {
     if (!input.trim()) {
-      toast.error("입력 텍스트를 입력해주세요");
+      toast.error(t("hashRequired"));
       return;
     }
 
@@ -60,28 +62,28 @@ const HashGenerator = () => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(result);
-      toast.success("클립보드에 복사되었습니다");
+      toast.success(t("copySuccess"));
     } catch (error) {
-      toast.error("복사 중 오류가 발생했습니다");
+      toast.error(t("copyError"));
     }
   };
 
   return (
     <div className="space-y-6">
       <div className="space-y-3">
-        <Label htmlFor="input">입력 텍스트</Label>
+        <Label htmlFor="input">{t("hashInputLabel")}</Label>
         <Textarea
           id="input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="해시를 생성할 텍스트를 입력하세요"
+          placeholder={t("hashInputPlaceholder")}
           className="min-h-[100px]"
         />
       </div>
 
       <div className="flex items-center space-x-4">
         <div className="space-y-2">
-          <Label>해시 타입</Label>
+          <Label>{t("hashTypeLabel")}</Label>
           <Select value={hashType} onValueChange={setHashType}>
             <SelectTrigger className="w-32">
               <SelectValue />
@@ -96,17 +98,17 @@ const HashGenerator = () => {
 
         <Button onClick={handleGenerate} className="mt-7">
           <Hash className="w-4 h-4 mr-2" />
-          해시 생성
+          {t("hashGenerateButton")}
         </Button>
       </div>
 
       {result && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <Label>생성된 해시</Label>
+            <Label>{t("hashResultLabel")}</Label>
             <Button variant="outline" size="sm" onClick={handleCopy}>
               <Copy className="w-4 h-4 mr-2" />
-              복사
+              {t("copyButton")}
             </Button>
           </div>
           <Input

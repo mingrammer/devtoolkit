@@ -5,39 +5,41 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const MarkdownViewer = () => {
-  const [markdown, setMarkdown] = useState(`# 마크다운 예제
+  const { t } = useLanguage();
+  const [markdown, setMarkdown] = useState(`# ${t("markdownSampleButton")}
 
-## 텍스트 스타일
-**굵은 글씨**, *기울임*, \`코드\`
+## ${t("format")}
+**${t("copy")}**, *${t("features")}*, \`${t("input")}\`
 
-## 목록
-- 항목 1
-- 항목 2
-  - 하위 항목
+## ${t("options")}
+- ${t("features")} 1
+- ${t("features")} 2
+  - ${t("options")}
 
-## 코드 블록
+## ${t("input")}
 \`\`\`javascript
 function hello() {
   console.log("Hello, World!");
 }
 \`\`\`
 
-## 링크와 이미지
-[링크 텍스트](https://example.com)
+## ${t("copy")}
+[${t("copy")}](https://example.com)
 
-## 테이블
-| 제목1 | 제목2 |
+## ${t("result")}
+| ${t("input")}1 | ${t("output")}2 |
 |-------|-------|
-| 내용1 | 내용2 |`);
+| ${t("input")}1 | ${t("output")}2 |`);
 
   const handleCopy = async (text: string, type: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast.success(`${type}이 클립보드에 복사되었습니다`);
+      toast.success(t("copySuccess"));
     } catch (error) {
-      toast.error("복사 중 오류가 발생했습니다");
+      toast.error(t("copyError"));
     }
   };
 
@@ -69,46 +71,46 @@ function hello() {
       .replace(/\n/g, '<br>');
   };
 
-  const sampleMarkdown = `# 샘플 마크다운 문서
+  const sampleMarkdown = `# ${t("markdownSampleButton")}
 
-## 소개
-이것은 **마크다운** 문서의 예제입니다.
+## ${t("features")}
+${t("base64Description")}
 
-### 기능
-- 제목과 부제목
-- **굵은 글씨**와 *기울임*
-- \`인라인 코드\`
-- [링크](https://example.com)
+### ${t("options")}
+- ${t("format")} **${t("copy")}**
+- **${t("validate")}**와 *${t("features")}*
+- \`${t("input")}\` ${t("input")}
+- [${t("copy")}](https://example.com)
 
-### 코드 예제
+### ${t("input")}
 \`\`\`javascript
 const greeting = "Hello, World!";
 console.log(greeting);
 \`\`\`
 
-### 할 일 목록
-- [x] 완료된 작업
-- [ ] 진행 중인 작업
-- [ ] 예정된 작업
+### ${t("options")}
+- [x] ${t("validate")}
+- [ ] ${t("input")}
+- [ ] ${t("output")}
 
-> 이것은 인용문입니다.
+> ${t("base64Description")}
 
 ---
 
-마크다운을 사용하면 쉽게 문서를 작성할 수 있습니다!`;
+${t("base64Description")}!`;
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">마크다운 편집기</Label>
+        <Label className="text-lg font-semibold">{t("markdownEditorTitle")}</Label>
         <div className="flex space-x-2">
           <Button variant="outline" size="sm" onClick={() => setMarkdown(sampleMarkdown)}>
             <FileText className="w-4 h-4 mr-2" />
-            샘플 로드
+            {t("markdownSampleButton")}
           </Button>
-          <Button variant="outline" size="sm" onClick={() => handleCopy(markdown, "마크다운")}>
+          <Button variant="outline" size="sm" onClick={() => handleCopy(markdown, t("markdownSourceLabel"))}>
             <Copy className="w-4 h-4 mr-2" />
-            복사
+            {t("copyButton")}
           </Button>
         </div>
       </div>
@@ -116,12 +118,12 @@ console.log(greeting);
       <div className="grid md:grid-cols-2 gap-6">
         {/* 마크다운 입력 */}
         <div className="space-y-3">
-          <Label htmlFor="markdown">마크다운 소스</Label>
+          <Label htmlFor="markdown">{t("markdownSourceLabel")}</Label>
           <Textarea
             id="markdown"
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
-            placeholder="마크다운을 입력하세요..."
+            placeholder={t("markdownPlaceholder")}
             className="min-h-[400px] font-mono text-sm"
           />
         </div>
@@ -129,10 +131,10 @@ console.log(greeting);
         {/* 미리보기 */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <Label>미리보기</Label>
+            <Label>{t("markdownPreviewLabel")}</Label>
             <Button variant="outline" size="sm" onClick={() => handleCopy(parseMarkdown(markdown), "HTML")}>
               <Copy className="w-4 h-4 mr-2" />
-              HTML 복사
+              {t("markdownCopyHtml")}
             </Button>
           </div>
           <div 
@@ -143,14 +145,14 @@ console.log(greeting);
       </div>
 
       <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-        <Label className="text-sm font-medium text-purple-800 mb-2 block">마크다운 문법</Label>
+        <Label className="text-sm font-medium text-purple-800 mb-2 block">{t("markdownSyntaxTitle")}</Label>
         <div className="text-sm text-purple-700 space-y-1">
-          <p><code className="bg-purple-100 px-1 rounded"># 제목</code> - 헤딩</p>
-          <p><code className="bg-purple-100 px-1 rounded">**굵게**</code> - 굵은 글씨</p>
-          <p><code className="bg-purple-100 px-1 rounded">*기울임*</code> - 기울임</p>
-          <p><code className="bg-purple-100 px-1 rounded">`코드`</code> - 인라인 코드</p>
-          <p><code className="bg-purple-100 px-1 rounded">- 목록</code> - 불릿 목록</p>
-          <p><code className="bg-purple-100 px-1 rounded">[링크](URL)</code> - 링크</p>
+          <p><code className="bg-purple-100 px-1 rounded"># {t("input")}</code> - {t("format")}</p>
+          <p><code className="bg-purple-100 px-1 rounded">**{t("copy")}**</code> - {t("copy")}</p>
+          <p><code className="bg-purple-100 px-1 rounded">*{t("features")}*</code> - {t("features")}</p>
+          <p><code className="bg-purple-100 px-1 rounded">`{t("input")}`</code> - {t("input")}</p>
+          <p><code className="bg-purple-100 px-1 rounded">- {t("options")}</code> - {t("options")}</p>
+          <p><code className="bg-purple-100 px-1 rounded">[{t("copy")}](URL)</code> - {t("copy")}</p>
         </div>
       </div>
     </div>

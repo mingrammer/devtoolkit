@@ -7,11 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LoremGenerator = () => {
   const [count, setCount] = useState(5);
   const [type, setType] = useState("paragraphs");
   const [result, setResult] = useState("");
+  const { t } = useLanguage();
 
   const loremWords = [
     "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
@@ -76,9 +78,9 @@ const LoremGenerator = () => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(result);
-      toast.success("클립보드에 복사되었습니다");
+      toast.success(t("copySuccess"));
     } catch (error) {
-      toast.error("복사 중 오류가 발생했습니다");
+      toast.error(t("copyError"));
     }
   };
 
@@ -86,7 +88,7 @@ const LoremGenerator = () => {
     <div className="space-y-6">
       <div className="grid md:grid-cols-3 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="count">개수</Label>
+          <Label htmlFor="count">{t("loremCountLabel")}</Label>
           <Input
             id="count"
             type="number"
@@ -98,15 +100,15 @@ const LoremGenerator = () => {
         </div>
 
         <div className="space-y-2">
-          <Label>타입</Label>
+          <Label>{t("loremTypeLabel")}</Label>
           <Select value={type} onValueChange={setType}>
             <SelectTrigger>
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="words">단어</SelectItem>
-              <SelectItem value="sentences">문장</SelectItem>
-              <SelectItem value="paragraphs">문단</SelectItem>
+              <SelectItem value="words">{t("loremWordsType")}</SelectItem>
+              <SelectItem value="sentences">{t("loremSentencesType")}</SelectItem>
+              <SelectItem value="paragraphs">{t("loremParagraphsType")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -115,7 +117,7 @@ const LoremGenerator = () => {
           <Label>&nbsp;</Label>
           <Button onClick={handleGenerate} className="w-full">
             <Type className="w-4 h-4 mr-2" />
-            생성
+            {t("loremGenerateButton")}
           </Button>
         </div>
       </div>
@@ -123,10 +125,10 @@ const LoremGenerator = () => {
       {result && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <Label>생성된 Lorem Ipsum</Label>
+            <Label>{t("loremResultLabel")}</Label>
             <Button variant="outline" size="sm" onClick={handleCopy}>
               <Copy className="w-4 h-4 mr-2" />
-              복사
+              {t("copyButton")}
             </Button>
           </div>
           <Textarea

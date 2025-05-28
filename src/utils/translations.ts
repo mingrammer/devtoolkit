@@ -111,6 +111,79 @@ export interface Translations {
   copySuccess: string;
   copyError: string;
 
+  // Hash Generator
+  hashInputLabel: string;
+  hashInputPlaceholder: string;
+  hashTypeLabel: string;
+  hashGenerateButton: string;
+  hashResultLabel: string;
+  hashRequired: string;
+
+  // Base64 Converter
+  base64OriginalText: string;
+  base64EncodedText: string;
+  base64EncodeButton: string;
+  base64DecodeButton: string;
+  base64ToggleMode: string;
+  base64EncodePlaceholder: string;
+  base64DecodePlaceholder: string;
+  base64ResultPlaceholder: string;
+  base64What: string;
+  base64Description: string;
+  base64Encoded: string;
+  base64Decoded: string;
+  base64Required: string;
+  base64InvalidFormat: string;
+
+  // Case Converter
+  caseInputLabel: string;
+  caseInputPlaceholder: string;
+  caseConvertButton: string;
+  caseResultLabel: string;
+  caseConverted: string;
+  caseRequired: string;
+  caseSupportedTitle: string;
+  caseCamelDescription: string;
+  casePascalDescription: string;
+  caseSnakeDescription: string;
+  caseKebabDescription: string;
+  caseUpperDescription: string;
+  caseTitleDescription: string;
+
+  // Lorem Generator
+  loremCountLabel: string;
+  loremTypeLabel: string;
+  loremWordsType: string;
+  loremSentencesType: string;
+  loremParagraphsType: string;
+  loremGenerateButton: string;
+  loremResultLabel: string;
+
+  // Markdown Viewer
+  markdownEditorTitle: string;
+  markdownSourceLabel: string;
+  markdownPreviewLabel: string;
+  markdownPlaceholder: string;
+  markdownSampleButton: string;
+  markdownCopyHtml: string;
+  markdownSyntaxTitle: string;
+
+  // CIDR Calculator
+  cidrInputLabel: string;
+  cidrInputPlaceholder: string;
+  cidrCalculateButton: string;
+  cidrNetworkInfo: string;
+  cidrHostInfo: string;
+  cidrSubnetMask: string;
+  cidrNetworkAddress: string;
+  cidrBroadcastAddress: string;
+  cidrFirstHost: string;
+  cidrLastHost: string;
+  cidrTotalHosts: string;
+  cidrUsableHosts: string;
+  cidrCalculated: string;
+  cidrInvalidFormat: string;
+
   // Common UI
   generate: string;
   copy: string;
@@ -124,6 +197,13 @@ export interface Translations {
   result: string;
   options: string;
   features: string;
+  inputText: string;
+  outputText: string;
+  convertedText: string;
+  required: string;
+  invalidFormat: string;
+  converted: string;
+  calculationComplete: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -237,6 +317,79 @@ export const translations: Record<Language, Translations> = {
     copySuccess: 'Copied to clipboard',
     copyError: 'Copy failed',
 
+    // Hash Generator
+    hashInputLabel: 'Input Text',
+    hashInputPlaceholder: 'Enter text to generate hash',
+    hashTypeLabel: 'Hash Type',
+    hashGenerateButton: 'Generate Hash',
+    hashResultLabel: 'Generated Hash',
+    hashRequired: 'Please enter text to hash',
+
+    // Base64 Converter
+    base64OriginalText: 'Original Text',
+    base64EncodedText: 'Base64 Encoded Text',
+    base64EncodeButton: 'Encode to Base64',
+    base64DecodeButton: 'Decode from Base64',
+    base64ToggleMode: 'Switch Mode',
+    base64EncodePlaceholder: 'Enter text to encode',
+    base64DecodePlaceholder: 'Enter Base64 text to decode',
+    base64ResultPlaceholder: 'Conversion result will appear here',
+    base64What: 'What is Base64?',
+    base64Description: 'Base64 is an encoding scheme that converts 8-bit binary data to ASCII strings. It\'s used to safely transmit binary data in email, URLs, and web development.',
+    base64Encoded: 'Base64 encoding completed',
+    base64Decoded: 'Base64 decoding completed',
+    base64Required: 'Please enter text to convert',
+    base64InvalidFormat: 'Invalid format. Please check if the input is correct.',
+
+    // Case Converter
+    caseInputLabel: 'Text to Convert',
+    caseInputPlaceholder: 'Enter text to convert (e.g., hello world, hello_world, hello-world)',
+    caseConvertButton: 'Convert',
+    caseResultLabel: 'Conversion Results',
+    caseConverted: 'Conversion completed',
+    caseRequired: 'Please enter text to convert',
+    caseSupportedTitle: 'Supported Conversions',
+    caseCamelDescription: 'camelCase: First word lowercase, rest start with uppercase',
+    casePascalDescription: 'PascalCase: All words start with uppercase',
+    caseSnakeDescription: 'snake_case: Words separated by underscores',
+    caseKebabDescription: 'kebab-case: Words separated by hyphens',
+    caseUpperDescription: 'UPPER_CASE: All characters uppercase',
+    caseTitleDescription: 'Title Case: First letter of each word capitalized',
+
+    // Lorem Generator
+    loremCountLabel: 'Count',
+    loremTypeLabel: 'Type',
+    loremWordsType: 'Words',
+    loremSentencesType: 'Sentences',
+    loremParagraphsType: 'Paragraphs',
+    loremGenerateButton: 'Generate',
+    loremResultLabel: 'Generated Lorem Ipsum',
+
+    // Markdown Viewer
+    markdownEditorTitle: 'Markdown Editor',
+    markdownSourceLabel: 'Markdown Source',
+    markdownPreviewLabel: 'Preview',
+    markdownPlaceholder: 'Enter markdown here...',
+    markdownSampleButton: 'Load Sample',
+    markdownCopyHtml: 'Copy HTML',
+    markdownSyntaxTitle: 'Markdown Syntax',
+
+    // CIDR Calculator
+    cidrInputLabel: 'CIDR Notation',
+    cidrInputPlaceholder: '192.168.1.0/24',
+    cidrCalculateButton: 'Calculate CIDR',
+    cidrNetworkInfo: 'Network Information',
+    cidrHostInfo: 'Host Information',
+    cidrSubnetMask: 'Subnet Mask',
+    cidrNetworkAddress: 'Network Address',
+    cidrBroadcastAddress: 'Broadcast',
+    cidrFirstHost: 'First Host',
+    cidrLastHost: 'Last Host',
+    cidrTotalHosts: 'Total Hosts',
+    cidrUsableHosts: 'Usable Hosts',
+    cidrCalculated: 'CIDR calculation completed',
+    cidrInvalidFormat: 'Invalid CIDR format',
+
     // Common UI
     generate: 'Generate',
     copy: 'Copy',
@@ -250,6 +403,13 @@ export const translations: Record<Language, Translations> = {
     result: 'Result',
     options: 'Options',
     features: 'Features',
+    inputText: 'Input Text',
+    outputText: 'Output Text',
+    convertedText: 'Converted Text',
+    required: 'This field is required',
+    invalidFormat: 'Invalid format',
+    converted: 'Converted',
+    calculationComplete: 'Calculation completed',
   },
   ko: {
     // Common
@@ -361,6 +521,79 @@ export const translations: Record<Language, Translations> = {
     copySuccess: '클립보드에 복사되었습니다',
     copyError: '복사 중 오류가 발생했습니다',
 
+    // Hash Generator
+    hashInputLabel: '입력 텍스트',
+    hashInputPlaceholder: '해시를 생성할 텍스트를 입력하세요',
+    hashTypeLabel: '해시 타입',
+    hashGenerateButton: '해시 생성',
+    hashResultLabel: '생성된 해시',
+    hashRequired: '입력 텍스트를 입력해주세요',
+
+    // Base64 Converter
+    base64OriginalText: '원본 텍스트',
+    base64EncodedText: 'Base64 인코딩된 텍스트',
+    base64EncodeButton: 'Base64로 인코딩',
+    base64DecodeButton: 'Base64에서 디코딩',
+    base64ToggleMode: '변환 방향 바꾸기',
+    base64EncodePlaceholder: '인코딩할 텍스트를 입력하세요',
+    base64DecodePlaceholder: '디코딩할 Base64 텍스트를 입력하세요',
+    base64ResultPlaceholder: '변환 결과가 여기에 표시됩니다',
+    base64What: 'Base64란?',
+    base64Description: 'Base64는 8비트 이진 데이터를 ASCII 문자열로 변환하는 인코딩 방식입니다. 이메일, URL, 웹 개발 등에서 바이너리 데이터를 안전하게 전송하기 위해 사용됩니다.',
+    base64Encoded: 'Base64 인코딩이 완료되었습니다',
+    base64Decoded: 'Base64 디코딩이 완료되었습니다',
+    base64Required: '입력 텍스트를 입력해주세요',
+    base64InvalidFormat: '변환 중 오류가 발생했습니다. 올바른 형식인지 확인해주세요.',
+
+    // Case Converter
+    caseInputLabel: '변환할 텍스트',
+    caseInputPlaceholder: '변환할 텍스트를 입력하세요 (예: hello world, hello_world, hello-world)',
+    caseConvertButton: '변환하기',
+    caseResultLabel: '변환 결과',
+    caseConverted: '변환이 완료되었습니다',
+    caseRequired: '변환할 텍스트를 입력해주세요',
+    caseSupportedTitle: '지원하는 변환',
+    caseCamelDescription: 'camelCase: 첫 번째 단어는 소문자, 나머지는 대문자로 시작',
+    casePascalDescription: 'PascalCase: 모든 단어를 대문자로 시작',
+    caseSnakeDescription: 'snake_case: 언더스코어로 단어 구분',
+    caseKebabDescription: 'kebab-case: 하이픈으로 단어 구분',
+    caseUpperDescription: 'UPPER_CASE: 모든 문자를 대문자로',
+    caseTitleDescription: 'Title Case: 각 단어의 첫 글자를 대문자로',
+
+    // Lorem Generator
+    loremCountLabel: '개수',
+    loremTypeLabel: '타입',
+    loremWordsType: '단어',
+    loremSentencesType: '문장',
+    loremParagraphsType: '문단',
+    loremGenerateButton: '생성',
+    loremResultLabel: '생성된 Lorem Ipsum',
+
+    // Markdown Viewer
+    markdownEditorTitle: '마크다운 편집기',
+    markdownSourceLabel: '마크다운 소스',
+    markdownPreviewLabel: '미리보기',
+    markdownPlaceholder: '마크다운을 입력하세요...',
+    markdownSampleButton: '샘플 로드',
+    markdownCopyHtml: 'HTML 복사',
+    markdownSyntaxTitle: '마크다운 문법',
+
+    // CIDR Calculator
+    cidrInputLabel: 'CIDR 표기법',
+    cidrInputPlaceholder: '192.168.1.0/24',
+    cidrCalculateButton: 'CIDR 계산',
+    cidrNetworkInfo: '네트워크 정보',
+    cidrHostInfo: '호스트 정보',
+    cidrSubnetMask: '서브넷 마스크',
+    cidrNetworkAddress: '네트워크 주소',
+    cidrBroadcastAddress: '브로드캐스트',
+    cidrFirstHost: '첫 번째 호스트',
+    cidrLastHost: '마지막 호스트',
+    cidrTotalHosts: '전체 호스트',
+    cidrUsableHosts: '사용 가능 호스트',
+    cidrCalculated: 'CIDR 계산이 완료되었습니다',
+    cidrInvalidFormat: '유효하지 않은 CIDR 형식입니다',
+
     // Common UI
     generate: '생성',
     copy: '복사',
@@ -374,6 +607,13 @@ export const translations: Record<Language, Translations> = {
     result: '결과',
     options: '옵션',
     features: '기능',
+    inputText: '입력 텍스트',
+    outputText: '출력 텍스트',
+    convertedText: '변환된 텍스트',
+    required: '필수 입력 항목입니다',
+    invalidFormat: '올바른 형식이 아닙니다',
+    converted: '변환되었습니다',
+    calculationComplete: '계산이 완료되었습니다',
   },
 };
 

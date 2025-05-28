@@ -6,14 +6,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CidrCalculator = () => {
   const [cidr, setCidr] = useState("");
   const [result, setResult] = useState<any>(null);
+  const { t } = useLanguage();
 
   const calculateCidr = () => {
     if (!cidr) {
-      toast.error("CIDR 표기법을 입력해주세요");
+      toast.error(t("cidrInvalidFormat"));
       return;
     }
 
@@ -88,9 +90,9 @@ const CidrCalculator = () => {
         usableHosts
       });
 
-      toast.success("CIDR 계산이 완료되었습니다");
+      toast.success(t("cidrCalculated"));
     } catch (error) {
-      toast.error("유효하지 않은 CIDR 형식입니다");
+      toast.error(t("cidrInvalidFormat"));
     }
   };
 
@@ -98,19 +100,19 @@ const CidrCalculator = () => {
     <div className="space-y-6">
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="cidr">CIDR 표기법</Label>
+          <Label htmlFor="cidr">{t("cidrInputLabel")}</Label>
           <Input
             id="cidr"
             value={cidr}
             onChange={(e) => setCidr(e.target.value)}
-            placeholder="192.168.1.0/24"
+            placeholder={t("cidrInputPlaceholder")}
             className="font-mono"
           />
         </div>
 
         <Button onClick={calculateCidr} className="w-full">
           <Calculator className="w-4 h-4 mr-2" />
-          CIDR 계산
+          {t("cidrCalculateButton")}
         </Button>
       </div>
 
@@ -118,7 +120,7 @@ const CidrCalculator = () => {
         <div className="grid md:grid-cols-2 gap-4">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">네트워크 정보</CardTitle>
+              <CardTitle className="text-lg">{t("cidrNetworkInfo")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between">
@@ -126,15 +128,15 @@ const CidrCalculator = () => {
                 <span className="font-mono">{result.cidr}</span>
               </div>
               <div className="flex justify-between">
-                <span>서브넷 마스크:</span>
+                <span>{t("cidrSubnetMask")}:</span>
                 <span className="font-mono">{result.subnetMask}</span>
               </div>
               <div className="flex justify-between">
-                <span>네트워크 주소:</span>
+                <span>{t("cidrNetworkAddress")}:</span>
                 <span className="font-mono">{result.networkAddress}</span>
               </div>
               <div className="flex justify-between">
-                <span>브로드캐스트:</span>
+                <span>{t("cidrBroadcastAddress")}:</span>
                 <span className="font-mono">{result.broadcastAddress}</span>
               </div>
             </CardContent>
@@ -142,23 +144,23 @@ const CidrCalculator = () => {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">호스트 정보</CardTitle>
+              <CardTitle className="text-lg">{t("cidrHostInfo")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex justify-between">
-                <span>첫 번째 호스트:</span>
+                <span>{t("cidrFirstHost")}:</span>
                 <span className="font-mono">{result.firstHost}</span>
               </div>
               <div className="flex justify-between">
-                <span>마지막 호스트:</span>
+                <span>{t("cidrLastHost")}:</span>
                 <span className="font-mono">{result.lastHost}</span>
               </div>
               <div className="flex justify-between">
-                <span>전체 호스트:</span>
+                <span>{t("cidrTotalHosts")}:</span>
                 <span className="font-mono">{result.totalHosts.toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
-                <span>사용 가능 호스트:</span>
+                <span>{t("cidrUsableHosts")}:</span>
                 <span className="font-mono">{result.usableHosts.toLocaleString()}</span>
               </div>
             </CardContent>
