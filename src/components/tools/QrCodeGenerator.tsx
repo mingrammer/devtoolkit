@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -53,71 +54,91 @@ const QrCodeGenerator = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      generateQrCode();
+    }
+  };
+
   return (
     <div className="space-y-6">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="text">{t("qrgenerator_input_label")}</Label>
-          <Input
-            id="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder={t("qrgenerator_input_placeholder")}
-            className="font-mono"
-          />
-        </div>
-
-        <div className="flex items-center space-x-4">
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">{t("qrgenerator_input_label")}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label>{t("qrgenerator_size")}</Label>
-            <Select value={size} onValueChange={setSize}>
-              <SelectTrigger className="w-32">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="150">150x150</SelectItem>
-                <SelectItem value="200">200x200</SelectItem>
-                <SelectItem value="300">300x300</SelectItem>
-                <SelectItem value="400">400x400</SelectItem>
-                <SelectItem value="500">500x500</SelectItem>
-              </SelectContent>
-            </Select>
+            <Label htmlFor="text">{t("qrgenerator_input_label")}</Label>
+            <Input
+              id="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder={t("qrgenerator_input_placeholder")}
+              className="font-mono"
+            />
           </div>
 
-          <Button onClick={generateQrCode} className="mt-7">
-            <QrCode className="w-4 h-4 mr-2" />
-            {t("qrgenerator_generate")}
-          </Button>
-        </div>
-      </div>
+          <div className="flex items-center space-x-4">
+            <div className="space-y-2">
+              <Label>{t("qrgenerator_size")}</Label>
+              <Select value={size} onValueChange={setSize}>
+                <SelectTrigger className="w-32">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="150">150x150</SelectItem>
+                  <SelectItem value="200">200x200</SelectItem>
+                  <SelectItem value="300">300x300</SelectItem>
+                  <SelectItem value="400">400x400</SelectItem>
+                  <SelectItem value="500">500x500</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-      {qrCodeUrl && (
-        <div className="space-y-4">
+            <Button onClick={generateQrCode} className="mt-7">
+              <QrCode className="w-4 h-4 mr-2" />
+              {t("qrgenerator_generate")}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
           <div className="flex items-center justify-between">
-            <Label className="text-lg font-semibold">{t("qrgenerator_generated")}</Label>
+            <CardTitle className="text-lg">{t("qrgenerator_generated")}</CardTitle>
             <div className="flex space-x-2">
-              <Button variant="outline" size="sm" onClick={handleCopyImage}>
+              <Button variant="outline" size="sm" onClick={handleCopyImage} disabled={!qrCodeUrl}>
                 <Copy className="w-4 h-4 mr-2" />
                 {t("qrgenerator_image_copy")}
               </Button>
-              <Button variant="outline" size="sm" onClick={handleDownload}>
+              <Button variant="outline" size="sm" onClick={handleDownload} disabled={!qrCodeUrl}>
                 <Download className="w-4 h-4 mr-2" />
                 {t("qrgenerator_download")}
               </Button>
             </div>
           </div>
-          
-          <div className="flex justify-center">
-            <div className="p-4 bg-white rounded-lg border shadow-sm">
-              <img 
-                src={qrCodeUrl} 
-                alt="Generated QR Code"
-                className="block"
-              />
-            </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex justify-center min-h-[250px] items-center">
+            {qrCodeUrl ? (
+              <div className="p-4 bg-white rounded-lg border shadow-sm">
+                <img 
+                  src={qrCodeUrl} 
+                  alt="Generated QR Code"
+                  className="block"
+                />
+              </div>
+            ) : (
+              <div className="text-center text-gray-500">
+                <QrCode className="w-16 h-16 mx-auto mb-2 opacity-50" />
+                <p>QR 코드가 여기에 표시됩니다</p>
+              </div>
+            )}
           </div>
-        </div>
-      )}
+        </CardContent>
+      </Card>
 
       <div className="bg-green-50 p-4 rounded-lg border border-green-200">
         <Label className="text-sm font-medium text-green-800 mb-2 block">{t("qrgenerator_usage_title")}</Label>

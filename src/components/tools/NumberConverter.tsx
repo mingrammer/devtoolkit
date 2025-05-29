@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -11,10 +12,10 @@ const NumberConverter = () => {
   const [input, setInput] = useState("");
   const [fromBase, setFromBase] = useState("10");
   const [results, setResults] = useState({
-    binary: "",
-    decimal: "",
-    hex: "",
-    octal: ""
+    binary: "-",
+    decimal: "-",
+    hex: "-",
+    octal: "-"
   });
   const { t } = useLanguage();
 
@@ -75,6 +76,12 @@ const NumberConverter = () => {
     }
   };
 
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      convertNumber();
+    }
+  };
+
   const bases = [
     { value: "2", label: t("numberconverter_base_binary") },
     { value: "8", label: t("numberconverter_base_octal") },
@@ -84,81 +91,94 @@ const NumberConverter = () => {
 
   return (
     <div className="space-y-6">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="input">{t("numberconverter_input_value")}</Label>
-          <Input
-            id="input"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={t("numberconverter_input_placeholder")}
-            className="font-mono"
-          />
-        </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">{t("numberconverter_input_value")}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="input">{t("numberconverter_input_value")}</Label>
+            <Input
+              id="input"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder={t("numberconverter_input_placeholder")}
+              className="font-mono"
+            />
+          </div>
 
-        <div className="space-y-2">
-          <Label>{t("numberconverter_from_base")}</Label>
-          <Select value={fromBase} onValueChange={setFromBase}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {bases.map((base) => (
-                <SelectItem key={base.value} value={base.value}>
-                  {base.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+          <div className="space-y-2">
+            <Label>{t("numberconverter_from_base")}</Label>
+            <Select value={fromBase} onValueChange={setFromBase}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {bases.map((base) => (
+                  <SelectItem key={base.value} value={base.value}>
+                    {base.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-        <Button onClick={convertNumber} className="w-full">
-          <Calculator className="w-4 h-4 mr-2" />
-          {t("numberconverter_convert")}
-        </Button>
-      </div>
+          <Button onClick={convertNumber} className="w-full">
+            <Calculator className="w-4 h-4 mr-2" />
+            {t("numberconverter_convert")}
+          </Button>
+        </CardContent>
+      </Card>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="space-y-3">
-          <Label>{t("numberconverter_base_binary")}</Label>
-          <Input
-            value={results.binary}
-            readOnly
-            placeholder={t("numberconverter_result_placeholder")}
-            className="font-mono bg-slate-50"
-          />
-        </div>
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg">{t("numberconverter_result")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <Label>{t("numberconverter_base_binary")}</Label>
+              <Input
+                value={results.binary}
+                readOnly
+                placeholder={t("numberconverter_result_placeholder")}
+                className="font-mono bg-slate-50"
+              />
+            </div>
 
-        <div className="space-y-3">
-          <Label>{t("numberconverter_base_octal")}</Label>
-          <Input
-            value={results.octal}
-            readOnly
-            placeholder={t("numberconverter_result_placeholder")}
-            className="font-mono bg-slate-50"
-          />
-        </div>
+            <div className="space-y-3">
+              <Label>{t("numberconverter_base_octal")}</Label>
+              <Input
+                value={results.octal}
+                readOnly
+                placeholder={t("numberconverter_result_placeholder")}
+                className="font-mono bg-slate-50"
+              />
+            </div>
 
-        <div className="space-y-3">
-          <Label>{t("numberconverter_base_decimal")}</Label>
-          <Input
-            value={results.decimal}
-            readOnly
-            placeholder={t("numberconverter_result_placeholder")}
-            className="font-mono bg-slate-50"
-          />
-        </div>
+            <div className="space-y-3">
+              <Label>{t("numberconverter_base_decimal")}</Label>
+              <Input
+                value={results.decimal}
+                readOnly
+                placeholder={t("numberconverter_result_placeholder")}
+                className="font-mono bg-slate-50"
+              />
+            </div>
 
-        <div className="space-y-3">
-          <Label>{t("numberconverter_base_hex")}</Label>
-          <Input
-            value={results.hex}
-            readOnly
-            placeholder={t("numberconverter_result_placeholder")}
-            className="font-mono bg-slate-50"
-          />
-        </div>
-      </div>
+            <div className="space-y-3">
+              <Label>{t("numberconverter_base_hex")}</Label>
+              <Input
+                value={results.hex}
+                readOnly
+                placeholder={t("numberconverter_result_placeholder")}
+                className="font-mono bg-slate-50"
+              />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

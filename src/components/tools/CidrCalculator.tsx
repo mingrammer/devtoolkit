@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Network, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,16 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const CidrCalculator = () => {
   const [cidr, setCidr] = useState("");
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState({
+    cidr: "-",
+    subnetMask: "-",
+    networkAddress: "-",
+    broadcastAddress: "-",
+    firstHost: "-",
+    lastHost: "-",
+    totalHosts: "-",
+    usableHosts: "-"
+  });
   const { t } = useLanguage();
 
   const calculateCidr = () => {
@@ -86,13 +94,19 @@ const CidrCalculator = () => {
         broadcastAddress: broadcastParts.join('.'),
         firstHost: firstHostParts.join('.'),
         lastHost: lastHostParts.join('.'),
-        totalHosts,
-        usableHosts
+        totalHosts: totalHosts.toLocaleString(),
+        usableHosts: usableHosts.toLocaleString()
       });
 
       toast.success(t("cidrcalculator_calculated"));
     } catch (error) {
       toast.error(t("cidrcalculator_invalid_format"));
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      calculateCidr();
     }
   };
 
@@ -105,6 +119,7 @@ const CidrCalculator = () => {
             id="cidr"
             value={cidr}
             onChange={(e) => setCidr(e.target.value)}
+            onKeyPress={handleKeyPress}
             placeholder={t("cidrcalculator_input_placeholder")}
             className="font-mono"
           />
@@ -116,57 +131,55 @@ const CidrCalculator = () => {
         </Button>
       </div>
 
-      {result && (
-        <div className="grid md:grid-cols-2 gap-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t("cidrcalculator_network")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex justify-between">
-                <span>CIDR:</span>
-                <span className="font-mono">{result.cidr}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_subnet_mask")}:</span>
-                <span className="font-mono">{result.subnetMask}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_network_address")}:</span>
-                <span className="font-mono">{result.networkAddress}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_broadcast_address")}:</span>
-                <span className="font-mono">{result.broadcastAddress}</span>
-              </div>
-            </CardContent>
-          </Card>
+      <div className="grid md:grid-cols-2 gap-4">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">{t("cidrcalculator_network")}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex justify-between">
+              <span>CIDR:</span>
+              <span className="font-mono">{result.cidr}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_subnet_mask")}:</span>
+              <span className="font-mono">{result.subnetMask}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_network_address")}:</span>
+              <span className="font-mono">{result.networkAddress}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_broadcast_address")}:</span>
+              <span className="font-mono">{result.broadcastAddress}</span>
+            </div>
+          </CardContent>
+        </Card>
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t("cidrcalculator_hosts")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_first_host")}:</span>
-                <span className="font-mono">{result.firstHost}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_last_host")}:</span>
-                <span className="font-mono">{result.lastHost}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_total_hosts")}:</span>
-                <span className="font-mono">{result.totalHosts.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("cidrcalculator_available_hosts")}:</span>
-                <span className="font-mono">{result.usableHosts.toLocaleString()}</span>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">{t("cidrcalculator_hosts")}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_first_host")}:</span>
+              <span className="font-mono">{result.firstHost}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_last_host")}:</span>
+              <span className="font-mono">{result.lastHost}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_total_hosts")}:</span>
+              <span className="font-mono">{result.totalHosts}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>{t("cidrcalculator_available_hosts")}:</span>
+              <span className="font-mono">{result.usableHosts}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
