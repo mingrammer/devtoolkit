@@ -2,38 +2,42 @@
 import { useParams, Navigate } from "react-router-dom";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ToolSidebar } from "@/components/ToolSidebar";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTools } from "@/utils/toolsConfig";
 import { getToolSEO } from "@/utils/seoConfig";
 import SEOHead from "@/components/SEOHead";
 import AdBanner from "@/components/AdBanner";
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // 컴포넌트 임포트
-import UuidGenerator from "@/components/UuidGenerator";
-import HashGenerator from "@/components/HashGenerator";
-import LoremGenerator from "@/components/LoremGenerator";
-import FormatConverter from "@/components/FormatConverter";
-import TimeConverter from "@/components/TimeConverter";
-import LocaleConverter from "@/components/LocaleConverter";
-import CaseConverter from "@/components/CaseConverter";
-import JsonPrettifier from "@/components/JsonPrettifier";
-import Base64Converter from "@/components/Base64Converter";
-import QrCodeGenerator from "@/components/QrCodeGenerator";
-import RegexTester from "@/components/RegexTester";
-import CronGenerator from "@/components/CronGenerator";
-import MarkdownViewer from "@/components/MarkdownViewer";
-import PasswordGenerator from "@/components/PasswordGenerator";
-import TimezoneConverter from "@/components/TimezoneConverter";
-import CidrCalculator from "@/components/CidrCalculator";
-import NumberConverter from "@/components/NumberConverter";
-import NumberFormatter from "@/components/NumberFormatter";
-import TextDiff from "@/components/TextDiff";
-import EscapeUnescape from "@/components/EscapeUnescape";
-import TextToSlug from "@/components/TextToSlug";
+import UuidGenerator from "@/components/tools/UuidGenerator";
+import HashGenerator from "@/components/tools/HashGenerator";
+import LoremIpsumGenerator from "@/components/tools/LoremIpsumGenerator";
+import FormatConverter from "@/components/tools/FormatConverter";
+import UnixTimeConverter from "@/components/tools/UnixTimeConverter";
+import LocaleConverter from "@/components/tools/LocaleConverter";
+import CaseConverter from "@/components/tools/CaseConverter";
+import JsonPrettifier from "@/components/tools/JsonPrettifier";
+import Base64Converter from "@/components/tools/Base64Converter";
+import QrCodeGenerator from "@/components/tools/QrCodeGenerator";
+import RegexTester from "@/components/tools/RegexTester";
+import CronGenerator from "@/components/tools/CronGenerator";
+import MarkdownViewer from "@/components/tools/MarkdownViewer";
+import PasswordGenerator from "@/components/tools/PasswordGenerator";
+import TimezoneConverter from "@/components/tools/TimezoneConverter";
+import CidrCalculator from "@/components/tools/CidrCalculator";
+import NumberConverter from "@/components/tools/NumberConverter";
+import NumberFormatter from "@/components/tools/NumberFormatter";
+import TextDiff from "@/components/tools/TextDiff";
+import EscapeUnescape from "@/components/tools/EscapeUnescape";
+import TextToSlug from "@/components/tools/TextToSlug";
 
 const ToolPage = () => {
   const { toolId } = useParams<{ toolId: string }>();
   const tools = useTools();
+  const { t } = useLanguage();
   
   const tool = tools.find(t => t.id === toolId);
   
@@ -46,27 +50,27 @@ const ToolPage = () => {
 
   const renderTool = () => {
     switch (toolId) {
-      case "uuid": return <UuidGenerator />;
-      case "hash": return <HashGenerator />;
-      case "lorem": return <LoremGenerator />;
-      case "converter": return <FormatConverter />;
-      case "time": return <TimeConverter />;
-      case "locale": return <LocaleConverter />;
-      case "case": return <CaseConverter />;
-      case "json": return <JsonPrettifier />;
-      case "base64": return <Base64Converter />;
-      case "qr": return <QrCodeGenerator />;
-      case "regex": return <RegexTester />;
-      case "cron": return <CronGenerator />;
-      case "markdown": return <MarkdownViewer />;
-      case "password": return <PasswordGenerator />;
-      case "timezone": return <TimezoneConverter />;
-      case "cidr": return <CidrCalculator />;
-      case "numberconv": return <NumberConverter />;
-      case "numberformat": return <NumberFormatter />;
+      case "uuidgenerator": return <UuidGenerator />;
+      case "hashgenerator": return <HashGenerator />;
+      case "loremipsum": return <LoremIpsumGenerator />;
+      case "formatconverter": return <FormatConverter />;
+      case "unixtimeconverter": return <UnixTimeConverter />;
+      case "localeconverter": return <LocaleConverter />;
+      case "caseconverter": return <CaseConverter />;
+      case "jsonprettifier": return <JsonPrettifier />;
+      case "base64converter": return <Base64Converter />;
+      case "qrgenerator": return <QrCodeGenerator />;
+      case "regextester": return <RegexTester />;
+      case "crongenerator": return <CronGenerator />;
+      case "markdownviewer": return <MarkdownViewer />;
+      case "passwordgenerator": return <PasswordGenerator />;
+      case "timezoneconverter": return <TimezoneConverter />;
+      case "cidrcalculator": return <CidrCalculator />;
+      case "numberconverter": return <NumberConverter />;
+      case "numberformatter": return <NumberFormatter />;
       case "textdiff": return <TextDiff />;
       case "escape": return <EscapeUnescape />;
-      case "slug": return <TextToSlug />;
+      case "texttoslug": return <TextToSlug />;
       default: return <UuidGenerator />;
     }
   };
@@ -85,7 +89,26 @@ const ToolPage = () => {
       <SidebarProvider>
         <div className="min-h-screen flex w-full">
           <ToolSidebar />
-          <SidebarInset>
+          <SidebarInset className="flex flex-col">
+            {/* TopBar를 메인 콘텐츠 영역에만 적용 */}
+            <div className="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-end sticky top-0 z-50">
+              <div className="flex items-center space-x-4">
+                <LanguageSelector />
+                <Button 
+                  onClick={() => window.open('https://buymeacoffee.com/mingrammer', '_blank')}
+                  className="bg-[#FFDD00] hover:bg-[#FFCC00] text-black font-medium px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 border border-gray-300 hover:border-gray-400"
+                  size="sm"
+                >
+                  <img 
+                    src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" 
+                    alt="Buy me a coffee"
+                    className="w-5 h-5"
+                  />
+                  <span>{t("buyMeCoffee")}</span>
+                </Button>
+              </div>
+            </div>
+            
             <div className="flex-1 p-8">
               <Card className="shadow-lg">
                 <CardHeader>

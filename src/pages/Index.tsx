@@ -8,8 +8,8 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { useTools, useCategories } from "@/utils/toolsConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
-import SponsorSection from "@/components/SponsorSection";
 import LanguageSelector from "@/components/LanguageSelector";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -18,7 +18,16 @@ const Index = () => {
   const categories = useCategories();
   const { t } = useLanguage();
   
-  const allCategories = [t("all"), ...categories];
+  // SEO 설정
+  const seoTitle = `${t("devToolkit")} - ${t("developersEssential")}`;
+  const seoDescription = t("essentialDescription");
+  const seoKeywords = [
+    "developer tools", "developer utilities", "dev tool kit", "dev tools", 
+    "dev utilities",  "online tools", "개발자 도구", "개발자 유틸리티",
+  ];
+  const canonicalUrl = window.location.origin;
+  
+  const allCategories = ["all", ...categories];
   const [selectedCategory, setSelectedCategory] = useState(allCategories[0]);
 
   const filteredTools = useMemo(() => {
@@ -27,7 +36,7 @@ const Index = () => {
     if (selectedCategory !== allCategories[0]) {
       filtered = filtered.filter(tool => tool.category === selectedCategory);
     }
-    
+
     if (searchQuery) {
       filtered = filtered.filter(tool => 
         tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -38,98 +47,62 @@ const Index = () => {
     return filtered;
   }, [searchQuery, selectedCategory, tools, allCategories]);
 
+  const handleBuyMeCoffee = () => {
+    window.open('https://buymeacoffee.com/mingrammer', '_blank');
+  };
+
   const handleToolClick = (toolId: string) => {
     navigate(`/tools/${toolId}`);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <>
+      <SEOHead
+        title={seoTitle}
+        description={seoDescription}
+        keywords={seoKeywords}
+        ogTitle={seoTitle}
+        ogDescription={seoDescription}
+        canonicalUrl={canonicalUrl}
+      />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <Code className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  {t("devToolkit")}
-                </h1>
-                <p className="text-xs text-slate-500">{t("supportDescription")}</p>
-              </div>
-            </div>
-            <Badge variant="secondary" className="bg-green-100 text-green-700">
-              {t("freeUsage")}
-            </Badge>
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+          <Code className="w-5 h-5 text-white" />
           </div>
-          
-          {/* Language Selector */}
-          <div className="mt-4 flex justify-end">
-            <LanguageSelector />
+          <div>
+          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          {t("devToolkit")}
+          </h1>
+          <p className="text-xs text-slate-500">{t("supportDescription")}</p>
+          </div>
+          </div>
+            <div className="flex items-center space-x-4">
+              <LanguageSelector />
+              <Button 
+                onClick={handleBuyMeCoffee}
+                className="bg-[#FFDD00] hover:bg-[#FFCC00] text-black font-medium px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 border border-gray-300 hover:border-gray-400"
+                size="sm"
+              >
+                <img 
+                  src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" 
+                  alt="Buy me a coffee"
+                  className="w-5 h-5"
+                />
+                <span>{t("buyMeCoffee")}</span>
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-12 gap-8">
-          {/* 사이드바 */}
-          <div className="lg:col-span-3 space-y-6">
-            <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-sm text-orange-800">💡 {t("advertisement")}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <p className="text-sm text-orange-700">{t("developmentTools")}</p>
-                  <p className="text-xs text-orange-600">{t("productivityMessage")}</p>
-                  <Button size="sm" variant="outline" className="w-full text-orange-700 border-orange-300">
-                    {t("seeMore")}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Sponsor Section */}
-            <SponsorSection />
-
-            {/* Search Bar */}
-            <Card>
-              <CardContent className="p-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    placeholder={t("searchTools")}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10"
-                  />
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm">📊 {t("usageStats")}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span>{t("todayUsage")}</span>
-                  <span className="font-semibold">8,247</span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span>{t("totalTools")}</span>
-                  <span className="font-semibold">{tools.length}개</span>
-                </div>
-                <Separator />
-                <p className="text-xs text-slate-500">
-                  {t("dailyUsers")}
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* 메인 콘텐츠 */}
+          {/* Main Contents */}
           <div className="lg:col-span-9">
             <div className="mb-8">
               <h2 className="text-3xl font-bold text-slate-800 mb-2">
@@ -140,7 +113,7 @@ const Index = () => {
               </p>
             </div>
 
-            {/* 카테고리 */}
+            {/* Category */}
             <div className="mb-6">
               <div className="flex flex-wrap gap-2">
                 {allCategories.map((category) => (
@@ -156,7 +129,7 @@ const Index = () => {
               </div>
             </div>
 
-            {/* 도구 그리드 */}
+            {/* Tools Grid */}
             <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
               {filteredTools.map((tool) => {
                 const Icon = tool.icon;
@@ -197,6 +170,58 @@ const Index = () => {
               </div>
             )}
           </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-3 space-y-6">
+            <Card className="bg-gradient-to-br from-yellow-50 to-orange-50 border-yellow-200">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm text-orange-800">💡 {t("advertisement")}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2">
+                  <p className="text-sm text-orange-700">{t("developmentTools")}</p>
+                  <p className="text-xs text-orange-600">{t("productivityMessage")}</p>
+                  <Button size="sm" variant="outline" className="w-full text-orange-700 border-orange-300">
+                    {t("seeMore")}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardContent className="p-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    placeholder={t("searchTools")}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-10"
+                  />
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-sm">📊 {t("usageStats")}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span>{t("todayUsage")}</span>
+                  <span className="font-semibold">8,247</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>{t("totalTools")}</span>
+                  <span className="font-semibold">{tools.length}개</span>
+                </div>
+                <Separator />
+                <p className="text-xs text-slate-500">
+                  {t("dailyUsers")}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* 하단 광고 영역 */}
@@ -224,7 +249,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 };
 

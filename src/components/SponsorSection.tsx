@@ -9,7 +9,7 @@ const SponsorSection = () => {
   
   const handleBuyMeCoffee = () => {
     // Buy Me a Coffee 링크로 이동 (실제 링크로 교체 필요)
-    window.open('https://buymeacoffee.com/yourname', '_blank');
+    window.open('https://buymeacoffee.com/mingrammer', '_blank');
   };
 
   return (

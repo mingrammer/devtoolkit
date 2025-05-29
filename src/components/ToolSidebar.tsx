@@ -15,8 +15,6 @@ import {
 } from "@/components/ui/sidebar";
 import { useTools, useCategories } from "@/utils/toolsConfig";
 import { useLanguage } from "@/contexts/LanguageContext";
-import SponsorSection from "@/components/SponsorSection";
-import LanguageSelector from "@/components/LanguageSelector";
 
 export function ToolSidebar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -47,8 +45,8 @@ export function ToolSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="p-4 border-b">
-        <div className="flex items-center space-x-3 mb-4">
+      <SidebarHeader className="p-4 border-b z-100">
+        <div className="flex items-center space-x-3 mb-4 cursor-pointer" onClick={() => navigate('/')}>
           <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
             <Code className="w-5 h-5 text-white" />
           </div>
@@ -59,16 +57,8 @@ export function ToolSidebar() {
           </div>
         </div>
         
-        {/* Language Selector */}
-        <div className="mb-4">
-          <LanguageSelector />
-        </div>
-        
-        {/* Sponsor Section */}
-        <SponsorSection />
-        
         {/* Search Bar */}
-        <div className="relative mt-4">
+        <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <Input
             placeholder={t("searchTools")}
