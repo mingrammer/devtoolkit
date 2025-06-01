@@ -24,10 +24,23 @@
   <!-- Main content -->
   <g transform="translate(100, 150)">
     <!-- Logo -->
-    <rect x="0" y="0" width="80" height="80" rx="16" fill="url(#cardGradient)"/>
-    <g stroke="white" stroke-width="4" stroke-linecap="round">
-      <path d="M20 30h40M20 40h30M20 50h20"/>
-      <circle cx="60" cy="50" r="4" fill="white"/>
+    <!-- 1) 그라데이션 정의 -->
+    <defs>
+      <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#3366FF"/>
+        <stop offset="100%" stop-color="#A553FF"/>
+      </linearGradient>
+    </defs>
+
+    <!-- 2) 둥근 사각형 배경 -->
+    <rect x="0" y="0" width="80" height="80" rx="16" fill="url(#logoGradient)" />
+
+    <!-- 3) 중앙의 흰색 앵글 브래킷 아이콘 -->
+    <g fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 왼쪽 앵글 브래킷 "<" -->
+      <path d="M32 26 L24 40 L32 54" />
+      <!-- 오른쪽 앵글 브래킷 ">" -->
+      <path d="M48 26 L56 40 L48 54" />
     </g>
     
     <!-- Title -->
@@ -36,15 +49,17 @@
     
     <!-- Features -->
     <g transform="translate(0, 120)">
-      <text x="0" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔧 JSON Formatter & Validator</text>
+      <text x="0" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔧 JSON Formatter</text>
       <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🆔 UUID Generator</text>
       <text x="0" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔒 Base64 Converter</text>
       <text x="0" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">📱 QR Code Generator</text>
+      <text x="0" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">📜 Lorem Ipsum</text>
       
-      <text x="400" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔐 Password Generator</text>
+      <text x="400" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔐 Hash Generator</text>
       <text x="400" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔍 Regex Tester</text>
-      <text x="400" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">📝 Markdown Viewer</text>
-      <text x="400" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">⏰ Time Converters</text>
+      <text x="400" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">📝 Cron Generator</text>
+      <text x="400" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔄 Format Converter</text>
+      <text x="400" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">💡 Others...</text>
     </g>
   </g>
   
