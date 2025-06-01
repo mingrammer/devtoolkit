@@ -197,8 +197,8 @@ const Index = () => {
             {/* 사이드바 광고 */}
             <AnalyticsErrorBoundary>
               <AdBanner 
-                slot="sidebar-ad"
-                format="rectangle"
+                slot="1234567890"
+                format="auto"
                 className="w-full"
                 style={{ minHeight: '250px' }}
               />
@@ -207,8 +207,8 @@ const Index = () => {
             {/* 두 번째 광고 */}
             <AnalyticsErrorBoundary>
               <AdBanner 
-                slot="sidebar-ad-2"
-                format="rectangle"
+                slot="0987654321"
+                format="auto"
                 className="w-full"
                 style={{ minHeight: '250px' }}
               />

@@ -66,9 +66,16 @@ const AdBanner: React.FC<AdBannerProps> = ({
           }
         });
 
-        if (loaded && window.adsbygoogle) {
+        if (loaded && window.adsbygoogle && adRef.current) {
           // 광고 초기화 시도
           try {
+            // 이미 초기화된 광고인지 확인
+            const existingAd = adRef.current.querySelector('.adsbygoogle');
+            if (existingAd && existingAd.getAttribute('data-adsbygoogle-status')) {
+              safeLog.info('Ad already initialized for slot:', slot);
+              return;
+            }
+
             (window.adsbygoogle = window.adsbygoogle || []).push({});
             safeLog.info('AdSense ad initialized for slot:', slot);
           } catch (error) {
@@ -107,6 +114,19 @@ const AdBanner: React.FC<AdBannerProps> = ({
         <p className="text-xs text-blue-500 mt-1">Slot: {slot}</p>
         <p className="text-xs text-blue-500">Format: {format}</p>
         <p className="text-xs text-blue-400 mt-2">개발 환경에서는 실제 광고가 표시되지 않습니다</p>
+      </div>
+    );
+  }
+
+  // 유효한 슬롯 ID인지 확인 (AdSense에서 생성한 슬롯 ID는 숫자로만 구성됨)
+  const isValidSlot = /^\d+$/.test(slot);
+  if (!isValidSlot) {
+    safeLog.warn(`Invalid AdSense slot format: ${slot}. Slot should be numeric.`);
+    return (
+      <div className={`bg-yellow-50 border-2 border-dashed border-yellow-300 rounded-lg p-4 text-center ${className}`} style={style}>
+        <p className="text-yellow-600 text-sm">⚠️ Invalid Ad Slot</p>
+        <p className="text-xs text-yellow-500 mt-1">Slot: {slot}</p>
+        <p className="text-xs text-yellow-400 mt-2">AdSense 슬롯 ID는 숫자여야 합니다</p>
       </div>
     );
   }
