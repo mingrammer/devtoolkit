@@ -1,6 +1,10 @@
 # DevToolKit - Essential Developer Utilities
 
+> [https://devtoolkit.mingrammer.com](https://devtoolkit.mingrammer.com)
+
 A comprehensive collection of free online tools designed to make developers' lives easier. All tools work entirely in your browser without requiring any downloads or installations.
+
+<a href="https://www.buymeacoffee.com/mingrammer"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=mingrammer&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
 
 ## Available Tools
 
@@ -80,7 +84,3 @@ Contributions are welcome! Feel free to:
 ## License
 
 This project is open source and available under the MIT License.
-
----
-
-**Made with ❤️ for developers by developers**

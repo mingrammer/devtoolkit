@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 
 interface SEOHeadProps {
@@ -60,34 +59,6 @@ const SEOHead = ({
         document.head.appendChild(canonical);
       }
       canonical.setAttribute('href', canonicalUrl);
-    }
-
-    // Google Analytics 4 설정
-    if (!document.querySelector('[data-ga-id]')) {
-      const gaScript = document.createElement('script');
-      gaScript.async = true;
-      gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'; // 실제 GA4 ID로 교체
-      gaScript.setAttribute('data-ga-id', 'true');
-      document.head.appendChild(gaScript);
-
-      const gaConfigScript = document.createElement('script');
-      gaConfigScript.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX'); // 실제 GA4 ID로 교체
-      `;
-      document.head.appendChild(gaConfigScript);
-    }
-
-    // Google AdSense 스크립트 로드
-    if (!document.querySelector('[data-ad-client]')) {
-      const adScript = document.createElement('script');
-      adScript.async = true;
-      adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX'; // 실제 AdSense ID로 교체
-      adScript.crossOrigin = 'anonymous';
-      adScript.setAttribute('data-ad-client', 'ca-pub-XXXXXXXXXX'); // 실제 AdSense ID로 교체
-      document.head.appendChild(adScript);
     }
   }, [title, description, keywords, ogTitle, ogDescription, canonicalUrl]);
 

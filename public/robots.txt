@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://devtoolkit.com/sitemap.xml
+Sitemap: https://devtoolkit.mingrammer.com/sitemap.xml
 
 # Specific crawler rules
 User-agent: Googlebot

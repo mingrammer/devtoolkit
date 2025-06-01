@@ -1,4 +1,3 @@
-
 import { useParams, Navigate } from "react-router-dom";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ToolSidebar } from "@/components/ToolSidebar";
@@ -7,9 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useTools } from "@/utils/toolsConfig";
 import { getToolSEO } from "@/utils/seoConfig";
 import SEOHead from "@/components/SEOHead";
-import AdBanner from "@/components/AdBanner";
+import AdBanner from "@/components/ads/AdBanner";
 import LanguageSelector from "@/components/LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
+import AnalyticsErrorBoundary from "@/components/AnalyticsErrorBoundary";
+import GitHubButton from "@/components/GitHubButton";
 
 // 컴포넌트 임포트
 import UuidGenerator from "@/components/tools/UuidGenerator";
@@ -106,6 +107,11 @@ const ToolPage = () => {
             <div className="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-end sticky top-0 z-50">
               <div className="flex items-center space-x-4">
                 <LanguageSelector />
+                <GitHubButton 
+                  owner="mingrammer" 
+                  repo="devtoolkit" 
+                  variant="compact"
+                />
                 <Button 
                   onClick={() => window.open('https://buymeacoffee.com/mingrammer', '_blank')}
                   className="bg-[#FFDD00] hover:bg-[#FFCC00] text-black font-medium px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 border border-gray-300 hover:border-gray-400"
@@ -139,13 +145,15 @@ const ToolPage = () => {
                 </CardContent>
               </Card>
               
-              {/* 카드 외부로 분리된 광고 배너 */}
               <div className="mt-8">
-                <AdBanner 
-                  slot="1234567890" 
-                  className="max-w-2xl mx-auto"
-                  style={{ minHeight: '250px' }}
-                />
+                <AnalyticsErrorBoundary>
+                  <AdBanner 
+                    slot="tool-bottom-banner" 
+                    format="horizontal"
+                    className="max-w-2xl mx-auto"
+                    style={{ minHeight: '250px' }}
+                  />
+                </AnalyticsErrorBoundary>
               </div>
             </div>
           </SidebarInset>

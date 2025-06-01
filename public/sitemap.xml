@@ -1,170 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.8">
   <url>
-    <loc>https://devtoolkit.com/</loc>
+    <loc>https://devtoolkit.mingrammer.com/</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://devtoolkit.com/tools/jsontocsv</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/jsontocsv</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/csvtojson</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/csvtojson</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/yamltojson</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/yamltojson</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/jsontoyaml</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/jsontoyaml</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/csvtoyaml</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/csvtoyaml</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/yamltocsv</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/yamltocsv</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/jsonformatter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/jsonformatter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/uuidgenerator</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/uuidgenerator</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/hashgenerator</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/hashgenerator</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/base64converter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/base64converter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/qrgenerator</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/qrgenerator</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/passwordgenerator</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/passwordgenerator</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/caseconverter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/caseconverter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/loremipsum</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/loremipsum</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/textdiff</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/textdiff</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/escape</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/escape</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/texttoslug</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/texttoslug</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/wordcounter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/wordcounter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/unixtimeconverter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/unixtimeconverter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/timezoneconverter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/timezoneconverter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/crongenerator</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/crongenerator</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/localeconverter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/localeconverter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/numberformatter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/numberformatter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/numberconverter</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/numberconverter</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/regextester</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/regextester</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/markdownviewer</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/markdownviewer</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://devtoolkit.com/tools/cidrcalculator</loc>
+    <loc>https://devtoolkit.mingrammer.com/tools/cidrcalculator</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
