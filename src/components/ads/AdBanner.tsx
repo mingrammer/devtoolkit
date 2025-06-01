@@ -4,8 +4,9 @@ import { isDevelopment, ScriptLoader, safeLog, isAdBlockerActive } from '@/utils
 
 interface AdBannerProps {
   slot: string;
-  format?: 'auto' | 'rectangle' | 'vertical' | 'horizontal';
+  format?: 'auto' | 'rectangle' | 'vertical' | 'horizontal' | 'fluid';
   responsive?: boolean;
+  layoutKey?: string;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -20,6 +21,7 @@ const AdBanner: React.FC<AdBannerProps> = ({
   slot,
   format = 'auto',
   responsive = true,
+  layoutKey = '',
   className = '',
   style = {},
 }) => {
@@ -140,6 +142,7 @@ const AdBanner: React.FC<AdBannerProps> = ({
         data-ad-client={analyticsConfig.adsense.publisherId}
         data-ad-slot={slot}
         data-ad-format={format}
+        data-ad-layout-key={layoutKey}
         data-full-width-responsive={responsive.toString()}
       />
     </div>

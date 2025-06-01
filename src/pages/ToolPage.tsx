@@ -148,8 +148,9 @@ const ToolPage = () => {
               <div className="mt-8">
                 <AnalyticsErrorBoundary>
                   <AdBanner 
-                    slot="1122334455" 
-                    format="auto"
+                    slot="6031323740"
+                    format="fluid"
+                    layoutKey="-fb+5w+4e-db+86"
                     className="max-w-2xl mx-auto"
                     style={{ minHeight: '250px' }}
                   />
