@@ -1,3 +1,5 @@
+<img src="./public/logo.png" alt="logo" width="196" height="196" />
+
 # DevToolKit - Essential Developer Utilities
 
 > [https://devtoolkit.mingrammer.com](https://devtoolkit.mingrammer.com)
