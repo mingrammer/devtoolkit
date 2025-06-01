@@ -26,6 +26,12 @@ export const base64converterTranslations = {
   
       // Info
       base64converter_what: 'What is Base64?',
+      base64converter_info: 'Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format by translating it into a radix-64 representation.',
+      base64converter_features: 'Features:',
+      base64converter_feature_1: 'Encode text to Base64 format for safe transmission',
+      base64converter_feature_2: 'Decode Base64 strings back to original text',
+      base64converter_feature_3: 'Toggle between encode and decode modes easily',
+      base64converter_feature_4: 'Handle special characters and Unicode text',
     },
     ko: {
       // Tool info
@@ -54,5 +60,11 @@ export const base64converterTranslations = {
   
       // Info
       base64converter_what: 'Base64란?',
+      base64converter_info: 'Base64는 이진 데이터를 ASCII 문자열 형식으로 나타내는 인코딩 방식으로, 64진법 표현으로 변환하여 안전한 데이터 전송을 가능하게 합니다.',
+      base64converter_features: '주요 기능:',
+      base64converter_feature_1: '텍스트를 안전한 전송을 위한 Base64 형식으로 인코딩',
+      base64converter_feature_2: 'Base64 문자열을 원본 텍스트로 디코딩',
+      base64converter_feature_3: '인코딩과 디코딩 모드 간 쉬운 전환',
+      base64converter_feature_4: '특수 문자와 유니코드 텍스트 처리',
     }
   };

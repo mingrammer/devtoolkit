@@ -1,73 +1,86 @@
-# Welcome to your Lovable project
+# DevToolKit - Essential Developer Utilities
 
-## Project info
+A comprehensive collection of free online tools designed to make developers' lives easier. All tools work entirely in your browser without requiring any downloads or installations.
 
-**URL**: https://lovable.dev/projects/e4e07847-1c29-4747-950a-c8fb93fe58a4
+## Available Tools
 
-## How can I edit this code?
+### 📝 Text Processing
 
-There are several ways of editing your application.
+- **UUID Generator** - Generate secure UUIDs (v4, v5) with namespace support
+- **Lorem Ipsum Generator** - Create placeholder text in words, sentences, or paragraphs
+- **Case Converter** - Transform text between camelCase, snake_case, UPPERCASE, lowercase, and more
+- **Password Generator** - Create strong, secure passwords with customizable options
+- **Text Diff** - Compare two texts and highlight differences side by side
+- **Escape/Unescape Tool** - Encode and decode HTML, URL, and JSON strings
+- **Text to Slug** - Convert text into SEO-friendly URL slugs
+- **Word Counter** - Count words, characters, sentences, paragraphs, and estimate reading time
 
-**Use Lovable**
+### 🔐 Encoding & Conversion
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/e4e07847-1c29-4747-950a-c8fb93fe58a4) and start prompting.
+- **Hash Generator** - Generate MD5, SHA1, SHA256, SHA512, and other hash types
+- **Base64 Converter** - Encode and decode Base64 strings with toggle modes
+- **QR Code Generator** - Create QR codes for text, URLs, and other data with customizable sizes
+- **Number Converter** - Convert numbers between binary, decimal, hexadecimal, and octal
 
-Changes made via Lovable will be committed automatically to this repo.
+### ⏰ Time & Date
 
-**Use your preferred IDE**
+- **Unix Timestamp Converter** - Convert between Unix timestamps and human-readable dates
+- **Timezone Converter** - Convert times between different timezones
+- **Cron Generator** - Create and validate cron expressions with human-readable descriptions
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 📊 Data Format
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **JSON to CSV Converter** - Transform JSON data into CSV format for spreadsheets
+- **CSV to JSON Converter** - Convert CSV data into structured JSON objects
+- **YAML to JSON Converter** - Transform YAML configuration files to JSON
+- **JSON to YAML Converter** - Convert JSON into human-readable YAML format
+- **CSV to YAML Converter** - Transform tabular CSV data into YAML structure
+- **YAML to CSV Converter** - Convert YAML data into CSV for data analysis
+- **JSON Formatter/Validator** - Format, validate, and beautify JSON with syntax error detection
+- **Locale Converter** - Convert between language codes (ISO 639) and country codes (ISO 3166)
+- **Number Formatter** - Format numbers with currency, percentage, and thousands separators
 
-Follow these steps:
+### 🛠️ Developer Tools
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- **Regex Tester** - Test regular expressions with real-time matching and highlighting
+- **Markdown Viewer** - Preview markdown with syntax highlighting for code blocks
+- **CIDR Calculator** - Calculate network ranges, subnets, and IP address information
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Getting Started
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. Visit any tool from the sidebar navigation
+2. Enter your data in the input fields
+3. See instant results in the output area
+4. Copy results or download files as needed
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## Development
+
+This project is built with React, TypeScript, and Tailwind CSS. To run locally:
+
+```bash
+# Clone the repository
+git clone <repository-url>
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Contributing
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Contributions are welcome! Feel free to:
 
-**Use GitHub Codespaces**
+- Report bugs
+- Suggest new tools
+- Submit pull requests
+- Improve documentation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## License
 
-## What technologies are used for this project?
+This project is open source and available under the MIT License.
 
-This project is built with:
+---
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/e4e07847-1c29-4747-950a-c8fb93fe58a4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+**Made with ❤️ for developers by developers**

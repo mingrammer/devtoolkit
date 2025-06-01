@@ -1,6 +1,28 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  ArrowRightLeft,
+  Binary,
+  Braces,
+  Calculator,
+  Calendar,
+  CaseUpper,
+  Clock,
+  Code,
+  Eye,
+  FileText,
+  GitCompare,
+  Globe,
+  Hash,
+  Key,
+  Link2,
+  Network,
+  QrCode,
+  Search,
+  Shield,
+  Timer,
+  Type,
+} from 'lucide-react';
 
-import { Hash, Type, RefreshCw, Clock, Globe, CaseUpper, FileJson, Braces, Binary, QrCode, Search, Calendar, Eye, Key, Timer, Network, Calculator, FileType, GitCompare, Shield, Link2, Code } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 export const useTools = () => {
   const { t } = useLanguage();
@@ -61,6 +83,14 @@ export const useTools = () => {
       description: t("texttoslug_description"),
       icon: Link2,
       color: "bg-green-600",
+      category: t("textProcessing")
+    },
+    {
+      id: "wordcounter",
+      title: t("wordcounter_title"),
+      description: t("wordcounter_description"),
+      icon: FileText,
+      color: "bg-blue-600",
       category: t("textProcessing")
     },
 
@@ -126,17 +156,57 @@ export const useTools = () => {
 
     // 데이터 포맷
     {
-      id: "formatconverter",
-      title: t("formatconverter_title"),
-      description: t("formatconverter_description"),
-      icon: RefreshCw,
-      color: "bg-orange-500",
+      id: "jsontocsv",
+      title: t("jsontocsv_title"),
+      description: t("jsontocsv_description"),
+      icon: ArrowRightLeft,
+      color: "bg-blue-500",
       category: t("dataFormat")
     },
     {
-      id: "jsonprettifier",
-      title: t("jsonprettifier_title"),
-      description: t("jsonprettifier_description"),
+      id: "csvtojson",
+      title: t("csvtojson_title"),
+      description: t("csvtojson_description"),
+      icon: ArrowRightLeft,
+      color: "bg-green-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "yamltojson",
+      title: t("yamltojson_title"),
+      description: t("yamltojson_description"),
+      icon: ArrowRightLeft,
+      color: "bg-yellow-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "jsontoyaml",
+      title: t("jsontoyaml_title"),
+      description: t("jsontoyaml_description"),
+      icon: ArrowRightLeft,
+      color: "bg-purple-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "csvtoyaml",
+      title: t("csvtoyaml_title"),
+      description: t("csvtoyaml_description"),
+      icon: ArrowRightLeft,
+      color: "bg-pink-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "yamltocsv",
+      title: t("yamltocsv_title"),
+      description: t("yamltocsv_description"),
+      icon: ArrowRightLeft,
+      color: "bg-indigo-500",
+      category: t("dataFormat")
+    },
+    {
+      id: "jsonformatter",
+      title: t("jsonformatter_title"),
+      description: t("jsonformatter_description"),
       icon: Braces,
       color: "bg-cyan-500",
       category: t("dataFormat")

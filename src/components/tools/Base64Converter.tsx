@@ -65,11 +65,13 @@ const Base64Converter = () => {
       <div className="grid md:grid-cols-2 gap-6">
         {/* 입력 */}
         <div className="space-y-3">
-          <Label htmlFor="input">
-            {mode === "encode"
-              ? t("base64converter_original_text")
-              : t("base64converter_encoded_text")}
-          </Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="input">
+              {mode === "encode"
+                ? t("base64converter_original_text")
+                : t("base64converter_encoded_text")}
+            </Label>
+          </div>
           <Textarea
             id="input"
             value={input}
@@ -114,13 +116,18 @@ const Base64Converter = () => {
           : t("base64converter_decode_button")}
       </Button>
 
-      <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-        <Label className="text-sm font-medium text-blue-800 mb-2 block">
-          {t("base64converter_what")}
-        </Label>
-        <p className="text-sm text-blue-700">
-          {t("base64converter_description")}
-        </p>
+      <div className="mt-8 p-6 bg-blue-50 rounded-lg">
+        <h3 className="text-lg font-semibold mb-3">{t("base64converter_what")}</h3>
+        <p className="text-gray-700 mb-4">{t("base64converter_info")}</p>
+        <div className="space-y-2">
+          <h4 className="font-medium">{t("base64converter_features")}</h4>
+          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            <li>{t("base64converter_feature_1")}</li>
+            <li>{t("base64converter_feature_2")}</li>
+            <li>{t("base64converter_feature_3")}</li>
+            <li>{t("base64converter_feature_4")}</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

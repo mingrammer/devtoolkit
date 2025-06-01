@@ -15,11 +15,10 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import UuidGenerator from "@/components/tools/UuidGenerator";
 import HashGenerator from "@/components/tools/HashGenerator";
 import LoremIpsumGenerator from "@/components/tools/LoremIpsumGenerator";
-import FormatConverter from "@/components/tools/FormatConverter";
 import UnixTimeConverter from "@/components/tools/UnixTimeConverter";
 import LocaleConverter from "@/components/tools/LocaleConverter";
 import CaseConverter from "@/components/tools/CaseConverter";
-import JsonPrettifier from "@/components/tools/JsonPrettifier";
+import JsonFormatter from "@/components/tools/JsonFormatter";
 import Base64Converter from "@/components/tools/Base64Converter";
 import QrCodeGenerator from "@/components/tools/QrCodeGenerator";
 import RegexTester from "@/components/tools/RegexTester";
@@ -33,6 +32,13 @@ import NumberFormatter from "@/components/tools/NumberFormatter";
 import TextDiff from "@/components/tools/TextDiff";
 import EscapeUnescape from "@/components/tools/EscapeUnescape";
 import TextToSlug from "@/components/tools/TextToSlug";
+import JsonToCsv from "@/components/tools/JsonToCsv";
+import CsvToJson from "@/components/tools/CsvToJson";
+import YamlToJson from "@/components/tools/YamlToJson";
+import JsonToYaml from "@/components/tools/JsonToYaml";
+import CsvToYaml from "@/components/tools/CsvToYaml";
+import YamlToCsv from "@/components/tools/YamlToCsv";
+import WordCounter from "@/components/tools/WordCounter";
 
 const ToolPage = () => {
   const { toolId } = useParams<{ toolId: string }>();
@@ -53,11 +59,10 @@ const ToolPage = () => {
       case "uuidgenerator": return <UuidGenerator />;
       case "hashgenerator": return <HashGenerator />;
       case "loremipsum": return <LoremIpsumGenerator />;
-      case "formatconverter": return <FormatConverter />;
       case "unixtimeconverter": return <UnixTimeConverter />;
       case "localeconverter": return <LocaleConverter />;
       case "caseconverter": return <CaseConverter />;
-      case "jsonprettifier": return <JsonPrettifier />;
+      case "jsonformatter": return <JsonFormatter />;
       case "base64converter": return <Base64Converter />;
       case "qrgenerator": return <QrCodeGenerator />;
       case "regextester": return <RegexTester />;
@@ -71,6 +76,13 @@ const ToolPage = () => {
       case "textdiff": return <TextDiff />;
       case "escape": return <EscapeUnescape />;
       case "texttoslug": return <TextToSlug />;
+      case "jsontocsv": return <JsonToCsv />;
+      case "csvtojson": return <CsvToJson />;
+      case "yamltojson": return <YamlToJson />;
+      case "jsontoyaml": return <JsonToYaml />;
+      case "csvtoyaml": return <CsvToYaml />;
+      case "yamltocsv": return <YamlToCsv />;
+      case "wordcounter": return <WordCounter />;
       default: return <UuidGenerator />;
     }
   };

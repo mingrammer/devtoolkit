@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Copy, Search, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,9 +15,14 @@ const RegexTester = () => {
   const [matches, setMatches] = useState<RegExpMatchArray[]>([]);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    handleTest();
+  }, [pattern, flags, testString]);
+
   const handleTest = () => {
-    if (!pattern.trim()) {
-      toast.error(t("regextester_pattern_required"));
+    if (!pattern.trim() || !testString.trim()) {
+      setMatches([]);
+      setError("");
       return;
     }
 
@@ -38,11 +43,9 @@ const RegexTester = () => {
 
       setMatches(allMatches);
       setError("");
-      toast.success(`${allMatches.length} ${t("regextester_match_count")}`);
     } catch (err) {
       setError((err as Error).message);
       setMatches([]);
-      toast.error(t("regextester_invalid_pattern"));
     }
   };
 
@@ -109,10 +112,9 @@ const RegexTester = () => {
           </div>
         </div>
 
-        <Button onClick={handleTest}>
-          <Search className="w-4 h-4 mr-2" />
-          {t("regextester_test")}
-        </Button>
+        <div className="text-sm text-gray-600">
+          {t("regextester_realtime_note")}
+        </div>
 
         {error && (
           <div className="flex items-center space-x-2 p-3 bg-red-50 border border-red-200 rounded-md">

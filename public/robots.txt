@@ -1,14 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://devtoolkit.com/sitemap.xml
+
+# Specific crawler rules
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-User-agent: Twitterbot
-Allow: /
+# Disallow admin or temporary directories if any
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /.git/
+Disallow: /node_modules/
 
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+# Allow all tools
+Allow: /tools/

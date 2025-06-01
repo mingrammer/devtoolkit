@@ -2,7 +2,7 @@ import { commonTranslations } from './common';
 import { crongeneratorTranslations } from './crongenerator';
 import { base64converterTranslations } from './base64converter';
 import { hashgeneratorTranslations } from './hashgenerator';
-import { jsonprettifierTranslations } from './jsonprettifier';
+import { jsonformatterTranslations } from './jsonformatter';
 import { passwordgeneratorTranslations } from './passwordgenerator';
 import { qrgeneratorTranslations } from './qrgenerator';
 import { uuidgeneratorTranslations } from './uuidgenerator';
@@ -14,12 +14,18 @@ import { texttoslugTranslations } from './texttoslug';
 import { numberconverterTranslations } from './numberconverter';
 import { unixtimeconverterTranslations } from './unixtimeconverter';
 import { timezoneconverterTranslations } from './timezoneconverter';
-import { formatconverterTranslations } from './formatconverter';
 import { localeconverterTranslations } from './localeconverter';
 import { numberformatterTranslations } from './numberformatter';
 import { regextesterTranslations } from './regextester';
 import { markdownviewerTranslations } from './markdownviewer';
 import { cidrcalculatorTranslations } from './cidrcalculator';
+import { jsontocsvTranslations } from './jsontocsv';
+import { csvtojsonTranslations } from './csvtojson';
+import { yamltojsonTranslations } from './yamltojson';
+import { jsontoyamlTranslations } from './jsontoyaml';
+import { csvtoyamlTranslations } from './csvtoyaml';
+import { yamltocsvTranslations } from './yamltocsv';
+import { wordcounterTranslations } from './wordcounter';
 
 export type Language = 'en' | 'ko';
 
@@ -44,7 +50,7 @@ export const translations = mergeTranslations(
   crongeneratorTranslations,
   base64converterTranslations,
   hashgeneratorTranslations,
-  jsonprettifierTranslations,
+  jsonformatterTranslations,
   passwordgeneratorTranslations,
   qrgeneratorTranslations,
   uuidgeneratorTranslations,
@@ -56,12 +62,18 @@ export const translations = mergeTranslations(
   numberconverterTranslations,
   unixtimeconverterTranslations,
   timezoneconverterTranslations,
-  formatconverterTranslations,
   localeconverterTranslations,
   numberformatterTranslations,
   regextesterTranslations,
   markdownviewerTranslations,
-  cidrcalculatorTranslations
+  cidrcalculatorTranslations,
+  jsontocsvTranslations,
+  csvtojsonTranslations,
+  yamltojsonTranslations,
+  jsontoyamlTranslations,
+  csvtoyamlTranslations,
+  yamltocsvTranslations,
+  wordcounterTranslations
 );
 
 // 타입 추론을 위한 키 타입

@@ -49,5 +49,12 @@ export const textProcessingSEO: Record<string, ToolSEO> = {
     keywords: ["slug converter", "text to slug", "SEO-friendly URL", "slug generator", "URL slug creator", "슬러그 변환기", "SEO URL 생성기"],
     ogTitle: "Slug Converter - Create SEO-Friendly URLs | DevToolKit",
     ogDescription: "Generate clean, SEO-friendly URL slugs from any text easily."
+  },
+  wordcounter: {
+    title: "Word Counter - Count Words, Characters, Sentences Online Free",
+    description: "Count words, characters, sentences, paragraphs, and reading time with our free online Word Counter tool. Perfect for writers and students.",
+    keywords: ["word counter", "character counter", "text analyzer", "word count tool", "reading time calculator", "글자 수 세기", "단어 수 계산기", "텍스트 분석기"],
+    ogTitle: "Word Counter - Count Words & Characters Online | DevToolKit",
+    ogDescription: "Count words, characters, sentences and analyze your text for free."
   }
 };

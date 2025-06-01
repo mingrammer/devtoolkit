@@ -66,6 +66,9 @@ export const markdownviewerTranslations = {
     markdownviewer_images: 'Images: ![alt](url)',
     markdownviewer_lists: 'Lists: - item or 1. item',
     markdownviewer_code_syntax: 'Code: `inline` or ```block```',
+    markdownviewer_sample: 'Sample',
+    markdownviewer_list_item: 'list item',
+    markdownviewer_italic_text: 'Italic text',
   },
   ko: {
     // Tool info
@@ -134,5 +137,8 @@ export const markdownviewerTranslations = {
     markdownviewer_images: '이미지: ![대체텍스트](url)',
     markdownviewer_lists: '목록: - 항목 또는 1. 항목',
     markdownviewer_code_syntax: '코드: `인라인` 또는 ```블록```',
+    markdownviewer_sample: '샘플',
+    markdownviewer_list_item: '목록',
+    markdownviewer_italic_text: '기울임 텍스트',
   }
 };

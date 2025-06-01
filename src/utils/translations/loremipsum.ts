@@ -29,7 +29,12 @@ export const loremipsumTranslations = {
 
     // Info
     loremipsum_what: 'What is Lorem Ipsum?',
-    loremipsum_info: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    loremipsum_info: 'Lorem Ipsum is placeholder text commonly used in the printing and typesetting industry. It has been the industry standard dummy text ever since the 1500s.',
+    loremipsum_features: 'Features:',
+    loremipsum_feature_1: 'Generate words, sentences, or paragraphs',
+    loremipsum_feature_2: 'Customizable length from 1 to 100 units',
+    loremipsum_feature_3: 'Classic Lorem Ipsum text with proper formatting',
+    loremipsum_feature_4: 'Perfect for design mockups and content placeholders',
   },
   ko: {
     // Tool info
@@ -61,6 +66,11 @@ export const loremipsumTranslations = {
 
     // Info
     loremipsum_what: 'Lorem Ipsum이란?',
-    loremipsum_info: 'Lorem Ipsum은 인쇄 및 조판 업계에서 사용하는 더미 텍스트입니다.',
+    loremipsum_info: 'Lorem Ipsum은 인쇄 및 조판 업계에서 일반적으로 사용되는 더미 텍스트입니다. 1500년대부터 업계 표준 더미 텍스트로 사용되어 왔습니다.',
+    loremipsum_features: '주요 기능:',
+    loremipsum_feature_1: '단어, 문장, 또는 단락 단위로 생성',
+    loremipsum_feature_2: '1에서 100개 단위까지 사용자 지정 길이',
+    loremipsum_feature_3: '적절한 포맷팅이 된 고전적인 Lorem Ipsum 텍스트',
+    loremipsum_feature_4: '디자인 목업과 콘텐츠 자리 표시에 완벽',
   }
 };

@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const JsonPrettifier = () => {
+const JsonFormatter = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -14,7 +14,7 @@ const JsonPrettifier = () => {
 
   const formatJson = () => {
     if (!input.trim()) {
-      toast.error(t("jsonprettifier_required"));
+      toast.error(t("jsonformatter_required"));
       return;
     }
 
@@ -23,16 +23,16 @@ const JsonPrettifier = () => {
       const formatted = JSON.stringify(parsed, null, 2);
       setOutput(formatted);
       setIsValid(true);
-      toast.success(t("jsonprettifier_formatted"));
+      toast.success(t("jsonformatter_formatted"));
     } catch (error) {
       setIsValid(false);
-      toast.error(t("jsonprettifier_invalid") + (error as Error).message);
+      toast.error(t("jsonformatter_invalid") + (error as Error).message);
     }
   };
 
   const minifyJson = () => {
     if (!input.trim()) {
-      toast.error(t("jsonprettifier_required"));
+      toast.error(t("jsonformatter_required"));
       return;
     }
 
@@ -41,26 +41,26 @@ const JsonPrettifier = () => {
       const minified = JSON.stringify(parsed);
       setOutput(minified);
       setIsValid(true);
-      toast.success(t("jsonprettifier_minified"));
+      toast.success(t("jsonformatter_minified"));
     } catch (error) {
       setIsValid(false);
-      toast.error(t("jsonprettifier_invalid") + (error as Error).message);
+      toast.error(t("jsonformatter_invalid") + (error as Error).message);
     }
   };
 
   const validateJson = () => {
     if (!input.trim()) {
-      toast.error(t("jsonprettifier_required"));
+      toast.error(t("jsonformatter_required"));
       return;
     }
 
     try {
       JSON.parse(input);
       setIsValid(true);
-      toast.success(t("jsonprettifier_valid"));
+      toast.success(t("jsonformatter_valid"));
     } catch (error) {
       setIsValid(false);
-      toast.error(t("jsonprettifier_invalid") + (error as Error).message);
+      toast.error(t("jsonformatter_invalid") + (error as Error).message);
     }
   };
 
@@ -90,72 +90,68 @@ const JsonPrettifier = () => {
 
   return (
     <div className="space-y-6">
-      {/* 기능 버튼 */}
       <div className="flex flex-wrap gap-2">
         <Button onClick={formatJson}>
           <Maximize className="w-4 h-4 mr-2" />
-          {t("jsonprettifier_prettify_button")}
+          {t("jsonformatter_format_button")}
         </Button>
         <Button onClick={minifyJson} variant="outline">
           <Minimize className="w-4 h-4 mr-2" />
-          {t("jsonprettifier_minify_button")}
+          {t("jsonformatter_minify_button")}
         </Button>
         <Button onClick={validateJson} variant="outline">
           <Braces className="w-4 h-4 mr-2" />
-          {t("jsonprettifier_validate_button")}
-        </Button>
-        <Button onClick={loadSample} variant="outline" size="sm">
-          {t("jsonprettifier_load_sample_button")}
+          {t("jsonformatter_validate_button")}
         </Button>
       </div>
 
-      {/* 입력/출력 */}
       <div className="grid md:grid-cols-2 gap-4">
         <div className="space-y-3">
-          <Label>{t("jsonprettifier_input_label")}</Label>
+          <div className="flex items-center justify-between">
+            <Label>{t("jsonformatter_input_label")}</Label>
+            <Button onClick={loadSample} variant="outline" size="sm">
+              {t("jsonformatter_load_sample_button")}
+            </Button>
+          </div>
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={t("jsonprettifier_input_placeholder")}
+            placeholder={t("jsonformatter_input_placeholder")}
             className={`min-h-[400px] font-mono text-sm ${
               !isValid && input ? 'border-red-300 bg-red-50' : ''
             }`}
           />
         </div>
-
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <Label>{t("jsonprettifier_output_label")}</Label>
-            {output && (
-              <Button variant="outline" size="sm" onClick={handleCopy}>
-                <Copy className="w-4 h-4 mr-2" />
-                {t("copy")}
-              </Button>
-            )}
+            <Label>{t("jsonformatter_output_label")}</Label>
+            <Button variant="outline" size="sm" onClick={handleCopy}>
+              <Copy className="w-4 h-4 mr-2" />
+              {t("copy")}
+            </Button>
           </div>
           <Textarea
             value={output}
             readOnly
-            placeholder={t("jsonprettifier_output_placeholder")}
+            placeholder={t("jsonformatter_output_placeholder")}
             className="min-h-[400px] font-mono text-sm bg-slate-50"
           />
         </div>
       </div>
 
-      {/* 설명 섹션 */}
       <div className="bg-green-50 p-4 rounded-lg border border-green-200">
         <Label className="text-sm font-medium text-green-800 mb-2 block">
-          {t("jsonprettifier_features_title")}
+          {t("jsonformatter_features_title")}
         </Label>
         <ul className="text-sm text-green-700 space-y-1">
-          <li>• <strong>{t("jsonprettifier_prettify_button")}</strong>: {t("jsonprettifier_feature_prettify")}</li>
-          <li>• <strong>{t("jsonprettifier_minify_button")}</strong>: {t("jsonprettifier_feature_minify")}</li>
-          <li>• <strong>{t("jsonprettifier_validate_button")}</strong>: {t("jsonprettifier_feature_validate")}</li>
-          <li>• <strong>{t("jsonprettifier_load_sample_button")}</strong>: {t("jsonprettifier_feature_sample")}</li>
+          <li>• <strong>{t("jsonformatter_format_button")}</strong>: {t("jsonformatter_feature_format")}</li>
+          <li>• <strong>{t("jsonformatter_minify_button")}</strong>: {t("jsonformatter_feature_minify")}</li>
+          <li>• <strong>{t("jsonformatter_validate_button")}</strong>: {t("jsonformatter_feature_validate")}</li>
+          <li>• <strong>{t("jsonformatter_load_sample_button")}</strong>: {t("jsonformatter_feature_sample")}</li>
         </ul>
       </div>
     </div>
   );
 };
 
-export default JsonPrettifier;
+export default JsonFormatter;

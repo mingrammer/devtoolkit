@@ -174,7 +174,9 @@ const EscapeUnescape = () => {
       {/* Input/Output Section */}
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-3">
-          <Label htmlFor="input">{t("escape_input_text")}</Label>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="input">{t("escape_input_text")}</Label>
+          </div>
           <Textarea
             id="input"
             value={input}

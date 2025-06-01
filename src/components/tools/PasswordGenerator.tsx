@@ -140,6 +140,20 @@ const PasswordGenerator = () => {
           />
         </div>
       )}
+
+      <div className="mt-8 p-6 bg-red-50 rounded-lg">
+        <h3 className="text-lg font-semibold mb-3">{t("passwordgenerator_what")}</h3>
+        <p className="text-gray-700 mb-4">{t("passwordgenerator_info")}</p>
+        <div className="space-y-2">
+          <h4 className="font-medium">{t("passwordgenerator_features")}</h4>
+          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            <li>{t("passwordgenerator_feature_1")}</li>
+            <li>{t("passwordgenerator_feature_2")}</li>
+            <li>{t("passwordgenerator_feature_3")}</li>
+            <li>{t("passwordgenerator_feature_4")}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

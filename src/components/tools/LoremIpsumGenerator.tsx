@@ -138,6 +138,20 @@ const LoremIpsumGenerator = () => {
           />
         </div>
       )}
+
+      <div className="mt-8 p-6 bg-purple-50 rounded-lg">
+        <h3 className="text-lg font-semibold mb-3">{t("loremipsum_what")}</h3>
+        <p className="text-gray-700 mb-4">{t("loremipsum_info")}</p>
+        <div className="space-y-2">
+          <h4 className="font-medium">{t("loremipsum_features")}</h4>
+          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            <li>{t("loremipsum_feature_1")}</li>
+            <li>{t("loremipsum_feature_2")}</li>
+            <li>{t("loremipsum_feature_3")}</li>
+            <li>{t("loremipsum_feature_4")}</li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

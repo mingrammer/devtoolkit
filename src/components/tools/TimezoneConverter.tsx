@@ -33,13 +33,13 @@ const TimezoneConverter = () => {
     }
 
     try {
-      const date = new Date(inputTime);
-      if (isNaN(date.getTime())) {
+      const utcDate = new Date(inputTime + "Z");
+      if (isNaN(utcDate.getTime())) {
         toast.error(t("timezoneconverter_invalid_time"));
         return;
       }
-
-      const converted = new Intl.DateTimeFormat('ko-KR', {
+  
+      const formatter = new Intl.DateTimeFormat('en-CA', {
         timeZone: toTimezone,
         year: 'numeric',
         month: '2-digit',
@@ -47,9 +47,13 @@ const TimezoneConverter = () => {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        timeZoneName: 'short'
-      }).format(date);
-
+        hour12: false,
+      });
+  
+      const parts = formatter.formatToParts(utcDate);
+      const get = (type) => parts.find(p => p.type === type)?.value.padStart(2, '0');
+  
+      const converted = `${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}:${get('second')}`;
       setResult(converted);
       toast.success(t("timezoneconverter_converted"));
     } catch (error) {
@@ -142,14 +146,14 @@ const TimezoneConverter = () => {
         <CardContent>
           <div className="flex items-center justify-center space-x-4 py-8">
             <div className="text-center">
-              <Label className="text-sm text-muted-foreground">입력</Label>
+              <Label className="text-sm text-muted-foreground">{t("timezoneconverter_input_time")}</Label>
               <div className="font-mono text-lg">{inputTime || "-"}</div>
               <div className="text-sm text-muted-foreground">{fromTimezone}</div>
             </div>
             <ArrowRight className="w-6 h-6 text-muted-foreground" />
             <div className="text-center">
               <Label className="text-sm text-muted-foreground">{t("timezoneconverter_result")}</Label>
-              <div className="font-mono font-semibold text-lg">{result}</div>
+              <div className="font-mono text-lg">{result}</div>
               <div className="text-sm text-muted-foreground">{toTimezone}</div>
             </div>
           </div>

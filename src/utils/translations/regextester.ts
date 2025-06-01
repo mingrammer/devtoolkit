@@ -72,6 +72,7 @@ export const regextesterTranslations = {
     regextester_quantifiers: 'Quantifiers',
     regextester_anchors: 'Anchors',
     regextester_char_classes: 'Character Classes',
+    regextester_realtime_note: 'Testing happens automatically as you type',
   },
   ko: {
     // Tool info
@@ -146,5 +147,6 @@ export const regextesterTranslations = {
     regextester_quantifiers: '수량자',
     regextester_anchors: '앵커',
     regextester_char_classes: '문자 클래스',
+    regextester_realtime_note: '입력하는 동안 자동으로 테스트됩니다',
   }
 };

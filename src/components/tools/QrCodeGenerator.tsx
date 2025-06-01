@@ -140,15 +140,18 @@ const QrCodeGenerator = () => {
         </CardContent>
       </Card>
 
-      <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-        <Label className="text-sm font-medium text-green-800 mb-2 block">{t("qrgenerator_usage_title")}</Label>
-        <ul className="text-sm text-green-700 space-y-1">
-          <li>• {t("qrgenerator_usage_url")}</li>
-          <li>• {t("qrgenerator_usage_text")}</li>
-          <li>• {t("qrgenerator_usage_contact")}</li>
-          <li>• {t("qrgenerator_usage_wifi")}</li>
-          <li>• {t("qrgenerator_usage_email")}</li>
-        </ul>
+      <div className="mt-8 p-6 bg-green-50 rounded-lg">
+        <h3 className="text-lg font-semibold mb-3">{t("qrgenerator_what")}</h3>
+        <p className="text-gray-700 mb-4">{t("qrgenerator_info")}</p>
+        <div className="space-y-2">
+          <h4 className="font-medium">{t("qrgenerator_features")}</h4>
+          <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
+            <li>{t("qrgenerator_feature_1")}</li>
+            <li>{t("qrgenerator_feature_2")}</li>
+            <li>{t("qrgenerator_feature_3")}</li>
+            <li>{t("qrgenerator_feature_4")}</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
