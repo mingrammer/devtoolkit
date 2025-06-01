@@ -207,7 +207,7 @@ const Index = () => {
             {/* 두 번째 광고 */}
             <AnalyticsErrorBoundary>
               <AdBanner 
-                slot="8647305847"
+                slot="6759509100"
                 format="auto"
                 className="w-full"
                 style={{ minHeight: '250px' }}
