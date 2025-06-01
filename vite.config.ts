@@ -9,6 +9,19 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    // SPA 라우팅을 위한 히스토리 API 폴백
+    historyApiFallback: true,
+  },
+  build: {
+    // GitHub Pages를 위한 최적화
+    rollupOptions: {
+      output: {
+        // 청크 파일명 안정화
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    }
   },
   plugins: [
     react(),
