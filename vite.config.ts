@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/devtoolkit/' : '/', // GitHub Pages 배포를 위한 base path 설정
+  base: '/', // Custom domain 사용 시 base path 제거
   server: {
     host: "::",
     port: 8080,

@@ -74,7 +74,10 @@ const DevInfo = () => {
                 {envInfo.isGH ? "🟢" : "⚪"} GitHub
               </Badge>
             </div>
-            <div className="text-gray-500 mt-1">Mode: {envInfo.mode}</div>
+            <div className="text-gray-500 mt-1">
+              <div>Mode: {envInfo.mode}</div>
+              <div>Host: {typeof window !== 'undefined' ? window.location.hostname : 'unknown'}</div>
+            </div>
           </div>
 
           {/* Analytics 상태 */}

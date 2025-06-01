@@ -1,0 +1,2 @@
+# favicon.png는 바이너리 파일이므로 기존 favicon.ico를 복사하거나 별도 생성 필요
+# 현재 favicon.ico가 있으므로 index.html에서 해당 경로만 수정

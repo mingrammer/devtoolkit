@@ -53,7 +53,7 @@ export const validateConfig = () => {
 };
 
 // 설정 로그 출력 (개발 환경에서만)
-if (typeof window !== 'undefined' && getEnvVar('NODE_ENV') !== 'production') {
+if (typeof window !== 'undefined' && getEnvVar('MODE') !== 'production') {
   console.log('🔧 Analytics Config:', {
     ga4: {
       enabled: analyticsConfig.ga4.enabled,

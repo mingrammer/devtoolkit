@@ -32,25 +32,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create .env file
-        run: |
-          echo "VITE_GA4_ENABLED=true" >> .env
-          echo "VITE_GA4_MEASUREMENT_ID=G-Y8CJ897DR7" >> .env
-          echo "VITE_ADSENSE_ENABLED=true" >> .env
-          echo "VITE_ADSENSE_PUBLISHER_ID=ca-pub-9436560391944255" >> .env
-          echo "VITE_GA4_API_ENABLED=false" >> .env
-
       - name: Build
         run: npm run build
-
+        env:
+          MODE: production
+          VITE_GA4_ENABLED: true
+          VITE_GA4_MEASUREMENT_ID: G-Y8CJ897DR7
+          VITE_ADSENSE_ENABLED: true
+          VITE_ADSENSE_PUBLISHER_ID: ca-pub-9436560391944255
+          VITE_GA4_API_ENABLED: false
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: "./dist"
-
   deploy:
     environment:
       name: github-pages

@@ -1,0 +1,53 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A"/>
+      <stop offset="100%" style="stop-color:#1E293B"/>
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#8B5CF6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Main content -->
+  <g transform="translate(100, 150)">
+    <!-- Logo -->
+    <rect x="0" y="0" width="80" height="80" rx="16" fill="url(#cardGradient)"/>
+    <g stroke="white" stroke-width="4" stroke-linecap="round">
+      <path d="M20 30h40M20 40h30M20 50h20"/>
+      <circle cx="60" cy="50" r="4" fill="white"/>
+    </g>
+    
+    <!-- Title -->
+    <text x="100" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="bold" fill="white">DevToolkit</text>
+    <text x="100" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#94A3B8">Essential Developer Utilities</text>
+    
+    <!-- Features -->
+    <g transform="translate(0, 120)">
+      <text x="0" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔧 JSON Formatter & Validator</text>
+      <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🆔 UUID Generator</text>
+      <text x="0" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔒 Base64 Converter</text>
+      <text x="0" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">📱 QR Code Generator</text>
+      
+      <text x="400" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔐 Password Generator</text>
+      <text x="400" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">🔍 Regex Tester</text>
+      <text x="400" y="90" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">📝 Markdown Viewer</text>
+      <text x="400" y="120" font-family="system-ui, -apple-system, sans-serif" font-size="20" fill="#E2E8F0">⏰ Time Converters</text>
+    </g>
+  </g>
+  
+  <!-- URL -->
+  <text x="600" y="580" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#64748B">devtoolkit.mingrammer.com</text>
+</svg>
