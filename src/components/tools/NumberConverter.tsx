@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Calculator, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,16 +19,20 @@ const NumberConverter = () => {
   });
   const { t } = useLanguage();
 
-  const convertNumber = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("numberconverter_required"));
+      setResults({
+        binary: "-",
+        decimal: "-",
+        hex: "-",
+        octal: "-"
+      });
       return;
     }
 
     try {
       let decimal: number;
       
-      // 입력값을 10진수로 변환
       switch (fromBase) {
         case "2":
           if (!/^[01]+$/.test(input)) {
@@ -62,25 +66,21 @@ const NumberConverter = () => {
         throw new Error("Invalid number");
       }
 
-      // 각 진법으로 변환
       setResults({
         binary: decimal.toString(2),
         decimal: decimal.toString(10),
         hex: decimal.toString(16).toUpperCase(),
         octal: decimal.toString(8)
       });
-
-      toast.success(t("numberconverter_converted"));
     } catch (error) {
-      toast.error(t("numberconverter_invalid_input"));
+      setResults({
+        binary: "-",
+        decimal: "-",
+        hex: "-",
+        octal: "-"
+      });
     }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      convertNumber();
-    }
-  };
+  }, [input, fromBase]);
 
   const bases = [
     { value: "2", label: t("numberconverter_base_binary") },
@@ -102,7 +102,6 @@ const NumberConverter = () => {
               id="input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyPress={handleKeyPress}
               placeholder={t("numberconverter_input_placeholder")}
               className="font-mono"
             />
@@ -124,10 +123,10 @@ const NumberConverter = () => {
             </Select>
           </div>
 
-          <Button onClick={convertNumber} className="w-full">
+          <div className="flex items-center justify-center text-sm text-slate-500">
             <Calculator className="w-4 h-4 mr-2" />
-            {t("numberconverter_convert")}
-          </Button>
+            <span>{t("numberconverter_convert")}</span>
+          </div>
         </CardContent>
       </Card>
 

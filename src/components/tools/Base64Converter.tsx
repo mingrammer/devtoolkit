@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, Binary, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -12,26 +12,22 @@ const Base64Converter = () => {
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const { t } = useLanguage();
 
-  const handleConvert = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("base64converter_required"));
+      setOutput("");
       return;
     }
 
     try {
       if (mode === "encode") {
-        const encoded = btoa(input);
-        setOutput(encoded);
-        toast.success(t("base64converter_encoded"));
+        setOutput(btoa(input));
       } else {
-        const decoded = atob(input);
-        setOutput(decoded);
-        toast.success(t("base64converter_decoded"));
+        setOutput(atob(input));
       }
     } catch (error) {
-      toast.error(t("base64converter_invalid_format"));
+      setOutput("");
     }
-  };
+  }, [input, mode]);
 
   const handleCopy = async (text: string) => {
     try {
@@ -109,12 +105,10 @@ const Base64Converter = () => {
         </div>
       </div>
 
-      <Button onClick={handleConvert} className="w-full">
+      <div className="flex items-center justify-center text-sm text-slate-500">
         <Binary className="w-4 h-4 mr-2" />
-        {mode === "encode"
-          ? t("base64converter_encode_button")
-          : t("base64converter_decode_button")}
-      </Button>
+        <span>{mode === "encode" ? t("base64converter_encode_button") : t("base64converter_decode_button")}</span>
+      </div>
 
       <div className="mt-8 p-6 bg-blue-50 rounded-lg">
         <h3 className="text-lg font-semibold mb-3">{t("base64converter_what")}</h3>

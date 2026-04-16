@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, CaseUpper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -19,9 +19,17 @@ const CaseConverter = () => {
   });
   const { t } = useLanguage();
 
-  const convertCases = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("caseconverter_required"));
+      setResults({
+        camelCase: "",
+        PascalCase: "",
+        snake_case: "",
+        kebab_case: "",
+        UPPER_CASE: "",
+        lower_case: "",
+        Title_Case: ""
+      });
       return;
     }
 
@@ -32,31 +40,22 @@ const CaseConverter = () => {
       .map(word => word.toLowerCase())
       .filter(word => word.length > 0);
 
-    const converted = {
+    setResults({
       camelCase: words.map((word, index) =>
         index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
       ).join(''),
-
       PascalCase: words.map(word =>
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join(''),
-
       snake_case: words.join('_'),
-
       kebab_case: words.join('-'),
-
       UPPER_CASE: words.join('_').toUpperCase(),
-
       lower_case: words.join('_').toLowerCase(),
-
       Title_Case: words.map(word =>
         word.charAt(0).toUpperCase() + word.slice(1)
       ).join(' ')
-    };
-
-    setResults(converted);
-    toast.success(t("caseconverter_converted"));
-  };
+    });
+  }, [input]);
 
   const handleCopy = async (text: string) => {
     try {
@@ -79,10 +78,10 @@ const CaseConverter = () => {
             placeholder={t("caseconverter_input_placeholder")}
             className="min-h-[100px]"
           />
-          <Button onClick={convertCases}>
+          <div className="flex items-center text-sm text-slate-500">
             <CaseUpper className="w-4 h-4 mr-2" />
-            {t("caseconverter_convert_button")}
-          </Button>
+            <span>{t("caseconverter_convert_button")}</span>
+          </div>
         </div>
       </div>
 

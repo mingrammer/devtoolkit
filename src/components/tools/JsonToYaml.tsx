@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,21 +11,19 @@ const JsonToYaml = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
-  const convertData = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("jsontoyaml_required"));
+      setOutput("");
       return;
     }
 
     try {
       const parsedData = JSON.parse(input);
-      const result = convertToYAML(parsedData);
-      setOutput(result);
-      toast.success(t("jsontoyaml_converted"));
+      setOutput(convertToYAML(parsedData));
     } catch (error) {
-      toast.error(t("jsontoyaml_conversion_error") + ": " + (error as Error).message);
+      setOutput("");
     }
-  };
+  }, [input]);
 
   const convertToYAML = (data: any, indent = 0): string => {
     const spaces = '  '.repeat(indent);
@@ -111,11 +109,9 @@ const JsonToYaml = () => {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <Button onClick={convertData}>
-          <RefreshCw className="w-4 h-4 mr-2" />
-          {t("jsontoyaml_convert")}
-        </Button>
+      <div className="flex justify-center text-sm text-slate-500">
+        <RefreshCw className="w-4 h-4 mr-2" />
+        <span>{t("jsontoyaml_convert")}</span>
       </div>
 
       <div className="mt-8 p-6 bg-purple-50 rounded-lg">

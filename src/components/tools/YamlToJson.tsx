@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,21 +11,19 @@ const YamlToJson = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
-  const convertData = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("yamltojson_required"));
+      setOutput("");
       return;
     }
 
     try {
       const parsedData = parseYAML(input);
-      const result = JSON.stringify(parsedData, null, 2);
-      setOutput(result);
-      toast.success(t("yamltojson_converted"));
+      setOutput(JSON.stringify(parsedData, null, 2));
     } catch (error) {
-      toast.error(t("yamltojson_conversion_error") + ": " + (error as Error).message);
+      setOutput("");
     }
-  };
+  }, [input]);
 
   const parseYAML = (yaml: string) => {
     // Enhanced YAML parser for basic structures
@@ -151,11 +149,9 @@ const YamlToJson = () => {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <Button onClick={convertData}>
-          <RefreshCw className="w-4 h-4 mr-2" />
-          {t("yamltojson_convert")}
-        </Button>
+      <div className="flex justify-center text-sm text-slate-500">
+        <RefreshCw className="w-4 h-4 mr-2" />
+        <span>{t("yamltojson_convert")}</span>
       </div>
 
       <div className="mt-8 p-6 bg-yellow-50 rounded-lg">

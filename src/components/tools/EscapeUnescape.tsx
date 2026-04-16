@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Code, ArrowUpDown, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -20,9 +20,9 @@ const EscapeUnescape = () => {
   const [type, setType] = useState("html");
   const { t } = useLanguage();
 
-  const handleConvert = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("escape_required"));
+      setOutput("");
       return;
     }
 
@@ -109,12 +109,11 @@ const EscapeUnescape = () => {
         }
       }
 
-      setOutput(result);
-      toast.success(mode === "escape" ? t("escape_completed") : t("escape_unescape_completed"));
+      setOutput(typeof result === "string" ? result : String(result));
     } catch (error) {
-      toast.error(t("escape_error"));
+      setOutput("");
     }
-  };
+  }, [input, mode, type]);
 
   const handleCopy = async (text: string) => {
     try {
@@ -206,12 +205,10 @@ const EscapeUnescape = () => {
       </div>
 
       {/* Convert Button */}
-      <Button onClick={handleConvert} className="w-full">
+      <div className="flex items-center justify-center text-sm text-slate-500">
         <Code className="w-4 h-4 mr-2" />
-        {mode === "escape"
-          ? t("escape_button")
-          : t("escape_unescape_button")}
-      </Button>
+        <span>{mode === "escape" ? t("escape_button") : t("escape_unescape_button")}</span>
+      </div>
     </div>
   );
 };

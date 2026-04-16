@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Clock, ArrowRight, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const TimezoneConverter = () => {
@@ -26,19 +25,19 @@ const TimezoneConverter = () => {
     { value: "Australia/Sydney", label: t("timezoneconverter_sydney") + " (AEST)" },
   ];
 
-  const convertTimezone = () => {
+  useEffect(() => {
     if (!inputTime) {
-      toast.error(t("timezoneconverter_required"));
+      setResult("-");
       return;
     }
 
     try {
       const utcDate = new Date(inputTime + "Z");
       if (isNaN(utcDate.getTime())) {
-        toast.error(t("timezoneconverter_invalid_time"));
+        setResult("-");
         return;
       }
-  
+
       const formatter = new Intl.DateTimeFormat('en-CA', {
         timeZone: toTimezone,
         year: 'numeric',
@@ -49,17 +48,15 @@ const TimezoneConverter = () => {
         second: '2-digit',
         hour12: false,
       });
-  
+
       const parts = formatter.formatToParts(utcDate);
-      const get = (type) => parts.find(p => p.type === type)?.value.padStart(2, '0');
-  
-      const converted = `${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}:${get('second')}`;
-      setResult(converted);
-      toast.success(t("timezoneconverter_converted"));
+      const get = (type: string) => parts.find(p => p.type === type)?.value.padStart(2, '0');
+
+      setResult(`${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}:${get('second')}`);
     } catch (error) {
-      toast.error(t("timezoneconverter_invalid_time"));
+      setResult("-");
     }
-  };
+  }, [inputTime, toTimezone]);
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -67,11 +64,6 @@ const TimezoneConverter = () => {
     setInputTime(formatted);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      convertTimezone();
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -87,7 +79,6 @@ const TimezoneConverter = () => {
                 id="inputTime"
                 value={inputTime}
                 onChange={(e) => setInputTime(e.target.value)}
-                onKeyPress={handleKeyPress}
                 placeholder={t("timezoneconverter_input_placeholder")}
                 className="font-mono"
               />
@@ -132,10 +123,10 @@ const TimezoneConverter = () => {
             </div>
           </div>
 
-          <Button onClick={convertTimezone} className="w-full">
+          <div className="flex items-center justify-center text-sm text-slate-500 border rounded-md bg-slate-50 py-2">
             <Clock className="w-4 h-4 mr-2" />
-            {t("timezoneconverter_convert")}
-          </Button>
+            <span>{t("timezoneconverter_convert")}</span>
+          </div>
         </CardContent>
       </Card>
 

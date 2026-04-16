@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,21 +11,19 @@ const CsvToYaml = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
-  const convertData = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("csvtoyaml_required"));
+      setOutput("");
       return;
     }
 
     try {
       const parsedData = parseCSV(input);
-      const result = convertToYAML(parsedData);
-      setOutput(result);
-      toast.success(t("csvtoyaml_converted"));
+      setOutput(convertToYAML(parsedData));
     } catch (error) {
-      toast.error(t("csvtoyaml_conversion_error") + ": " + (error as Error).message);
+      setOutput("");
     }
-  };
+  }, [input]);
 
   const parseCSV = (csv: string) => {
     const lines = csv.trim().split('\n');
@@ -166,11 +164,9 @@ const CsvToYaml = () => {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <Button onClick={convertData}>
-          <RefreshCw className="w-4 h-4 mr-2" />
-          {t("csvtoyaml_convert")}
-        </Button>
+      <div className="flex justify-center text-sm text-slate-500">
+        <RefreshCw className="w-4 h-4 mr-2" />
+        <span>{t("csvtoyaml_convert")}</span>
       </div>
 
       <div className="mt-8 p-6 bg-pink-50 rounded-lg">

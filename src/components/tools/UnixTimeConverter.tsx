@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, Clock, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,42 +33,48 @@ const UnixTimeConverter = () => {
     epoch: "-"
   });
 
-  const convertEpochToDate = () => {
+  useEffect(() => {
     if (!epochTime) {
-      toast.error(t("unixtimeconverter_required"));
+      setEpochResults({ local: "-", utc: "-" });
       return;
     }
 
     try {
       const timestamp = parseInt(epochTime);
       const date = new Date(timestamp * 1000);
+
+      if (Number.isNaN(date.getTime())) {
+        throw new Error("Invalid epoch");
+      }
+
       setEpochResults({
         local: toLocalISOString(date),
         utc: date.toISOString().substring(0, 19),
       });
-      toast.success(t("unixtimeconverter_converted"));
     } catch (error) {
-      toast.error(t("unixtimeconverter_invalid_format"));
+      setEpochResults({ local: "-", utc: "-" });
     }
-  };
+  }, [epochTime]);
 
-  const convertDateToEpoch = () => {
+  useEffect(() => {
     if (!dateTime) {
-      toast.error(t("unixtimeconverter_required"));
+      setDateResults({ epoch: "-" });
       return;
     }
 
     try {
       const date = new Date(dateTime);
       const epoch = Math.floor(date.getTime() / 1000);
-      setDateResults({
-        epoch: epoch.toString()
-      });
-      toast.success(t("unixtimeconverter_converted"));
+
+      if (Number.isNaN(epoch)) {
+        throw new Error("Invalid date");
+      }
+
+      setDateResults({ epoch: epoch.toString() });
     } catch (error) {
-      toast.error(t("unixtimeconverter_invalid_format"));
+      setDateResults({ epoch: "-" });
     }
-  };
+  }, [dateTime]);
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -85,11 +91,6 @@ const UnixTimeConverter = () => {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent, handler: () => void) => {
-    if (e.key === 'Enter') {
-      handler();
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -147,14 +148,13 @@ const UnixTimeConverter = () => {
             <Input
               value={epochTime}
               onChange={(e) => setEpochTime(e.target.value)}
-              onKeyPress={(e) => handleKeyPress(e, convertEpochToDate)}
               placeholder={t("unixtimeconverter_input_placeholder")}
               className="font-mono"
             />
-            <Button onClick={convertEpochToDate}>
+            <div className="flex items-center px-3 text-sm text-slate-500 border rounded-md bg-slate-50">
               <Clock className="w-4 h-4 mr-2" />
-              {t("unixtimeconverter_convert")}
-            </Button>
+              <span>{t("unixtimeconverter_convert")}</span>
+            </div>
           </div>
           
           <div className="grid md:grid-cols-2 gap-4">
@@ -191,12 +191,11 @@ const UnixTimeConverter = () => {
               type="datetime-local"
               value={dateTime}
               onChange={(e) => setDateTime(e.target.value)}
-              onKeyPress={(e) => handleKeyPress(e, convertDateToEpoch)}
             />
-            <Button onClick={convertDateToEpoch}>
+            <div className="flex items-center px-3 text-sm text-slate-500 border rounded-md bg-slate-50">
               <Clock className="w-4 h-4 mr-2" />
-              {t("unixtimeconverter_convert")}
-            </Button>
+              <span>{t("unixtimeconverter_convert")}</span>
+            </div>
           </div>
           
           <div className="space-y-2">

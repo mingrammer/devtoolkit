@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,21 +11,19 @@ const JsonToCsv = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
-  const convertData = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("jsontocsv_required"));
+      setOutput("");
       return;
     }
 
     try {
       const parsedData = JSON.parse(input);
-      const result = convertToCSV(parsedData);
-      setOutput(result);
-      toast.success(t("jsontocsv_converted"));
+      setOutput(convertToCSV(parsedData));
     } catch (error) {
-      toast.error(t("jsontocsv_conversion_error") + ": " + (error as Error).message);
+      setOutput("");
     }
-  };
+  }, [input]);
 
   const convertToCSV = (data: any) => {
     if (Array.isArray(data) && data.length > 0) {
@@ -101,11 +99,9 @@ const JsonToCsv = () => {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <Button onClick={convertData}>
-          <RefreshCw className="w-4 h-4 mr-2" />
-          {t("jsontocsv_convert")}
-        </Button>
+      <div className="flex justify-center text-sm text-slate-500">
+        <RefreshCw className="w-4 h-4 mr-2" />
+        <span>{t("jsontocsv_convert")}</span>
       </div>
 
       <div className="mt-8 p-6 bg-blue-50 rounded-lg">

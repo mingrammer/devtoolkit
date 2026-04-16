@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Copy, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -11,21 +11,19 @@ const YamlToCsv = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
 
-  const convertData = () => {
+  useEffect(() => {
     if (!input.trim()) {
-      toast.error(t("yamltocsv_required"));
+      setOutput("");
       return;
     }
 
     try {
       const parsedData = parseYAML(input);
-      const result = convertToCSV(parsedData);
-      setOutput(result);
-      toast.success(t("yamltocsv_converted"));
+      setOutput(convertToCSV(parsedData));
     } catch (error) {
-      toast.error(t("yamltocsv_conversion_error") + ": " + (error as Error).message);
+      setOutput("");
     }
-  };
+  }, [input]);
 
   const parseYAML = (yaml: string) => {
     // Enhanced YAML parser for basic structures
@@ -202,11 +200,9 @@ const YamlToCsv = () => {
         </div>
       </div>
 
-      <div className="flex justify-center">
-        <Button onClick={convertData}>
-          <RefreshCw className="w-4 h-4 mr-2" />
-          {t("yamltocsv_convert")}
-        </Button>
+      <div className="flex justify-center text-sm text-slate-500">
+        <RefreshCw className="w-4 h-4 mr-2" />
+        <span>{t("yamltocsv_convert")}</span>
       </div>
 
       <div className="mt-8 p-6 bg-indigo-50 rounded-lg">
