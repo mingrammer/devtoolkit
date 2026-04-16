@@ -10,20 +10,24 @@ const YamlToJson = () => {
   const { t } = useLanguage();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
     try {
       const parsedData = parseYAML(input);
       setOutput(JSON.stringify(parsedData, null, 2));
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("yamltojson_conversion_error") + ": " + (error as Error).message);
     }
-  }, [input]);
+  }, [input, t]);
 
   const parseYAML = (yaml: string) => {
     // Enhanced YAML parser for basic structures
@@ -146,6 +150,7 @@ const YamlToJson = () => {
             placeholder={t("yamltojson_output_placeholder")}
             className="min-h-[300px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 

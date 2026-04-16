@@ -9,12 +9,14 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const Base64Converter = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const { t } = useLanguage();
 
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
@@ -24,10 +26,12 @@ const Base64Converter = () => {
       } else {
         setOutput(atob(input));
       }
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("base64converter_invalid_format"));
     }
-  }, [input, mode]);
+  }, [input, mode, t]);
 
   const handleCopy = async (text: string) => {
     try {
@@ -102,6 +106,7 @@ const Base64Converter = () => {
             placeholder={t("base64converter_result_placeholder")}
             className="min-h-[200px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 

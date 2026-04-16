@@ -11,6 +11,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const NumberConverter = () => {
   const [input, setInput] = useState("");
   const [fromBase, setFromBase] = useState("10");
+  const [error, setError] = useState("");
   const [results, setResults] = useState({
     binary: "-",
     decimal: "-",
@@ -27,6 +28,7 @@ const NumberConverter = () => {
         hex: "-",
         octal: "-"
       });
+      setError("");
       return;
     }
 
@@ -72,6 +74,7 @@ const NumberConverter = () => {
         hex: decimal.toString(16).toUpperCase(),
         octal: decimal.toString(8)
       });
+      setError("");
     } catch (error) {
       setResults({
         binary: "-",
@@ -79,8 +82,9 @@ const NumberConverter = () => {
         hex: "-",
         octal: "-"
       });
+      setError(t("numberconverter_invalid_input"));
     }
-  }, [input, fromBase]);
+  }, [input, fromBase, t]);
 
   const bases = [
     { value: "2", label: t("numberconverter_base_binary") },
@@ -127,6 +131,7 @@ const NumberConverter = () => {
             <Calculator className="w-4 h-4 mr-2" />
             <span>{t("numberconverter_convert")}</span>
           </div>
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </CardContent>
       </Card>
 

@@ -10,20 +10,24 @@ const JsonToCsv = () => {
   const { t } = useLanguage();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
     try {
       const parsedData = JSON.parse(input);
       setOutput(convertToCSV(parsedData));
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("jsontocsv_conversion_error") + ": " + (error as Error).message);
     }
-  }, [input]);
+  }, [input, t]);
 
   const convertToCSV = (data: any) => {
     if (Array.isArray(data) && data.length > 0) {
@@ -96,6 +100,7 @@ const JsonToCsv = () => {
             placeholder={t("jsontocsv_output_placeholder")}
             className="min-h-[300px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 

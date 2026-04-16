@@ -13,6 +13,7 @@ const TimezoneConverter = () => {
   const [fromTimezone, setFromTimezone] = useState("UTC");
   const [toTimezone, setToTimezone] = useState("Asia/Seoul");
   const [result, setResult] = useState("-");
+  const [error, setError] = useState("");
 
   const timezones = [
     { value: "UTC", label: t("timezoneconverter_utc") },
@@ -28,6 +29,7 @@ const TimezoneConverter = () => {
   useEffect(() => {
     if (!inputTime) {
       setResult("-");
+      setError("");
       return;
     }
 
@@ -35,6 +37,7 @@ const TimezoneConverter = () => {
       const utcDate = new Date(inputTime + "Z");
       if (isNaN(utcDate.getTime())) {
         setResult("-");
+        setError(t("timezoneconverter_invalid_time"));
         return;
       }
 
@@ -53,10 +56,12 @@ const TimezoneConverter = () => {
       const get = (type: string) => parts.find(p => p.type === type)?.value.padStart(2, '0');
 
       setResult(`${get('year')}-${get('month')}-${get('day')}T${get('hour')}:${get('minute')}:${get('second')}`);
+      setError("");
     } catch (error) {
       setResult("-");
+      setError(t("timezoneconverter_invalid_time"));
     }
-  }, [inputTime, toTimezone]);
+  }, [inputTime, toTimezone, t]);
 
   const getCurrentTime = () => {
     const now = new Date();
@@ -127,6 +132,7 @@ const TimezoneConverter = () => {
             <Clock className="w-4 h-4 mr-2" />
             <span>{t("timezoneconverter_convert")}</span>
           </div>
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </CardContent>
       </Card>
 
