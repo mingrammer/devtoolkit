@@ -10,20 +10,24 @@ const JsonToYaml = () => {
   const { t } = useLanguage();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
     try {
       const parsedData = JSON.parse(input);
       setOutput(convertToYAML(parsedData));
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("jsontoyaml_conversion_error") + ": " + (error as Error).message);
     }
-  }, [input]);
+  }, [input, t]);
 
   const convertToYAML = (data: any, indent = 0): string => {
     const spaces = '  '.repeat(indent);
@@ -106,6 +110,7 @@ const JsonToYaml = () => {
             placeholder={t("jsontoyaml_output_placeholder")}
             className="min-h-[300px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 

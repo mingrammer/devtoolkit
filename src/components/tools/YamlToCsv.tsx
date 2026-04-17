@@ -10,20 +10,24 @@ const YamlToCsv = () => {
   const { t } = useLanguage();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
     try {
       const parsedData = parseYAML(input);
       setOutput(convertToCSV(parsedData));
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("yamltocsv_conversion_error") + ": " + (error as Error).message);
     }
-  }, [input]);
+  }, [input, t]);
 
   const parseYAML = (yaml: string) => {
     // Enhanced YAML parser for basic structures
@@ -197,6 +201,7 @@ const YamlToCsv = () => {
             placeholder={t("yamltocsv_output_placeholder")}
             className="min-h-[300px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 

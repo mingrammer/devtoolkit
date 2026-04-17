@@ -16,6 +16,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 const EscapeUnescape = () => {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
   const [mode, setMode] = useState<"escape" | "unescape">("escape");
   const [type, setType] = useState("html");
   const { t } = useLanguage();
@@ -23,6 +24,7 @@ const EscapeUnescape = () => {
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
@@ -110,10 +112,12 @@ const EscapeUnescape = () => {
       }
 
       setOutput(typeof result === "string" ? result : String(result));
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("escape_error"));
     }
-  }, [input, mode, type]);
+  }, [input, mode, type, t]);
 
   const handleCopy = async (text: string) => {
     try {
@@ -128,6 +132,7 @@ const EscapeUnescape = () => {
     setMode(mode === "escape" ? "unescape" : "escape");
     setInput(output);
     setOutput("");
+    setError("");
   };
 
   const types = [
@@ -201,6 +206,7 @@ const EscapeUnescape = () => {
             placeholder={t("escape_output_placeholder")}
             className="min-h-[200px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 

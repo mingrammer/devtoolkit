@@ -10,20 +10,24 @@ const CsvToYaml = () => {
   const { t } = useLanguage();
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!input.trim()) {
       setOutput("");
+      setError("");
       return;
     }
 
     try {
       const parsedData = parseCSV(input);
       setOutput(convertToYAML(parsedData));
+      setError("");
     } catch (error) {
       setOutput("");
+      setError(t("csvtoyaml_conversion_error") + ": " + (error as Error).message);
     }
-  }, [input]);
+  }, [input, t]);
 
   const parseCSV = (csv: string) => {
     const lines = csv.trim().split('\n');
@@ -161,6 +165,7 @@ const CsvToYaml = () => {
             placeholder={t("csvtoyaml_output_placeholder")}
             className="min-h-[300px] font-mono text-sm bg-slate-50"
           />
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
       </div>
 
