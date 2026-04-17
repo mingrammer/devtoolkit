@@ -74,6 +74,20 @@ npm install
 npm run dev
 ```
 
+## Deployment
+
+- Production URL: [https://devtoolkit.mingrammer.com](https://devtoolkit.mingrammer.com)
+- Build command: `npm run build`
+- Production start command: `npm run start`
+
+Typical deployment flow:
+
+```bash
+npm install
+npm run build
+npm run start
+```
+
 ## Contributing
 
 Contributions are welcome! Feel free to:
