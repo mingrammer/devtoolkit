@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { cn } from "@/lib/utils";
 
 const LocaleConverter = () => {
   const { t } = useLanguage();
@@ -132,9 +133,9 @@ const LocaleConverter = () => {
                 : t("localeconverter_hyphen_example")
             }
           />
-          <Button onClick={convertLocale}>
-            <Globe className="w-4 h-4 mr-2" />
-            {t("localeconverter_convert")}
+          <Button onClick={convertLocale} className="shrink-0 px-3" aria-label={t("localeconverter_convert")} title={t("localeconverter_convert")}>
+            <Globe className="h-4 w-4 shrink-0" />
+            <span className="sr-only sm:not-sr-only sm:ml-2">{t("localeconverter_convert")}</span>
           </Button>
         </div>
       </div>
@@ -143,9 +144,9 @@ const LocaleConverter = () => {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <Label>{t("localeconverter_result")}</Label>
-            <Button variant="outline" size="sm" onClick={handleCopy}>
-              <Copy className="w-4 h-4 mr-2" />
-              {t("localeconverter_copy_button")}
+            <Button variant="outline" size="sm" onClick={handleCopy} aria-label={t("localeconverter_copy_button")} title={t("localeconverter_copy_button")}>
+              <Copy className="h-4 w-4" />
+              <span className="sr-only sm:not-sr-only sm:ml-2">{t("localeconverter_copy_button")}</span>
             </Button>
           </div>
           <Input value={result} readOnly className="font-mono" />
@@ -163,7 +164,7 @@ const LocaleConverter = () => {
               onClick={() =>
                 setInputLocale(fromFormat === "hyphen" ? locale.replace('_', '-') : locale)
               }
-              className="text-xs"
+              className={cn("text-xs", "min-h-9")}
             >
               {locale}
             </Button>

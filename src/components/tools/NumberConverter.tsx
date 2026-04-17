@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import MobileIconLabel from "@/components/MobileIconLabel";
 
 const NumberConverter = () => {
   const [input, setInput] = useState("");
@@ -127,10 +128,7 @@ const NumberConverter = () => {
             </Select>
           </div>
 
-          <div className="flex items-center justify-center text-sm text-slate-500">
-            <Calculator className="w-4 h-4 mr-2" />
-            <span>{t("numberconverter_convert")}</span>
-          </div>
+          <MobileIconLabel icon={Calculator} label={t("numberconverter_convert")} className="border-0 bg-transparent" />
           {error && <p className="text-sm text-red-500">{error}</p>}
         </CardContent>
       </Card>

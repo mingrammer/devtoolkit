@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import MobileIconLabel from "@/components/MobileIconLabel";
 
 const toLocalISOString = (date: Date): string => {
   const pad = (n: number) => n.toString().padStart(2, '0');
@@ -151,10 +152,7 @@ const UnixTimeConverter = () => {
               placeholder={t("unixtimeconverter_input_placeholder")}
               className="font-mono"
             />
-            <div className="flex items-center px-3 text-sm text-slate-500 border rounded-md bg-slate-50">
-              <Clock className="w-4 h-4 mr-2" />
-              <span>{t("unixtimeconverter_convert")}</span>
-            </div>
+            <MobileIconLabel icon={Clock} label={t("unixtimeconverter_convert")} className="shrink-0" />
           </div>
           
           <div className="grid md:grid-cols-2 gap-4">
@@ -192,10 +190,7 @@ const UnixTimeConverter = () => {
               value={dateTime}
               onChange={(e) => setDateTime(e.target.value)}
             />
-            <div className="flex items-center px-3 text-sm text-slate-500 border rounded-md bg-slate-50">
-              <Clock className="w-4 h-4 mr-2" />
-              <span>{t("unixtimeconverter_convert")}</span>
-            </div>
+            <MobileIconLabel icon={Clock} label={t("unixtimeconverter_convert")} className="shrink-0" />
           </div>
           
           <div className="space-y-2">

@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import MobileIconLabel from "@/components/MobileIconLabel";
 
 const YamlToJson = () => {
   const { t } = useLanguage();
@@ -154,10 +155,7 @@ const YamlToJson = () => {
         </div>
       </div>
 
-      <div className="flex justify-center text-sm text-slate-500">
-        <RefreshCw className="w-4 h-4 mr-2" />
-        <span>{t("yamltojson_convert")}</span>
-      </div>
+      <MobileIconLabel icon={RefreshCw} label={t("yamltojson_convert")} className="border-0 bg-transparent" />
 
       <div className="mt-8 p-6 bg-yellow-50 rounded-lg">
         <h3 className="text-lg font-semibold mb-3">{t("yamltojson_what")}</h3>

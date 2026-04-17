@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useLanguage } from "@/contexts/LanguageContext";
+import MobileIconLabel from "@/components/MobileIconLabel";
 
 const EscapeUnescape = () => {
   const [input, setInput] = useState("");
@@ -211,10 +212,11 @@ const EscapeUnescape = () => {
       </div>
 
       {/* Convert Button */}
-      <div className="flex items-center justify-center text-sm text-slate-500">
-        <Code className="w-4 h-4 mr-2" />
-        <span>{mode === "escape" ? t("escape_button") : t("escape_unescape_button")}</span>
-      </div>
+      <MobileIconLabel
+        icon={Code}
+        label={mode === "escape" ? t("escape_button") : t("escape_unescape_button")}
+        className="border-0 bg-transparent"
+      />
     </div>
   );
 };

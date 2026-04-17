@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
+import MobileIconLabel from "@/components/MobileIconLabel";
 
 const TimezoneConverter = () => {
   const { t } = useLanguage();
@@ -128,10 +129,7 @@ const TimezoneConverter = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center text-sm text-slate-500 border rounded-md bg-slate-50 py-2">
-            <Clock className="w-4 h-4 mr-2" />
-            <span>{t("timezoneconverter_convert")}</span>
-          </div>
+          <MobileIconLabel icon={Clock} label={t("timezoneconverter_convert")} />
           {error && <p className="text-sm text-red-500">{error}</p>}
         </CardContent>
       </Card>
