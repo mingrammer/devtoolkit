@@ -70,50 +70,50 @@ const Index = () => {
       />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-          <Code className="w-5 h-5 text-white" />
-          </div>
-          <div>
-          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          {t("devToolkit")}
-          </h1>
-          <p className="text-xs text-slate-500">{t("supportDescription")}</p>
-          </div>
-          </div>
-            <div className="flex items-center space-x-4">
+      <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md">
+        <div className="container mx-auto px-4 py-3 sm:py-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex min-w-0 items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600">
+                <Code className="w-5 h-5 text-white" />
+              </div>
+              <div className="min-w-0">
+                <h1 className="truncate text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent sm:text-xl">
+                  {t("devToolkit")}
+                </h1>
+                <p className="truncate text-xs text-slate-500">{t("supportDescription")}</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 sm:justify-end sm:gap-3">
               <LanguageSelector />
               <GitHubButton 
-                  owner="mingrammer" 
-                  repo="devtoolkit" 
-                  variant="compact"
-                />
+                owner="mingrammer" 
+                repo="devtoolkit" 
+                variant="compact"
+              />
               <Button 
                 onClick={handleBuyMeCoffee}
-                className="bg-[#FFDD00] hover:bg-[#FFCC00] text-black font-medium px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 border border-gray-300 hover:border-gray-400"
+                className="h-9 bg-[#FFDD00] px-3 text-black transition-colors duration-200 hover:bg-[#FFCC00]"
                 size="sm"
               >
                 <img 
                   src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" 
                   alt="Buy me a coffee"
-                  className="w-5 h-5"
+                  className="h-4 w-4 sm:h-5 sm:w-5"
                 />
-                <span>{t("buyMeCoffee")}</span>
+                <span className="hidden sm:inline">{t("buyMeCoffee")}</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-12 gap-8">
+      <div className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
           {/* Main Contents */}
-          <div className="lg:col-span-9">
-            <div className="mb-8">
-              <h2 className="text-3xl font-bold text-slate-800 mb-2">
+          <div className="min-w-0 lg:col-span-9">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="mb-2 text-2xl font-bold text-slate-800 sm:text-3xl">
                 {t("developersEssential")}
               </h2>
               <p className="text-slate-600">
@@ -123,7 +123,7 @@ const Index = () => {
 
             {/* Search Bar */}
             <div className="mb-6">
-              <div className="relative max-w-md">
+              <div className="relative max-w-full sm:max-w-md">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   placeholder={t("searchTools")}
@@ -151,7 +151,7 @@ const Index = () => {
             </div>
 
             {/* Tools Grid */}
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mb-8">
               {filteredTools.map((tool) => {
                 const Icon = tool.icon;
                 
@@ -162,12 +162,12 @@ const Index = () => {
                     onClick={() => handleToolClick(tool.id)}
                   >
                     <CardHeader className="pb-3">
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-start space-x-3">
                         <div className={`w-10 h-10 ${tool.color} rounded-lg flex items-center justify-center`}>
                           <Icon className="w-5 h-5 text-white" />
                         </div>
-                        <div>
-                          <CardTitle className="text-sm">{tool.title}</CardTitle>
+                        <div className="min-w-0">
+                          <CardTitle className="line-clamp-2 text-sm leading-5">{tool.title}</CardTitle>
                           <Badge variant="secondary" className="text-xs mt-1">
                             {tool.category}
                           </Badge>
@@ -175,7 +175,7 @@ const Index = () => {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <CardDescription className="text-xs">
+                      <CardDescription className="line-clamp-3 text-xs leading-5">
                         {tool.description}
                       </CardDescription>
                     </CardContent>

@@ -22,15 +22,16 @@ const LanguageSelector = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="w-full h-8 px-3 justify-between">
+        <Button variant="outline" size="sm" className="h-9 w-auto min-w-[44px] justify-center px-2 sm:min-w-[120px] sm:justify-between sm:px-3">
           <div className="flex items-center">
-            <Globe className="w-4 h-4 mr-2" />
-            <span className="mr-1">{currentLang?.flag}</span>
-            <span>{currentLang?.name}</span>
+            <Globe className="mr-0 h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline mr-1">{currentLang?.flag}</span>
+            <span className="hidden sm:inline">{currentLang?.name}</span>
+            <span className="sm:hidden">{currentLang?.flag}</span>
           </div>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-full">
+      <DropdownMenuContent align="end" className="min-w-[140px]">
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}

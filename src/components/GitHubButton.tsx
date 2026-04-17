@@ -34,12 +34,12 @@ const GitHubButton: React.FC<GitHubButtonProps> = ({
         onClick={handleClick}
         variant="outline"
         size="sm"
-        className={`text-gray-700 hover:text-gray-900 hover:bg-gray-50 border-gray-300 ${className}`}
+        className={`h-9 px-2.5 text-gray-700 hover:bg-gray-50 hover:text-gray-900 border-gray-300 sm:px-3 ${className}`}
       >
-        <Github className="w-4 h-4 mr-2" />
+        <Github className="h-4 w-4 sm:mr-2" />
         <span className="hidden sm:inline">GitHub</span>
         {!loading && stargazers_count > 0 && (
-          <div className="flex items-center ml-2 text-xs">
+          <div className="ml-1 hidden items-center text-xs sm:ml-2 sm:flex">
             <Star className="w-3 h-3 mr-1 fill-current text-yellow-500" />
             {formatStarCount(stargazers_count)}
           </div>

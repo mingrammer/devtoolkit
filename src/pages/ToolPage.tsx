@@ -1,5 +1,5 @@
 import { useParams, Navigate } from "react-router-dom";
-import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { ToolSidebar } from "@/components/ToolSidebar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -102,56 +102,62 @@ const ToolPage = () => {
       <SidebarProvider>
         <div className="min-h-screen flex w-full">
           <ToolSidebar />
-          <SidebarInset className="flex flex-col">
-            {/* TopBar를 메인 콘텐츠 영역에만 적용 */}
-            <div className="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-end sticky top-0 z-50">
-              <div className="flex items-center space-x-4">
-                <LanguageSelector />
-                <GitHubButton 
-                  owner="mingrammer" 
-                  repo="devtoolkit" 
-                  variant="compact"
-                />
-                <Button 
-                  onClick={() => window.open('https://buymeacoffee.com/mingrammer', '_blank')}
-                  className="bg-[#FFDD00] hover:bg-[#FFCC00] text-black font-medium px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2 border border-gray-300 hover:border-gray-400"
-                  size="sm"
-                >
-                  <img 
-                    src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" 
-                    alt="Buy me a coffee"
-                    className="w-5 h-5"
+          <SidebarInset className="flex min-w-0 flex-col">
+            <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+              <div className="flex min-h-16 items-center gap-2 px-3 py-3 sm:px-4">
+                <SidebarTrigger className="md:hidden" />
+                <div className="min-w-0 flex-1">
+                  <div className="truncate text-sm font-semibold text-slate-900 sm:text-base">{tool.title}</div>
+                  <div className="truncate text-xs text-slate-500 sm:text-sm">{tool.category}</div>
+                </div>
+                <div className="flex shrink-0 items-center gap-2">
+                  <LanguageSelector />
+                  <GitHubButton 
+                    owner="mingrammer" 
+                    repo="devtoolkit" 
+                    variant="compact"
                   />
-                  <span>{t("buyMeCoffee")}</span>
-                </Button>
+                  <Button 
+                    onClick={() => window.open('https://buymeacoffee.com/mingrammer', '_blank')}
+                    className="h-9 bg-[#FFDD00] px-3 text-black transition-colors duration-200 hover:bg-[#FFCC00]"
+                    size="sm"
+                  >
+                    <img 
+                      src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" 
+                      alt="Buy me a coffee"
+                      className="h-4 w-4 sm:h-5 sm:w-5"
+                    />
+                    <span className="hidden sm:inline">{t("buyMeCoffee")}</span>
+                  </Button>
+                </div>
               </div>
             </div>
             
-            <div className="flex-1 p-8">
-              <Card className="shadow-lg">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-12 h-12 ${tool.color} rounded-lg flex items-center justify-center`}>
-                      <tool.icon className="w-6 h-6 text-white" />
+            <div className="flex-1 px-3 py-4 sm:px-4 sm:py-6 lg:p-8">
+              <Card className="overflow-hidden shadow-lg">
+                <CardHeader className="p-4 sm:p-6">
+                  <div className="flex items-start gap-3 sm:items-center sm:space-x-3">
+                    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-lg ${tool.color} sm:h-12 sm:w-12`}>
+                      <tool.icon className="h-5 w-5 text-white sm:h-6 sm:w-6" />
                     </div>
-                    <div>
-                      <CardTitle className="text-2xl">{tool.title}</CardTitle>
-                      <CardDescription className="text-lg">{tool.description}</CardDescription>
+                    <div className="min-w-0">
+                      <CardTitle className="text-xl sm:text-2xl">{tool.title}</CardTitle>
+                      <CardDescription className="mt-1 text-sm leading-6 sm:text-base lg:text-lg">{tool.description}</CardDescription>
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="pt-6">
+                <CardContent className="p-4 pt-0 sm:p-6 sm:pt-2">
                   {renderTool()}
                 </CardContent>
               </Card>
               
-              <div className="mt-8">
+              <div className="mt-6 sm:mt-8">
                 <AnalyticsErrorBoundary>
                   <AdBanner 
                     slot="6031323740"
                     format="fluid"
                     layoutKey="-fb+5w+4e-db+86"
-                    className="max-w-2xl mx-auto"
+                    className="mx-auto w-full max-w-2xl"
                     style={{ minHeight: '250px' }}
                   />
                 </AnalyticsErrorBoundary>
